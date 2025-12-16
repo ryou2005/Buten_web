@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>お問い合わせ | 和太鼓 武天 -BUTEN-</title>
+    <meta name="description" content="和太鼓「武天」へのお問い合わせ・体験レッスンのお申し込み。お気軽にご連絡ください。">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./contact.css" />
+  </head>
+  <body>
+    <!-- Loader -->
+    <div id="loader">
+      <div class="loader-content">
+        <div class="loader-core"></div>
+        <div class="loader-ring"></div>
+        <div class="loader-ring"></div>
+        <div class="loader-ring"></div>
+        <div class="loader-orbit"></div>
+      </div>
+    </div>
+    <div id="app">
+      <header class="site-header">
+        <div class="logo">
+           <a href="index.html">
+             <img src="dist/logo_text.png" alt="和太鼓 武天 -BUTEN-">
+           </a>
+        </div>
+        <button
+          class="menu-toggle"
+          aria-label="メニューを開く"
+          aria-expanded="false"
+        >
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="menu-text">MENU</span>
+        </button>
+        <nav class="main-nav" id="main-nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="class.html">クラス紹介</a></li>
+            <li><a href="instructors.html">講師紹介</a></li>
+            <li><a href="admission.html">入会案内</a></li>
+            <li><a href="schedule.html">公演予定</a></li>
+            <li><a href="access.html">アクセス</a></li>
+            <li><a href="contact.html" class="active">お問い合わせ</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main>
+        <section class="page-header" style="background-image: url('dist/hero_bg.png');">
+            <div class="header-overlay"></div>
+            <h1>お問い合わせ</h1>
+            <p>Contact</p>
+        </section>
+
+        <section class="section-contact-form">
+            <div class="container">
+                <p class="contact-intro">体験レッスンのお申し込み、演奏のご依頼、その他ご質問など、<br class="desktop-only">お気軽にお問い合わせください。</p>
+                
+                <form class="contact-form" action="#" method="post">
+                    <div class="form-group">
+                        <label for="name">お名前 <span class="required">必須</span></label>
+                        <input type="text" id="name" name="name" required placeholder="例：山田 太郎">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">メールアドレス <span class="required">必須</span></label>
+                        <input type="email" id="email" name="email" required placeholder="例：yamada@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tel">電話番号</label>
+                        <input type="tel" id="tel" name="tel" placeholder="例：090-1234-5678">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">件名 <span class="required">必須</span></label>
+                        <select id="subject" name="subject" required>
+                            <option value="">選択してください</option>
+                            <option value="trial">体験レッスンのお申し込み</option>
+                            <option value="performance">演奏のご依頼</option>
+                            <option value="question">ご質問・その他</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">お問い合わせ内容 <span class="required">必須</span></label>
+                        <textarea id="message" name="message" rows="6" required placeholder="お問い合わせ内容をご記入ください"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="cta-button">送信する</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+      </main>
+
+      <footer class="site-footer">
+        <p>&copy; 2025 和太鼓 武天 -BUTEN-</p>
+      </footer>
+    </div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

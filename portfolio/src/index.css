@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
+
+:root {
+  /* Futuristic / Cyber Theme */
+  --bg-color: #050510;
+  --bg-grid: #0a0a20;
+  --brand-cyan: #00f3ff;
+  --brand-purple: #bc13fe;
+  --text-main: #e0e0e0;
+  --text-dim: #666;
+  
+  /* UI Elements */
+  --border-neon: 1px solid var(--brand-cyan);
+  --glow-cyan: 0 0 10px rgba(0, 243, 255, 0.5), 0 0 20px rgba(0, 243, 255, 0.3);
+  --glow-purple: 0 0 10px rgba(188, 19, 254, 0.5);
+  
+  /* Typography */
+  --font-display: 'Orbitron', sans-serif;
+  --font-mono: 'Share Tech Mono', monospace;
+  
+  --text-xl: clamp(3rem, 6vw, 6rem);
+  --text-lg: clamp(1.5rem, 3vw, 3rem);
+  --text-md: 1.2rem;
+  --text-sm: 0.9rem;
+
+  --spacing-container: clamp(2rem, 5vw, 6rem);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-mono);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  line-height: 1.6;
+  
+  /* Perspective Grid Background */
+  background-image: 
+    linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-container);
+}
+
+/* Cyber Utilities */
+.cyber-card {
+  background: rgba(10, 10, 30, 0.8);
+  border: 1px solid rgba(0, 243, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.cyber-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 4px; height: 100%;
+  background: var(--brand-cyan);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.cyber-card:hover {
+  border-color: var(--brand-cyan);
+  box-shadow: var(--glow-cyan);
+}
+
+.cyber-card:hover::before {
+  opacity: 1;
+}
+
+/* Glitch Utility Class (Simplified) */
+.glitch-text {
+  position: relative;
+}
+.glitch-text::before, .glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  opacity: 0.8;
+}
+.glitch-text::before {
+  color: var(--brand-cyan);
+  z-index: -1;
+  transform: translate(-2px, 0);
+  clip-path: inset(0 0 0 0);
+  animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+.glitch-text::after {
+  color: var(--brand-purple);
+  z-index: -2;
+  transform: translate(2px, 0);
+  clip-path: inset(0 0 0 0);
+  animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+  0% { clip-path: inset(20% 0 80% 0); }
+  20% { clip-path: inset(60% 0 10% 0); }
+  40% { clip-path: inset(10% 0 50% 0); }
+  60% { clip-path: inset(80% 0 5% 0); }
+  80% { clip-path: inset(30% 0 40% 0); }
+  100% { clip-path: inset(10% 0 60% 0); }
+}
+@keyframes glitch-anim-2 {
+  0% { clip-path: inset(10% 0 60% 0); }
+  20% { clip-path: inset(80% 0 5% 0); }
+  40% { clip-path: inset(30% 0 40% 0); }
+  60% { clip-path: inset(10% 0 50% 0); }
+  80% { clip-path: inset(50% 0 20% 0); }
+  100% { clip-path: inset(20% 0 70% 0); }
+}
+
+.no-scroll { overflow: hidden; }

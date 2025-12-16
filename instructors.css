@@ -1,0 +1,135 @@
+/* Instructor Page */
+.instructor-main-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  margin-bottom: var(--spacing-xl);
+}
+
+@media (min-width: 768px) {
+  .instructor-main-card {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.instructor-image {
+  flex: 1;
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+    .instructor-image {
+        max-width: 400px;
+    }
+}
+
+.instructor-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.instructor-content {
+  flex: 1.5;
+  padding: var(--spacing-lg);
+}
+
+.instructor-content h2 {
+  font-size: 1.8rem;
+  color: var(--color-primary);
+  margin-bottom: 4px;
+}
+
+.instructor-content h2 .name {
+  font-size: 2.2rem;
+  margin-left: 10px;
+}
+
+.instructor-role {
+  color: #666;
+  font-weight: bold;
+  font-family: var(--font-serif);
+  margin-bottom: var(--spacing-md);
+  letter-spacing: 0.1em;
+}
+
+
+
+.instructor-card {
+    text-align: left;
+}
+
+.instructor-card-image {
+    height: 250px;
+}
+
+.instructor-sub {
+    color: #888;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: var(--spacing-sm);
+    letter-spacing: 0.05em;
+}
+
+/* Reusing grid and card classes from home if needed, or included here? 
+   Instructors page reuses .voice-grid and .class-card. 
+   If these are moved to home.css, we need to copy them or keep them common. 
+   I will include them here to ensure independence or assume commonality? 
+   The request said "common parts can be grouped". 
+   Let's duplicate valid reusable parts for safety or rely on them being in style.css?
+   Wait, I put voice-grid/class-card in home.css. 
+   If instructors.html relies on them, they should be in style.css OR instructors.css.
+   I will add them to instructors.css to make it self-contained for these elements 
+   since I removed them from style.css.
+*/
+
+.instructor-grid {
+    margin-top: var(--spacing-lg);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.class-card {
+  background-color: var(--color-white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  transition: transform 0.3s;
+}
+
+.class-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-image {
+  height: 200px;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.class-card:hover .card-image img {
+  transform: scale(1.05);
+}
+
+.card-content {
+  padding: var(--spacing-md);
+  text-align: center;
+}
+
+.card-content h3 {
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-sm);
+  font-size: 1.5rem;
+}

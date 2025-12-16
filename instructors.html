@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>講師紹介 | 和太鼓 武天 -BUTEN-</title>
+    <meta name="description" content="和太鼓「武天」の講師陣を紹介します。経験豊富な代表と、情熱あふれる若手指導員が丁寧に指導します。">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./instructors.css" />
+  </head>
+  <body>
+    <!-- Loader -->
+    <div id="loader">
+      <div class="loader-content">
+        <div class="loader-core"></div>
+        <div class="loader-ring"></div>
+        <div class="loader-ring"></div>
+        <div class="loader-ring"></div>
+        <div class="loader-orbit"></div>
+      </div>
+    </div>
+    <div id="app">
+      <header class="site-header">
+        <div class="logo">
+           <a href="index.html">
+             <img src="dist/logo_text.png" alt="和太鼓 武天 -BUTEN-">
+           </a>
+        </div>
+        <button
+          class="menu-toggle"
+          aria-label="メニューを開く"
+          aria-expanded="false"
+        >
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="menu-text">MENU</span>
+        </button>
+        <nav class="main-nav" id="main-nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="class.html">クラス紹介</a></li>
+            <li><a href="instructors.html" class="active">講師紹介</a></li>
+            <li><a href="admission.html">入会案内</a></li>
+            <li><a href="schedule.html">公演予定</a></li>
+            <li><a href="access.html">アクセス</a></li>
+            <li><a href="contact.html">お問い合わせ</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main>
+        <section class="page-header" style="background-image: url('dist/hero_bg.png');">
+            <div class="header-overlay"></div>
+            <h1>講師紹介</h1>
+            <p>Instructors</p>
+        </section>
+
+        <section class="section-instructors">
+            <div class="container">
+                
+                <!-- Main Instructor -->
+                <div class="instructor-main-card">
+                    <div class="instructor-image">
+                        <img src="./instructor_main.png" alt="代表講師">
+                    </div>
+                    <div class="instructor-content">
+                        <h2>代表講師 <span class="name">武宮 天心</span></h2>
+                        <p class="instructor-role">TENSHIN TAKEMIYA</p>
+                        <p class="instructor-bio">
+                            15歳で和太鼓に出会い、プロ和太鼓奏者として国内外で活躍。
+                            「和太鼓の響きで心を一つに」を理念に、2008年に「和太鼓 武天」を設立。
+                            技術だけでなく、礼節や心の在り方を伝える指導には定評がある。
+                            <br><br>
+                            「太鼓は自分の心を映す鏡です。上手く叩こうとするより、まずは楽しんで、自分の音を響かせてください。」
+                        </p>
+                    </div>
+                </div>
+
+                <h3 class="section-title">指導員紹介</h3>
+                <div class="instructor-grid"> <!-- Removed voice-grid class -->
+                    <!-- Assistant 1 -->
+                    <div class="class-card instructor-card">
+                        <div class="card-image instructor-card-image">
+                            <img src="./assistant_1.png" alt="指導員 佐藤">
+                        </div>
+                        <div class="card-content">
+                            <h3>佐藤 花子</h3>
+                            <p class="instructor-sub">HANAKO SATO</p>
+                            <p>キッズクラス担当。明るい笑顔と丁寧な指導で子供たちに大人気。「太鼓を通じて挨拶や礼儀も楽しく身につけましょう！」</p>
+                        </div>
+                    </div>
+                    <!-- Assistant 2 -->
+                    <div class="class-card instructor-card">
+                        <div class="card-image instructor-card-image">
+                            <img src="./assistant_2.png" alt="指導員 鈴木">
+                        </div>
+                        <div class="card-content">
+                            <h3>鈴木 一郎</h3>
+                            <p class="instructor-sub">ICHIRO SUZUKI</p>
+                            <p>一般クラス担当。パワフルな演奏が持ち味。基礎からしっかり学びたい方のサポートを全力で行います。</p>
+                        </div>
+                    </div>
+                    <!-- Assistant 3 -->
+                    <div class="class-card instructor-card">
+                        <div class="card-image instructor-card-image">
+                            <img src="./assistant_1.png" alt="指導員 高橋">
+                        </div>
+                        <div class="card-content">
+                            <h3>高橋 優子</h3>
+                            <p class="instructor-sub">YUKO TAKAHASHI</p>
+                            <p>シニアクラス担当。理学療法士の経験を活かし、体に負担の少ない打ち方を指導します。健康維持に最適です。</p>
+                        </div>
+                    </div>
+                    <!-- Assistant 4 -->
+                    <div class="class-card instructor-card">
+                        <div class="card-image instructor-card-image">
+                            <img src="./assistant_2.png" alt="指導員 田中">
+                        </div>
+                        <div class="card-content">
+                            <h3>田中 健太</h3>
+                            <p class="instructor-sub">KENTA TANAKA</p>
+                            <p>全クラスのアシスタントを担当。祭囃子が得意。初心者の方のリズム練習を優しくサポートします。</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="contact" class="section-contact">
+          <div class="container">
+            <h2 class="section-title">お問い合わせ</h2>
+            <div class="contact-content">
+                <p>体験レッスンのお申し込み、ご質問はこちらからお気軽にどうぞ。</p>
+                <a href="tel:09012345678" class="phone">090-1234-5678</a>
+                <p>受付時間: 9:00 - 18:00 (月〜土)</p>
+                <div class="form-placeholder" style="margin-top: 20px;">
+                   <a href="#" class="cta-button" style="background-color: white; color: var(--color-accent);">メールフォームへ</a>
+                </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p>&copy; 2025 和太鼓 武天 -BUTEN-</p>
+      </footer>
+    </div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
