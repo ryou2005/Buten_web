@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
@@ -11,11 +12,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@700&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet" />
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./class.css" />
   </head>
+
   <body>
     <!-- Loader -->
     <div id="loader">
@@ -30,15 +31,11 @@
     <div id="app">
       <header class="site-header">
         <div class="logo">
-           <a href="index.html">
-             <img src="dist/logo_text.png" alt="和太鼓 武天 -BUTEN-">
-           </a>
+          <a href="index.html">
+            <img src="dist/logo_text.png" alt="和太鼓 武天 -BUTEN-">
+          </a>
         </div>
-        <button
-          class="menu-toggle"
-          aria-label="メニューを開く"
-          aria-expanded="false"
-        >
+        <button class="menu-toggle" aria-label="メニューを開く" aria-expanded="false">
           <span class="bar"></span>
           <span class="bar"></span>
           <span class="bar"></span>
@@ -59,113 +56,127 @@
 
       <main>
         <section class="page-header" style="background-image: url('dist/hero_bg.png');">
-            <div class="header-overlay"></div>
-            <h1>クラス紹介</h1>
-            <p>Class & Price</p>
+          <div class="header-overlay"></div>
+          <h1>クラス紹介</h1>
+          <p>Class</p>
         </section>
 
         <section class="section-class-detail">
-            <div class="container">
-                
-                <!-- Kids Class -->
-                <div class="class-detail-card" id="kids">
-                    <div class="detail-image">
-                         <img src="dist/kids_class.png" alt="キッズクラス" loading="lazy">
-                    </div>
-                    <div class="detail-content">
-                        <h2>キッズクラス</h2>
-                        <span class="tag">対象：小学生〜中学生</span>
-                        <p class="description">
-                            リズム感や体力を養うだけでなく、大きな声を出し、仲間と音を合わせることで協調性や礼儀作法も身につきます。
-                            ゲーム感覚で楽しめる練習から、本格的な曲打ちまで、年齢とレベルに合わせて指導します。
-                        </p>
-                        <div class="class-info">
-                            <dl>
-                                <dt>練習日時</dt>
-                                <dd>毎週 水曜日 17:00 - 18:00</dd>
-                                <dt>月謝</dt>
-                                <dd>¥6,000 (税込)</dd>
-                                <dt>定員</dt>
-                                <dd>15名</dd>
-                            </dl>
-                        </div>
-                    </div>
-                </div>
+          <div class="container">
 
-                <!-- General Class -->
-                <div class="class-detail-card" id="general">
-                    <div class="detail-image">
-                         <img src="dist/hero_bg.png" alt="一般クラス" loading="lazy">
-                    </div>
-                    <div class="detail-content">
-                        <h2>一般クラス</h2>
-                        <span class="tag">対象：高校生以上（初心者歓迎）</span>
-                        <p class="description">
-                            和太鼓の基礎から応用までを学びます。
-                            全身を使って叩く爽快感はストレス発散にも最適です。
-                            年に数回の地域のイベントや発表会に向けた曲の練習も行います。
-                        </p>
-                        <div class="class-info">
-                            <dl>
-                                <dt>練習日時</dt>
-                                <dd>毎週 土曜日 19:00 - 20:30</dd>
-                                <dt>月謝</dt>
-                                <dd>¥8,000 (税込)</dd>
-                                <dt>定員</dt>
-                                <dd>20名</dd>
-                            </dl>
-                        </div>
-                    </div>
+            <!-- Kids Class -->
+            <div class="class-detail-card" id="kids">
+              <div class="detail-image">
+                <img src="dist/kids_class.png" alt="キッズクラス" loading="lazy">
+              </div>
+              <div class="detail-content">
+                <h2>キッズクラス</h2>
+                <span class="tag">対象：小学生〜中学生</span>
+                <p class="description">
+                  リズム感や体力を養うだけでなく、大きな声を出し、仲間と音を合わせることで協調性や礼儀作法も身につきます。
+                  ゲーム感覚で楽しめる練習から、本格的な曲打ちまで、年齢とレベルに合わせて指導します。
+                </p>
+                <div class="class-info">
+                  <dl>
+                    <dt>練習日時</dt>
+                    <dd>毎週 水曜日 17:00 - 18:00</dd>
+                    <dt>月謝</dt>
+                    <dd>¥6,000 (税込)</dd>
+                    <dt>定員</dt>
+                    <dd>15名</dd>
+                  </dl>
                 </div>
-
-                <!-- Senior Class -->
-                <div class="class-detail-card" id="senior">
-                    <div class="detail-image">
-                         <img src="dist/senior_class.png" alt="シニア健康クラス" loading="lazy">
-                    </div>
-                    <div class="detail-content">
-                        <h2>シニア健康クラス</h2>
-                        <span class="tag">対象：60歳以上</span>
-                        <p class="description">
-                            無理のない動きで、楽しく体を動かすことを目的としたクラスです。
-                            脳トレの要素も取り入れたリズム遊びや、ストレッチを中心に行います。
-                            同世代の仲間との交流の場としても好評です。
-                        </p>
-                        <div class="class-info">
-                            <dl>
-                                <dt>練習日時</dt>
-                                <dd>毎週 木曜日 10:00 - 11:30</dd>
-                                <dt>月謝</dt>
-                                <dd>¥5,000 (税込)</dd>
-                                <dt>定員</dt>
-                                <dd>15名</dd>
-                            </dl>
-                        </div>
-                    </div>
-                </div>
-
+              </div>
             </div>
+
+            <!-- General Class -->
+            <div class="class-detail-card" id="general">
+              <div class="detail-image">
+                <img src="dist/hero_bg.png" alt="一般クラス" loading="lazy">
+              </div>
+              <div class="detail-content">
+                <h2>一般クラス</h2>
+                <span class="tag">対象：高校生以上（初心者歓迎）</span>
+                <p class="description">
+                  和太鼓の基礎から応用までを学びます。
+                  全身を使って叩く爽快感はストレス発散にも最適です。
+                  年に数回の地域のイベントや発表会に向けた曲の練習も行います。
+                </p>
+                <div class="class-info">
+                  <dl>
+                    <dt>練習日時</dt>
+                    <dd>毎週 土曜日 19:00 - 20:30</dd>
+                    <dt>月謝</dt>
+                    <dd>¥8,000 (税込)</dd>
+                    <dt>定員</dt>
+                    <dd>20名</dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+
+            <!-- Senior Class -->
+            <div class="class-detail-card" id="senior">
+              <div class="detail-image">
+                <img src="dist/senior_class.png" alt="シニア健康クラス" loading="lazy">
+              </div>
+              <div class="detail-content">
+                <h2>シニア健康クラス</h2>
+                <span class="tag">対象：60歳以上</span>
+                <p class="description">
+                  無理のない動きで、楽しく体を動かすことを目的としたクラスです。
+                  脳トレの要素も取り入れたリズム遊びや、ストレッチを中心に行います。
+                  同世代の仲間との交流の場としても好評です。
+                </p>
+                <div class="class-info">
+                  <dl>
+                    <dt>練習日時</dt>
+                    <dd>毎週 木曜日 10:00 - 11:30</dd>
+                    <dt>月謝</dt>
+                    <dd>¥5,000 (税込)</dd>
+                    <dt>定員</dt>
+                    <dd>15名</dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </section>
 
         <section id="contact" class="section-contact">
           <div class="container">
             <h2 class="section-title">お問い合わせ</h2>
             <div class="contact-content">
-                <p>体験レッスンのお申し込み、ご質問はこちらからお気軽にどうぞ。</p>
-                <a href="tel:09012345678" class="phone">090-1234-5678</a>
-                <p>受付時間: 9:00 - 18:00 (月〜土)</p>
-                <div class="form-placeholder" style="margin-top: 20px;">
-                   <a href="#" class="cta-button" style="background-color: white; color: var(--color-accent);">メールフォームへ</a>
-                </div>
+              <p>体験レッスンのお申し込み、ご質問はこちらからお気軽にどうぞ。</p>
+              <a href="tel:09012345678" class="phone">090-1234-5678</a>
+              <p>受付時間: 9:00 - 18:00 (月〜土)</p>
+              <div class="form-placeholder" style="margin-top: 20px;">
+                <a href="#" class="cta-button" style="background-color: white; color: var(--color-accent);">メールフォームへ</a>
+              </div>
             </div>
           </div>
         </section>
       </main>
 
       <footer class="site-footer">
+        <div class="social-links">
+          <a href="#" class="social-icon" aria-label="Instagram">
+            <img src="dist/Instagram_Glyph_Gradient.png" alt="Instagram">
+          </a>
+          <a href="#" class="social-icon" aria-label="Facebook">
+            <img src="dist/Facebook_Logo_Primary.png" alt="Facebook">
+          </a>
+          <!-- YouTube placeholder
+          <a href="#" class="social-icon" aria-label="YouTube">
+            <img src="dist/youtube_logo.png" alt="YouTube">
+          </a>
+          -->
+        </div>
         <p>&copy; 2025 和太鼓 武天 -BUTEN-</p>
       </footer>
     </div>
     <script type="module" src="./main.js"></script>
   </body>
+
 </html>

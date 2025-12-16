@@ -25,19 +25,12 @@
   flex: 1.2;
 }
 
-.access-map-img {
+.map-area iframe {
   width: 100%;
   height: auto;
+  min-height: 400px;
   border-radius: 8px;
-  border: 1px solid #eee;
-  display: block;
-}
-
-.map-caption {
-  font-size: 0.8rem;
-  color: #666;
-  margin-top: var(--spacing-sm);
-  text-align: right;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
 .access-info {
