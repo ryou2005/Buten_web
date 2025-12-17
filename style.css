@@ -420,6 +420,14 @@ section {
   margin: var(--spacing-sm) auto 0;
 }
 
+.card-content h3 {
+  font-family: var(--font-serif); /* Match class page style */
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-sm);
+  font-size: 1.6rem;
+  letter-spacing: 0.05em;
+}
+
 .cta-button {
   display: inline-block;
   background-color: var(--color-accent);
