@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>電子技術研究部 | Electronics Research Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="#" class="logo">DENKEN <span style="font-size:0.5em; opacity:0.7;">// ELECTRONICS RES.</span></a>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#hero" class="nav-link active">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#activities" class="nav-link">Activities</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+      <div class="hero-bg">
+        <div class="circuit-pattern"></div>
+      </div>
+      <div class="hero-content">
+        <h1 class="glitch-title">CREATE <span class="text-gradient">FUTURE</span></h1>
+        <p class="subtitle">>>> UEC Electronics Research Club</p>
+        <p style="margin-bottom: 2rem;">音響(PA)と電子工作。2つの技術で、新しい価値を創造する。</p>
+        <div class="hero-cta">
+          <!-- TODO: Add proper links -->
+          <a href="#activities" class="btn btn-primary">ACTIVITIES</a>
+          <a href="#contact" class="btn btn-secondary">JOIN US</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding section-about">
+      <div class="container">
+        <div class="text-center">
+          <h2 class="section-title">WHO WE ARE</h2>
+          <p class="about-grid" style="font-size: 1.1rem; line-height: 1.8;">
+            電子技術研究部は、「電子工作」と「PA（音響）」の2つを主軸に活動する技術サークルです。<br>
+            学園祭でのステージ音響設営から、ロボットコンテストへの出場、オリジナルガジェットの製作まで。<br>
+            「好き」を形にするための技術と環境が、ここにはあります。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section id="activities" class="section-padding">
+      <div class="container">
+        <div class="text-center">
+          <h2 class="section-title">ACTIVITIES</h2>
+        </div>
+        <div class="activities-grid">
+          <!-- PA Activity -->
+          <div class="activity-card hidden">
+            <div class="card-icon">🔊</div>
+            <h3 class="card-title">PA / Sound Engineering</h3>
+            <p class="card-desc">
+              学園祭や各種イベントでの音響機材の設営・運用を行います。
+              プロ仕様のミキサーやスピーカーを扱い、最高のサウンド空間を作り上げます。
+              ケーブルの巻き方からミキシングの基礎まで、実践を通して学びます。
+            </p>
+            <div style="margin-top: 1rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--color-primary);">
+              #Mixer #LiveSound #Stage
+            </div>
+          </div>
+
+          <!-- Electronics Activity -->
+          <div class="activity-card hidden">
+            <div class="card-icon">⚡</div>
+            <h3 class="card-title">Electronics / Circuits</h3>
+            <p class="card-desc">
+              マイコン（Arduino, ESP32等）を使った組み込み開発や、回路設計、PCB発注などを行います。
+              ロボコン出場や、自分だけのオリジナルキーボード製作など、
+              アイデアをハードウェアとして実装する力を身につけます。
+            </p>
+            <div style="margin-top: 1rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--color-secondary);">
+              #Arduino #IoT #Robotics #PCB
+            </div>
+          </div>
+
+          <!-- Programming Activity (Optional/Included in Electronics) -->
+          <div class="activity-card hidden">
+            <div class="card-icon">💻</div>
+            <h3 class="card-title">Software / Programming</h3>
+            <p class="card-desc">
+              ハードウェアを制御するためのファームウェア開発から、
+              部内用ツールの作成、Webサイト制作まで。
+              ハードウェアとソフトウェアの境界を行き来する、フルスタックな技術力を磨きます。
+            </p>
+            <div style="margin-top: 1rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--color-accent);">
+              #C++ #Python #WebDev
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding section-about">
+      <div class="container text-center">
+        <h2 class="section-title">JOIN US</h2>
+        <p style="margin-bottom: 2rem;">
+          電子技術研究部では、新入部員をいつでも募集しています。<br>
+          経験は問いません。必要なのは「興味」と「情熱」だけです。
+        </p>
+        <a href="mailto:contact@example.com" class="btn btn-primary">CONTACT</a>
+        <div style="margin-top: 3rem; opacity: 0.7;">
+          <p>Access: 学生会館 3F 部室A</p>
+          <p>Activity Days: Tue / Thu 16:30 - 19:00</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer text-center">
+    <div class="container">
+      <p>&copy; 2025 Electronics Research Club. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
