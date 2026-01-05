@@ -96,21 +96,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  document.getElementById('contact-form').addEventListener('submit', function (e) {
-    e.preventDefault();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const tel = document.getElementById('tel').value;
-    const subject = document.getElementById('subject').value;
-    const message = document.getElementById('message').value;
-    
-    if(!name || !email || !tel || !subject || !message){
-      alert('すべての項目を入力してください。');
-      return;
-    }
-    alert('お問い合わせありがとうございます。');
-    this.reset();
-  });
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const tel = document.getElementById('tel').value;
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value;
+      
+      if(!name || !email || !subject || !message){
+        alert('必須項目を入力してください。');
+        return;
+      }
+      alert('お問い合わせありがとうございます。');
+      this.reset();
+    });
+  }
 
   // Contact Form Submission Handler
   /*const contactForm = document.querySelector('.contact-form');
