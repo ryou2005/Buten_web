@@ -96,8 +96,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  document.getElementById('contact-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const tel = document.getElementById('tel').value;
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value;
+    
+    if(!name || !email || !tel || !subject || !message){
+      alert('すべての項目を入力してください。');
+      return;
+    }
+    alert('お問い合わせありがとうございます。');
+    this.reset();
+  });
+
   // Contact Form Submission Handler
-  const contactForm = document.querySelector('.contact-form');
+  /*const contactForm = document.querySelector('.contact-form');
   if (contactForm) {
     // API endpoint - replace with your actual API Gateway URL after deployment
     const API_ENDPOINT = contactForm.dataset.apiEndpoint || '/api/contact';
@@ -170,5 +186,5 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.classList.remove('submitting');
       }
     });
-  }
+  }*/
 });
