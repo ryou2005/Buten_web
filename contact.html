@@ -65,7 +65,7 @@
           <div class="container">
             <p class="contact-intro">体験レッスンのお申し込み、演奏のご依頼、その他ご質問など、<br class="desktop-only">お気軽にお問い合わせください。</p>
 
-            <form class="contact-form" action="#" method="post">
+            <form class="contact-form" data-api-endpoint="YOUR_API_GATEWAY_URL_HERE">
               <div class="form-group">
                 <label for="name">お名前 <span class="required">必須</span></label>
                 <input type="text" id="name" name="name" required placeholder="例：山田 太郎">
@@ -95,6 +95,8 @@
                 <label for="message">お問い合わせ内容 <span class="required">必須</span></label>
                 <textarea id="message" name="message" rows="6" required placeholder="お問い合わせ内容をご記入ください"></textarea>
               </div>
+
+              <div class="form-message" style="display: none;"></div>
 
               <div class="form-actions">
                 <button type="submit" class="cta-button">送信する</button>

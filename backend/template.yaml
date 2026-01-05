@@ -1,0 +1,108 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: Contact form backend for Wadaiko Buten website
+
+Globals:
+  Function:
+    Timeout: 30
+    Runtime: nodejs20.x
+    MemorySize: 256
+
+Parameters:
+  NotificationEmail:
+    Type: String
+    Description: Email address to receive form submissions
+    Default: admin@example.com
+  SenderEmail:
+    Type: String
+    Description: Email address to send notifications from (must be verified in SES)
+    Default: noreply@example.com
+  Environment:
+    Type: String
+    Default: production
+    AllowedValues:
+      - development
+      - production
+
+Resources:
+  # DynamoDB Table for storing submissions
+  ContactSubmissionsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ButenContactSubmissions
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: createdAt
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      GlobalSecondaryIndexes:
+        - IndexName: CreatedAtIndex
+          KeySchema:
+            - AttributeName: status
+              KeyType: HASH
+            - AttributeName: createdAt
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+      Tags:
+        - Key: Project
+          Value: ButenWebsite
+
+  # Lambda Function
+  ContactFormFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: buten-contact-form
+      CodeUri: .
+      Handler: handler.handler
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref ContactSubmissionsTable
+          NOTIFICATION_EMAIL: !Ref NotificationEmail
+          SENDER_EMAIL: !Ref SenderEmail
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ContactSubmissionsTable
+        - Statement:
+            - Effect: Allow
+              Action:
+                - ses:SendEmail
+                - ses:SendRawEmail
+              Resource: "*"
+      Events:
+        ContactFormApi:
+          Type: Api
+          Properties:
+            Path: /contact
+            Method: POST
+            RestApiId: !Ref ContactApi
+        ContactFormOptions:
+          Type: Api
+          Properties:
+            Path: /contact
+            Method: OPTIONS
+            RestApiId: !Ref ContactApi
+
+  # API Gateway
+  ContactApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: ButenContactApi
+      StageName: !Ref Environment
+      Cors:
+        AllowMethods: "'POST, OPTIONS'"
+        AllowHeaders: "'Content-Type'"
+        AllowOrigin: "'*'"
+
+Outputs:
+  ApiEndpoint:
+    Description: API Gateway endpoint URL
+    Value: !Sub "https://${ContactApi}.execute-api.${AWS::Region}.amazonaws.com/${Environment}/contact"
+
+  TableName:
+    Description: DynamoDB table name
+    Value: !Ref ContactSubmissionsTable

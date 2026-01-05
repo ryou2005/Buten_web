@@ -95,4 +95,80 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  // Contact Form Submission Handler
+  const contactForm = document.querySelector('.contact-form');
+  if (contactForm) {
+    // API endpoint - replace with your actual API Gateway URL after deployment
+    const API_ENDPOINT = contactForm.dataset.apiEndpoint || '/api/contact';
+    
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn.textContent;
+      
+      // Get or create message container
+      let messageContainer = contactForm.querySelector('.form-message');
+      if (!messageContainer) {
+        messageContainer = document.createElement('div');
+        messageContainer.className = 'form-message';
+        contactForm.querySelector('.form-actions').insertAdjacentElement('beforebegin', messageContainer);
+      }
+      
+      // Clear previous messages
+      messageContainer.className = 'form-message';
+      messageContainer.textContent = '';
+      
+      // Disable form and show loading
+      submitBtn.disabled = true;
+      submitBtn.textContent = '送信中...';
+      contactForm.classList.add('submitting');
+      
+      // Collect form data
+      const formData = {
+        name: contactForm.querySelector('#name').value,
+        email: contactForm.querySelector('#email').value,
+        tel: contactForm.querySelector('#tel').value,
+        subject: contactForm.querySelector('#subject').value,
+        message: contactForm.querySelector('#message').value
+      };
+      
+      try {
+        const response = await fetch(API_ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok && result.success) {
+          // Success
+          messageContainer.className = 'form-message success';
+          messageContainer.textContent = result.message || 'お問い合わせを受け付けました。ありがとうございます。';
+          contactForm.reset();
+        } else {
+          // Error from server
+          messageContainer.className = 'form-message error';
+          if (result.details && Array.isArray(result.details)) {
+            messageContainer.textContent = result.details.join('\n');
+          } else {
+            messageContainer.textContent = result.error || '送信に失敗しました。もう一度お試しください。';
+          }
+        }
+      } catch (error) {
+        console.error('Form submission error:', error);
+        messageContainer.className = 'form-message error';
+        messageContainer.textContent = '通信エラーが発生しました。インターネット接続を確認してください。';
+      } finally {
+        // Re-enable form
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
+        contactForm.classList.remove('submitting');
+      }
+    });
+  }
 });
