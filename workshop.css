@@ -1,0 +1,221 @@
+/* Workshop Page Styles */
+
+.section-intro {
+    padding: var(--spacing-xl) 0;
+    text-align: center;
+    background-color: var(--color-bg);
+}
+
+.section-catch {
+    font-size: 2rem;
+    font-family: var(--font-serif);
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.4;
+}
+
+.intro-text {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 2;
+    color: var(--color-text);
+}
+
+.section-details {
+    padding: var(--spacing-xl) 0;
+    background-color: var(--color-white);
+}
+
+.detail-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+/*    box-shadow: 0 4px 20px rgba(0,0,0,0.05); */
+}
+
+@media (min-width: 768px) {
+    .detail-card {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.detail-image {
+    flex: 1;
+    overflow: hidden;
+}
+
+.detail-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.detail-card:hover .detail-image img {
+    transform: scale(1.05);
+}
+
+.detail-content {
+    flex: 1;
+    padding: var(--spacing-md);
+}
+
+.detail-content h3 {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+    font-weight: bold;
+    border-bottom: 2px solid var(--color-accent);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.check-list {
+    list-style: none;
+    padding: 0;
+}
+
+.check-list li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.check-list li::before {
+    content: '✔';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Info Box */
+.workshop-info {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 12px;
+    padding: var(--spacing-lg);
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.info-title {
+    font-size: 1.4rem;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    font-family: var(--font-serif);
+}
+
+.info-list {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 15px;
+}
+
+.info-list dt {
+    font-weight: bold;
+    color: var(--color-primary);
+    padding: 10px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+}
+
+.info-list dd {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.info-list dd:last-child {
+    border-bottom: none;
+}
+
+@media (max-width: 600px) {
+    .info-list {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .info-list dt {
+        width: 100%;
+        justify-content: flex-start;
+        padding-left: 15px;
+    }
+    
+    .info-list dd {
+        padding-left: 15px;
+        margin-bottom: 15px;
+    }
+}
+
+/* News Section */
+.section-news {
+    padding: var(--spacing-xl) 0;
+    background-color: var(--color-bg);
+}
+
+.news-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.news-item {
+    background: #fff;
+    padding: var(--spacing-lg);
+    border-radius: 8px;
+    margin-bottom: var(--spacing-md);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.news-item.coming-soon {
+    text-align: center;
+    padding: var(--spacing-xl);
+    color: #888;
+    border: 2px dashed #ccc;
+    background: transparent;
+    box-shadow: none;
+}
+
+.news-date {
+    display: inline-block;
+    background: var(--color-primary);
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+}
+
+.news-head {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--color-text);
+}
+
+.apply-btn {
+    display: inline-block;
+    margin-top: 15px;
+    background: var(--color-accent);
+    color: #fff;
+    padding: 8px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.apply-btn:hover {
+    opacity: 0.8;
+}

@@ -96,6 +96,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Performances Filter Logic
+  const yearBtns = document.querySelectorAll('.year-btn');
+  const yearSections = document.querySelectorAll('.year-section');
+
+  if (yearBtns.length > 0 && yearSections.length > 0) {
+    const filterPerformances = (year) => {
+      yearSections.forEach(section => {
+        if (year === 'all') {
+          section.classList.add('active');
+        } else {
+          if (section.dataset.year == year) {
+            section.classList.add('active');
+          } else {
+            section.classList.remove('active');
+          }
+        }
+      });
+    };
+
+    // Initial check
+    const activeBtn = document.querySelector('.year-btn.active');
+    if (activeBtn) {
+        filterPerformances(activeBtn.dataset.year);
+    }
+
+    yearBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        yearBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        const year = btn.dataset.year;
+        filterPerformances(year);
+      });
+    });
+  }
+
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
     contactForm.addEventListener('submit', function (e) {
