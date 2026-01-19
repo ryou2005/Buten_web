@@ -118,6 +118,26 @@
     line-height: 1.6;
 }
 
+/* Flyer Image */
+.flyer-image {
+    margin: 1rem 0;
+}
+
+.flyer-image img {
+    max-height: 300px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.flyer-image img:hover {
+    transform: scale(1.02);
+}
+
 .ticket-btn {
     display: inline-block;
     background-color: var(--color-text);

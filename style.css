@@ -440,6 +440,29 @@ section {
   letter-spacing: 0.05em;
 }
 
+/* Furigana Styles */
+ruby {
+  display: inline-flex;
+  flex-direction: column; /* Stacks items vertically */
+  align-items: center;    /* Centers items horizontally */
+  vertical-align: bottom; /* Aligns the bottom of the stack with the text baseline */
+  line-height: 1;         /* Prevents excess spacing within the ruby block */
+  margin: 0 4px;          /* Adds small spacing around the ruby block */
+}
+
+rt {
+  /* Order: 2 puts it below the base text (implicit order 0 or 1) */
+  order: 2;
+  /* Cool font: Serif */
+  font-family: var(--font-serif);
+  /* Lighter color: 70% opacity */
+  color: rgba(46, 75, 113, 0.7);
+  font-size: 0.5em;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  margin-top: 2px; /* Small gap between Kanji and English */
+}
+
 .cta-button {
   display: inline-block;
   background-color: var(--color-accent);
