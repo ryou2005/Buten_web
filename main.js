@@ -211,7 +211,7 @@ document.addEventListener("DOMContentLoaded", () => {
           messageContainer.className = "form-message success";
           messageContainer.textContent =
             result.message ||
-            "お問い合わせを受け付けました。ありがとうございます。";
+            "お問い合わせを受け付けました。ありがとうございます。通常1週間に内に返信いたします。1週間以内に返信がない場合、お手数ですが、instagramまたはfacebookのDMよりご連絡ください。";
           contactForm.reset();
         } else {
           // Error from server
