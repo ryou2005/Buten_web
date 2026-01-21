@@ -41,7 +41,10 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(rgba(46, 75, 113, 0.4), rgba(0, 0, 0, 0.6)); /* Tint with brand color */
+  background: linear-gradient(
+    rgba(46, 75, 113, 0.4),
+    rgba(0, 0, 0, 0.6)
+  ); /* Tint with brand color */
   z-index: -1;
 }
 
@@ -81,7 +84,7 @@
   background-color: var(--color-white);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s;
 }
 
@@ -116,13 +119,12 @@
   font-size: 1.5rem;
 }
 
-
 /* Schedule Section */
 .schedule-list {
   background-color: var(--color-white);
   border-radius: 12px;
   padding: var(--spacing-lg);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .schedule-item {
@@ -162,4 +164,39 @@
   font-size: 0.9rem;
 }
 
+/* Furusato Nozei Section */
+.section-furusato {
+  text-align: center;
+  background-color: #f9f4ef;
+  /* Soft warm off-white, traditional feel */
+  padding: var(--spacing-xl) 0;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
 
+.section-furusato .section-title {
+  color: var(--color-primary);
+  /* Or a specific emphasis color */
+  margin-bottom: var(--spacing-md);
+}
+
+.furusato-content p {
+  line-height: 1.8;
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.section-furusato .cta-button {
+  background-color: #bf0000;
+  /* Distinct red to stand out */
+  color: white;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 10px rgba(191, 0, 0, 0.3);
+}
+
+.section-furusato .cta-button:hover {
+  background-color: #a00000;
+  transform: translateY(-2px);
+}
