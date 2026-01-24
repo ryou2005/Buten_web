@@ -33,6 +33,15 @@
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
+.map-area h2 {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-md);
+  font-family: var(--font-serif);
+  border-left: 5px solid var(--color-accent);
+  padding-left: 1rem;
+}
+
 .access-info {
   flex: 1;
   display: flex;

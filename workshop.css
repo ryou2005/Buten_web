@@ -217,5 +217,22 @@
 }
 
 .apply-btn:hover {
-    opacity: 0.8;
+  opacity: 0.8;
+}
+
+/* Furusato Nozei Section */
+.section-furusato {
+  padding: var(--spacing-xl) 0;
+  background-color: var(--color-white); /* Alternate background */
+  text-align: center;
+}
+
+.furusato-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.furusato-content p {
+  margin-bottom: var(--spacing-md);
+  line-height: 1.8;
 }
