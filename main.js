@@ -104,10 +104,29 @@ document.addEventListener("DOMContentLoaded", () => {
   if (yearBtns.length > 0 && yearSections.length > 0) {
     const filterPerformances = (year) => {
       yearSections.forEach((section) => {
+        const sectionYear = section.dataset.year;
+        // Check if the section belongs to "older" category (2022 or earlier)
+        // sectionYear can be "older" string or a year number
+        const yearNum = parseInt(sectionYear, 10);
+        const isOlder = sectionYear === "older" || (!isNaN(yearNum) && yearNum <= 2022);
+
         if (year === "all") {
-          section.classList.add("active");
+          // Show recent (not older)
+          if (!isOlder) {
+            section.classList.add("active");
+          } else {
+            section.classList.remove("active");
+          }
+        } else if (year === "older") {
+          // Show only older
+          if (isOlder) {
+            section.classList.add("active");
+          } else {
+            section.classList.remove("active");
+          }
         } else {
-          if (section.dataset.year == year) {
+          // Specific year
+          if (sectionYear == year) {
             section.classList.add("active");
           } else {
             section.classList.remove("active");
