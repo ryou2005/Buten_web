@@ -72,6 +72,67 @@
   background-color: rgba(255, 255, 255, 0.6); /* Glass-ish over texture */
 }
 
+/* Atmosphere Section - NEW */
+.section-atmosphere {
+  padding: var(--spacing-xl) 0;
+  background-color: #fcfcfc;
+}
+
+.atmosphere-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.atmosphere-image {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.atmosphere-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s;
+}
+
+.atmosphere-image:hover img {
+  transform: scale(1.05);
+}
+
+.atmosphere-text {
+  flex: 1;
+  text-align: center;
+  padding: var(--spacing-md);
+}
+
+.atmosphere-text p {
+  line-height: 1.8;
+  margin-bottom: var(--spacing-lg);
+  font-size: 1.1rem;
+  color: #555;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .atmosphere-content {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+  }
+  
+  .atmosphere-text {
+    text-align: left;
+    padding-left: var(--spacing-lg);
+  }
+}
+
 /* Class Section (Grid layout used on home) */
 .class-grid {
   display: grid;

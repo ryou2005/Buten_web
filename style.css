@@ -281,33 +281,20 @@ a:hover {
 }
 
 /* Staggered Delays for Closing (Button to Top) */
-.main-nav ul li:nth-child(1) {
-  transition-delay: 0.4s;
-}
-.main-nav ul li:nth-child(2) {
-  transition-delay: 0.35s;
-}
-.main-nav ul li:nth-child(3) {
-  transition-delay: 0.3s;
-}
-.main-nav ul li:nth-child(4) {
-  transition-delay: 0.25s;
-}
-.main-nav ul li:nth-child(5) {
-  transition-delay: 0.2s;
-}
-.main-nav ul li:nth-child(6) {
-  transition-delay: 0.15s;
-}
-.main-nav ul li:nth-child(7) {
-  transition-delay: 0.1s;
-}
-.main-nav ul li:nth-child(8) {
-  transition-delay: 0.05s;
-}
-.main-nav ul li:nth-child(9) {
-  transition-delay: 0s;
-}
+/* Staggered Delays for Closing (Button to Top) */
+/* Max items assumed: 12. Bottom item (12) leaves at 0s, Top item (1) leaves last. */
+.main-nav ul li:nth-child(1) { transition-delay: 0.55s; }
+.main-nav ul li:nth-child(2) { transition-delay: 0.5s; }
+.main-nav ul li:nth-child(3) { transition-delay: 0.45s; }
+.main-nav ul li:nth-child(4) { transition-delay: 0.4s; }
+.main-nav ul li:nth-child(5) { transition-delay: 0.35s; }
+.main-nav ul li:nth-child(6) { transition-delay: 0.3s; }
+.main-nav ul li:nth-child(7) { transition-delay: 0.25s; }
+.main-nav ul li:nth-child(8) { transition-delay: 0.2s; }
+.main-nav ul li:nth-child(9) { transition-delay: 0.15s; }
+.main-nav ul li:nth-child(10) { transition-delay: 0.1s; }
+.main-nav ul li:nth-child(11) { transition-delay: 0.05s; }
+.main-nav ul li:nth-child(12) { transition-delay: 0s; }
 
 .main-nav.open ul li {
   opacity: 1;
@@ -315,33 +302,18 @@ a:hover {
   /* Delays for Opening (Top to Bottom appears first) */
 }
 
-.main-nav.open ul li:nth-child(1) {
-  transition-delay: 0.1s;
-}
-.main-nav.open ul li:nth-child(2) {
-  transition-delay: 0.15s;
-}
-.main-nav.open ul li:nth-child(3) {
-  transition-delay: 0.2s;
-}
-.main-nav.open ul li:nth-child(4) {
-  transition-delay: 0.25s;
-}
-.main-nav.open ul li:nth-child(5) {
-  transition-delay: 0.3s;
-}
-.main-nav.open ul li:nth-child(6) {
-  transition-delay: 0.35s;
-}
-.main-nav.open ul li:nth-child(7) {
-  transition-delay: 0.4s;
-}
-.main-nav.open ul li:nth-child(8) {
-  transition-delay: 0.45s;
-}
-.main-nav.open ul li:nth-child(9) {
-  transition-delay: 0.5s;
-}
+.main-nav.open ul li:nth-child(1) { transition-delay: 0.1s; }
+.main-nav.open ul li:nth-child(2) { transition-delay: 0.15s; }
+.main-nav.open ul li:nth-child(3) { transition-delay: 0.2s; }
+.main-nav.open ul li:nth-child(4) { transition-delay: 0.25s; }
+.main-nav.open ul li:nth-child(5) { transition-delay: 0.3s; }
+.main-nav.open ul li:nth-child(6) { transition-delay: 0.35s; }
+.main-nav.open ul li:nth-child(7) { transition-delay: 0.4s; }
+.main-nav.open ul li:nth-child(8) { transition-delay: 0.45s; }
+.main-nav.open ul li:nth-child(9) { transition-delay: 0.5s; }
+.main-nav.open ul li:nth-child(10) { transition-delay: 0.55s; }
+.main-nav.open ul li:nth-child(11) { transition-delay: 0.6s; }
+.main-nav.open ul li:nth-child(12) { transition-delay: 0.65s; }
 
 @media (min-width: 768px) {
   .main-nav ul li {

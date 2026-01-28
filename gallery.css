@@ -1,0 +1,158 @@
+/* Gallery Page Specific Styles */
+
+/* Page Header Override for Gallery */
+.page-header {
+  position: relative;
+  height: 40vh;
+  min-height: 300px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  z-index: 2;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.page-header p {
+  font-size: 1.2rem;
+  font-family: 'Noto Serif JP', serif;
+  z-index: 2;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.header-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+/* Intro Section */
+.section-intro {
+  padding: 4rem 1rem;
+  text-align: center;
+  background-color: #fff;
+}
+
+.intro-text {
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.8;
+  color: #555;
+  font-size: 1.1rem;
+}
+
+/* Gallery Section */
+.section-gallery {
+  padding: 2rem 1rem 4rem;
+  background-color: #fafafa; /* Slightly off-white for a softer look */
+}
+
+.gallery-category {
+  margin-bottom: 4rem;
+}
+
+.category-title {
+  font-size: 1.8rem;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+  text-align: center;
+  font-family: 'Noto Serif JP', serif;
+}
+
+.category-desc {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #777;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.gallery-item {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-item .caption {
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #444;
+  font-weight: 500;
+}
+
+/* CTA Section */
+.section-cta {
+  padding: 4rem 1rem;
+  text-align: center;
+  background-color: var(--color-primary); /* Use primary brand color */
+  color: white;
+}
+
+.section-cta .section-title {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.section-cta p {
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.section-cta .cta-button {
+  background-color: white;
+  color: var(--color-primary);
+  border: none;
+}
+
+.section-cta .cta-button:hover {
+  background-color: #f0f0f0;
+  color: var(--color-secondary);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .page-header h1 {
+    font-size: 2rem;
+  }
+  
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
