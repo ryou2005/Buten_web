@@ -404,6 +404,17 @@ section {
   margin: var(--spacing-sm) auto 0;
 }
 
+.section-title .subtitle {
+  display: block;
+  font-size: 1.1rem;
+  color: #7a8b9f; /* Muted version of primary for elegance */
+  font-family: var(--font-serif);
+  font-weight: 500;
+  margin-top: 5px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 .card-content h3 {
   font-family: var(--font-serif); /* Match class page style */
   color: var(--color-primary);
