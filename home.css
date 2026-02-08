@@ -35,6 +35,16 @@
   opacity: 1;
 }
 
+.section-message .message-text {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  line-height: 2;
+  color: var(--color-primary);
+}
+
+
 .hero-bg-overlay {
   position: absolute;
   top: 0;
