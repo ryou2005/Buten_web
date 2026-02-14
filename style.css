@@ -41,10 +41,6 @@ body {
   line-height: var(--line-height);
   color: var(--color-text);
   background-color: var(--color-bg);
-  background-image: url("./concept_bg.png"); /* Subtle texture */
-  background-repeat: repeat;
-  background-size: 500px; /* Adjust texture scale */
-  background-blend-mode: multiply;
   padding-top: 100px; /* Match header height */
 }
 

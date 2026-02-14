@@ -36,6 +36,8 @@ Resources:
           AttributeType: S
         - AttributeName: createdAt
           AttributeType: S
+        - AttributeName: status
+          AttributeType: S
       KeySchema:
         - AttributeName: id
           KeyType: HASH
@@ -58,7 +60,7 @@ Resources:
     Properties:
       FunctionName: buten-contact-form
       CodeUri: .
-      Handler: handler.handler
+      Handler: index.handler
       Environment:
         Variables:
           TABLE_NAME: !Ref ContactSubmissionsTable

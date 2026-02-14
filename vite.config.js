@@ -11,7 +11,10 @@ export default defineConfig({
         access: 'access.html',
         contact: 'contact.html',
         admission: 'admission.html',
-        schedule: 'schedule.html'
+        schedule: 'schedule.html',
+        gallery: 'gallery.html',
+        performances: 'performances.html',
+        workshop: 'workshop.html'
       }
     }
   },

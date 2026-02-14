@@ -55,7 +55,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Loader Logic
-  window.addEventListener("load", () => {
+  // Loader Logic
+  const hideLoader = () => {
     const loader = document.getElementById("loader");
     if (loader) {
       // Add a small delay for branding effect
@@ -63,7 +64,13 @@ document.addEventListener("DOMContentLoaded", () => {
         loader.classList.add("hidden");
       }, 800);
     }
-  });
+  };
+
+  if (document.readyState === "complete") {
+    hideLoader();
+  } else {
+    window.addEventListener("load", hideLoader);
+  }
 
   // Schedule Filter Logic
   const filterBtns = document.querySelectorAll(".filter-btn");
@@ -157,8 +164,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Contact Form Submission Handler
   const contactForm = document.getElementById("contact-form"); // Changed from querySelector to getElementById to match HTML
   if (contactForm) {
-    // API Endpoint - Replace this with your actual API Gateway URL after creating it in AWS
-    const API_ENDPOINT = "YOUR_API_GATEWAY_URL_HERE";
+    // API Endpoint - Read from HTML data attribute or fallback to placeholder
+    const API_ENDPOINT = contactForm.dataset.apiEndpoint || "https://18vkro0bm3.execute-api.ap-northeast-1.amazonaws.com/prod";
 
     contactForm.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -197,8 +204,8 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       try {
-        // If API_ENDPOINT is not set yet, simulate success for testing
-        if (API_ENDPOINT === "YOUR_API_GATEWAY_URL_HERE") {
+        // If API_ENDPOINT is not set (still using placeholder), simulate success for testing
+        if (API_ENDPOINT === "YOUR_API_GATEWAY_URL_HERE" || API_ENDPOINT === "") {
           console.warn("API Endpoint not configured. Simulating success.");
           await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate network delay
           // Determine subject label for the alert

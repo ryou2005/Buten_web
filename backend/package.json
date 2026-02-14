@@ -2,8 +2,7 @@
   "name": "buten-contact-backend",
   "version": "1.0.0",
   "description": "Contact form backend for Wadaiko Buten website",
-  "main": "handler.js",
-  "type": "module",
+  "main": "index.js",
   "scripts": {
     "test": "node --test"
   },

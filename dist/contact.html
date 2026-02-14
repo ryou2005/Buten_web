@@ -3,7 +3,7 @@
 
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>お問い合わせ | 和太鼓 武天 -BUTEN-</title>
     <meta name="description" content="和太鼓「武天」へのお問い合わせ・体験レッスンのお申し込み。お気軽にご連絡ください。">
@@ -13,9 +13,9 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@700&display=swap"
       rel="stylesheet" />
-    <script type="module" crossorigin src="./assets/main-y5B3UCxZ.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/main-crTDWna7.css">
-    <link rel="stylesheet" crossorigin href="./assets/contact-uGdCjEW7.css">
+    <script type="module" crossorigin src="./assets/main-B8Giqbcw.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/contact-BX0dLQDO.css">
+    <link rel="stylesheet" crossorigin href="./assets/style-CGG8X6-_.css">
   </head>
 
   <body>
@@ -33,7 +33,7 @@
       <header class="site-header">
         <div class="logo">
           <a href="index.html">
-            <img src="./assets/logo_text-Dk0BHF1L.png" alt="和太鼓 武天 -BUTEN-">
+            <img src="https://d329zuyuc98w3u.cloudfront.net/images/home/logo_text.png" alt="和太鼓 武天 -BUTEN-">
           </a>
         </div>
         <button class="menu-toggle" aria-label="メニューを開く" aria-expanded="false">
@@ -49,6 +49,9 @@
             <li><a href="instructors.html">講師紹介</a></li>
             <li><a href="admission.html">入会案内</a></li>
             <li><a href="schedule.html">公演予定</a></li>
+            <li><a href="performances.html">公演実績</a></li>
+            <li><a href="gallery.html">武天の日常</a></li>
+            <li><a href="workshop.html">ワークショップ</a></li>
             <li><a href="access.html">アクセス</a></li>
             <li><a href="contact.html" class="active">お問い合わせ</a></li>
           </ul>
@@ -56,7 +59,7 @@
       </header>
 
       <main>
-        <section class="page-header" style="background-image: url('./assets/hero_bg-BAo-ni88.png');">
+        <section class="page-header" style="background-image: url('https://d329zuyuc98w3u.cloudfront.net/images/contact/contact_header.jpg');">
           <div class="header-overlay"></div>
           <h1>お問い合わせ</h1>
           <p>Contact</p>
@@ -64,9 +67,9 @@
 
         <section class="section-contact-form">
           <div class="container">
-            <p class="contact-intro">体験レッスンのお申し込み、演奏のご依頼、その他ご質問など、<br class="desktop-only">お気軽にお問い合わせください。</p>
+            <p class="contact-intro">出演のご依頼、体験レッスンのお申し込み、その他ご質問など、<br class="desktop-only">お気軽にお問い合わせください。</p>
 
-            <form class="contact-form" action="#" method="post">
+            <form id="contact-form" class="contact-form" data-api-endpoint="https://18vkro0bm3.execute-api.ap-northeast-1.amazonaws.com/prod">
               <div class="form-group">
                 <label for="name">お名前 <span class="required">必須</span></label>
                 <input type="text" id="name" name="name" required placeholder="例：山田 太郎">
@@ -86,8 +89,8 @@
                 <label for="subject">件名 <span class="required">必須</span></label>
                 <select id="subject" name="subject" required>
                   <option value="">選択してください</option>
+                  <option value="performance">出演のご依頼</option>
                   <option value="trial">体験レッスンのお申し込み</option>
-                  <option value="performance">演奏のご依頼</option>
                   <option value="question">ご質問・その他</option>
                 </select>
               </div>
@@ -96,6 +99,8 @@
                 <label for="message">お問い合わせ内容 <span class="required">必須</span></label>
                 <textarea id="message" name="message" rows="6" required placeholder="お問い合わせ内容をご記入ください"></textarea>
               </div>
+
+              <div class="form-message" style="display: none;"></div>
 
               <div class="form-actions">
                 <button type="submit" class="cta-button">送信する</button>
@@ -108,17 +113,15 @@
 
       <footer class="site-footer">
         <div class="social-links">
-          <a href="#" class="social-icon" aria-label="Instagram">
-            <img src="dist/Instagram_Glyph_Gradient.png" alt="Instagram">
+          <a href="https://www.instagram.com/wadaiko_buten/" class="social-icon" aria-label="Instagram">
+            <img src="https://d329zuyuc98w3u.cloudfront.net/images/common/Instagram_Glyph_Gradient.png" alt="Instagram">
           </a>
-          <a href="#" class="social-icon" aria-label="Facebook">
-            <img src="dist/Facebook_Logo_Primary.png" alt="Facebook">
+          <a href="https://www.facebook.com/share/18MnYS9fLs/?mibextid=wwXIfr" class="social-icon" aria-label="Facebook">
+            <img src="https://d329zuyuc98w3u.cloudfront.net/images/common/Facebook_Logo_Primary.png" alt="Facebook">
           </a>
-          <!-- YouTube placeholder
-          <a href="#" class="social-icon" aria-label="YouTube">
-            <img src="dist/youtube_logo.png" alt="YouTube">
+          <a href="https://www.youtube.com/channel/UCwjt1ccEZv3qjzCHLPV8tAA" class="social-icon" aria-label="YouTube">
+            <img src="https://d329zuyuc98w3u.cloudfront.net/images/common/youtube_social_icon_red.png" alt="YouTube">
           </a>
-          -->
         </div>
         <p>&copy; 2025 和太鼓 武天 -BUTEN-</p>
       </footer>
