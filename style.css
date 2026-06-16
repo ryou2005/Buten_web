@@ -140,7 +140,12 @@ a:hover {
   .main-nav ul {
     flex-direction: row;
     align-items: center;
-    gap: var(--spacing-lg);
+    gap: 15px;
+  }
+
+  .main-nav a {
+    font-size: 0.9rem;
+    white-space: nowrap;
   }
 }
 

@@ -80,12 +80,28 @@ function getContentType(filePath) {
   return MIME_TYPES[ext] || 'application/octet-stream';
 }
 
+function getCacheControl(filePath) {
+  const ext = path.extname(filePath).toLowerCase();
+  const normalizedPath = filePath.replace(/\\/g, '/');
+
+  if (ext === '.html') {
+    return 'no-cache, no-store, must-revalidate';
+  }
+
+  if (normalizedPath.includes('/assets/')) {
+    return 'public, max-age=31536000, immutable';
+  }
+
+  return 'public, max-age=300';
+}
+
 // Upload file to S3
 async function uploadFile(localFilePath) {
   const relativePath = path.relative(path.resolve(process.cwd(), 'dist'), localFilePath);
   // Normalize Windows backslashes to S3 forward slashes
   const s3Key = relativePath.replace(/\\/g, '/');
   const contentType = getContentType(localFilePath);
+  const cacheControl = getCacheControl(localFilePath);
 
   try {
     const fileContent = fs.readFileSync(localFilePath);
@@ -93,9 +109,10 @@ async function uploadFile(localFilePath) {
       Bucket: bucketName,
       Key: s3Key,
       Body: fileContent,
-      ContentType: contentType
+      ContentType: contentType,
+      CacheControl: cacheControl
     }));
-    console.log(`\x1b[32m[S3 UPLOAD SUCCESS]\x1b[0m ${s3Key} \x1b[90m(${contentType})\x1b[0m`);
+    console.log(`\x1b[32m[S3 UPLOAD SUCCESS]\x1b[0m ${s3Key} \x1b[90m(${contentType}; ${cacheControl})\x1b[0m`);
   } catch (err) {
     console.error(`\x1b[31m[S3 UPLOAD FAILED]\x1b[0m ${s3Key}:`, err.message);
   }
@@ -135,6 +152,11 @@ initialBuild.on('close', async (code) => {
   
   console.log('\x1b[32m[Builder]\x1b[0m Initial build completed successfully. Performing initial sync to S3...');
   await syncDirectory(distDir);
+  
+  if (process.argv.includes('--once')) {
+    console.log('\x1b[32m[Builder]\x1b[0m Deployment completed successfully. Exiting...');
+    process.exit(0);
+  }
   
   // Start watcher & Vite build --watch
   startWatcher();
