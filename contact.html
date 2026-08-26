@@ -6,7 +6,7 @@
     <link rel="icon" type="image/svg+xml" href="vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>お問い合わせ | 和太鼓 武天 -BUTEN-</title>
-    <meta name="description" content="和太鼓「武天」へのお問い合わせ・体験レッスンのお申し込み。お気軽にご連絡ください。">
+    <meta name="description" content="和太鼓「武天」へのお問い合わせ・体験レッスン・ワークショップのお申し込み。お気軽にご連絡ください。">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -67,7 +67,7 @@
 
         <section class="section-contact-form">
           <div class="container">
-            <p class="contact-intro">出演のご依頼、体験レッスンのお申し込み、その他ご質問など、<br class="desktop-only">お気軽にお問い合わせください。</p>
+            <p class="contact-intro">出演のご依頼、体験レッスン・ワークショップのお申し込み、その他ご質問など、<br class="desktop-only">お気軽にお問い合わせください。</p>
 
             <form id="contact-form" class="contact-form" data-api-endpoint="https://18vkro0bm3.execute-api.ap-northeast-1.amazonaws.com/prod">
               <div class="form-group">
@@ -91,6 +91,7 @@
                   <option value="">選択してください</option>
                   <option value="performance">出演のご依頼</option>
                   <option value="trial">体験レッスンのお申し込み</option>
+                  <option value="workshop">ワークショップのお申込み</option>
                   <option value="question">ご質問・その他</option>
                 </select>
               </div>
@@ -98,6 +99,13 @@
               <div class="form-group">
                 <label for="message">お問い合わせ内容 <span class="required">必須</span></label>
                 <textarea id="message" name="message" rows="6" required placeholder="お問い合わせ内容をご記入ください"></textarea>
+              </div>
+
+              <div class="form-group privacy-consent">
+                <label class="checkbox-label" for="privacy-consent">
+                  <input type="checkbox" id="privacy-consent" name="privacyConsent" required>
+                  <span><a href="privacy.html" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>を確認し、入力した個人情報がお問い合わせへの回答および連絡のために利用されることに同意します。 <span class="required">必須</span></span>
+                </label>
               </div>
 
               <div class="form-message" style="display: none;"></div>

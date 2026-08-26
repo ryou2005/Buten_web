@@ -35,6 +35,10 @@ function validateFormData(data) {
   if (!data.message || data.message.trim() === "") {
     errors.push("お問い合わせ内容は必須です");
   }
+
+  if (data.privacyConsent !== true) {
+    errors.push("個人情報の取り扱いへの同意が必要です");
+  }
   
   return errors;
 }
@@ -46,6 +50,7 @@ function getSubjectLabel(subject) {
   const labels = {
     trial: "体験レッスンのお申し込み",
     performance: "演奏のご依頼",
+    workshop: "ワークショップのお申込み",
     question: "ご質問・その他"
   };
   return labels[subject] || subject;
@@ -64,6 +69,8 @@ async function saveToDatabase(data) {
     subject: data.subject,
     subjectLabel: getSubjectLabel(data.subject),
     message: data.message,
+    privacyConsent: true,
+    privacyConsentAt: new Date().toISOString(),
     status: "new"
   };
 
@@ -99,6 +106,9 @@ ${subjectLabel}
 
 【お問い合わせ内容】
 ${data.message}
+
+【個人情報の取り扱いへの同意】
+同意済み
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 送信日時: ${new Date().toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" })}

@@ -180,6 +180,20 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
+.news-item.is-ended {
+    background: #f2f2f2;
+    color: #777;
+}
+
+.news-item.is-ended .news-head,
+.news-item.is-ended p {
+    color: #777;
+}
+
+.news-item.is-ended .news-date {
+    background: #999;
+}
+
 .news-item.coming-soon {
     text-align: center;
     padding: var(--spacing-xl);
@@ -218,6 +232,13 @@
 
 .apply-btn:hover {
   opacity: 0.8;
+}
+
+.apply-btn.is-ended {
+    background: #9a9a9a;
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 1;
 }
 
 /* Furusato Nozei Section */

@@ -159,11 +159,52 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Workshop Schedule Status Logic
+  const workshopItems = document.querySelectorAll(".section-news .news-item");
+  if (workshopItems.length > 0) {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    workshopItems.forEach((item) => {
+      const dateElement = item.querySelector(".news-date");
+      const applyBtn = item.querySelector(".apply-btn");
+      if (!dateElement || !applyBtn) return;
+
+      const dateText = dateElement.textContent.trim();
+      const matched = dateText.match(/(\d{4})\.(\d{1,2})\.(\d{1,2})/);
+      if (!matched) return;
+
+      const year = Number(matched[1]);
+      const month = Number(matched[2]) - 1;
+      const day = Number(matched[3]);
+      const eventDate = new Date(year, month, day);
+
+      if (eventDate < today) {
+        item.classList.add("is-ended");
+        applyBtn.classList.add("is-ended");
+        applyBtn.textContent = "終了";
+        applyBtn.setAttribute("aria-disabled", "true");
+        applyBtn.setAttribute("tabindex", "-1");
+        applyBtn.removeAttribute("href");
+      }
+    });
+  }
+
 
   // Contact Form Submission Handler
   // Contact Form Submission Handler
   const contactForm = document.getElementById("contact-form"); // Changed from querySelector to getElementById to match HTML
   if (contactForm) {
+    const subjectSelect = document.getElementById("subject");
+    const subjectParam = new URLSearchParams(window.location.search).get("subject");
+    if (
+      subjectSelect &&
+      subjectParam &&
+      Array.from(subjectSelect.options).some((option) => option.value === subjectParam)
+    ) {
+      subjectSelect.value = subjectParam;
+    }
+
     // API Endpoint - Read from HTML data attribute or fallback to placeholder
     const API_ENDPOINT = contactForm.dataset.apiEndpoint || "https://18vkro0bm3.execute-api.ap-northeast-1.amazonaws.com/prod";
 
@@ -189,6 +230,11 @@ document.addEventListener("DOMContentLoaded", () => {
       messageContainer.className = "form-message";
       messageContainer.textContent = "";
 
+      if (!contactForm.reportValidity()) {
+        messageContainer.style.display = "none";
+        return;
+      }
+
       // Disable form and show loading
       submitBtn.disabled = true;
       submitBtn.textContent = "送信中...";
@@ -201,6 +247,7 @@ document.addEventListener("DOMContentLoaded", () => {
         tel: document.getElementById("tel").value,
         subject: document.getElementById("subject").value,
         message: document.getElementById("message").value,
+        privacyConsent: document.getElementById("privacy-consent").checked,
       };
 
       try {
