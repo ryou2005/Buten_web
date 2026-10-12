@@ -1,5 +1,65 @@
 /* Admission Page Styles */
 
+/* Workshop Guide */
+.workshop-guide {
+    max-width: 800px;
+    margin: var(--spacing-xl) auto 0;
+    padding: var(--spacing-lg);
+    background-color: var(--color-white);
+    border: 1px solid #dedfe2;
+    border-top: 4px solid var(--color-accent);
+    border-radius: 12px;
+    text-align: center;
+}
+
+.workshop-guide-label {
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-accent);
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.workshop-guide h2 {
+    margin-bottom: var(--spacing-md);
+    color: var(--color-primary);
+    font-size: 1.6rem;
+}
+
+.workshop-guide-text {
+    margin-bottom: var(--spacing-lg);
+    text-align: left;
+}
+
+.workshop-guide-button {
+    max-width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+}
+
+.workshop-guide-button span {
+    display: inline-block;
+}
+
+.workshop-guide-button:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 4px;
+}
+
+@media (max-width: 600px) {
+    .workshop-guide {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+
+    .workshop-guide h2 {
+        font-size: 1.4rem;
+    }
+
+    .workshop-guide-button {
+        width: 100%;
+        padding: 1rem;
+    }
+}
+
 /* Flow Section */
 .section-flow {
     background-color: var(--color-bg);

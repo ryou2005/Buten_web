@@ -1,4 +1,9 @@
+import { initializeHomeSchedule } from "./home-schedule.js";
+
 document.addEventListener("DOMContentLoaded", () => {
+  const homeScheduleList = document.querySelector("#schedule .schedule-list");
+  if (homeScheduleList) initializeHomeSchedule(homeScheduleList);
+
   // Mobile Menu Toggle
   const menuToggle = document.querySelector(".menu-toggle");
   const mainNav = document.getElementById("main-nav");
@@ -46,31 +51,37 @@ document.addEventListener("DOMContentLoaded", () => {
   const slides = document.querySelectorAll(".slide");
   let currentSlide = 0;
 
+  // 2枚目以降の画像は data-src に置き、表示の1つ前に読み込む
+  const loadSlide = (slide) => {
+    if (!slide?.dataset.src) return;
+    if (slide.dataset.srcset) {
+      slide.sizes = "(max-aspect-ratio: 4/3) 140vh, 100vw";
+      slide.srcset = slide.dataset.srcset;
+    }
+    slide.src = slide.dataset.src;
+    delete slide.dataset.src;
+    delete slide.dataset.srcset;
+  };
+
   if (slides.length > 0) {
+    if (document.readyState === "complete") {
+      loadSlide(slides[1]);
+    } else {
+      window.addEventListener("load", () => loadSlide(slides[1]));
+    }
+
     setInterval(() => {
       slides[currentSlide].classList.remove("active");
       currentSlide = (currentSlide + 1) % slides.length;
       slides[currentSlide].classList.add("active");
+      loadSlide(slides[(currentSlide + 1) % slides.length]);
     }, 5000); // Change every 5 seconds
   }
 
   // Loader Logic
-  // Loader Logic
-  const hideLoader = () => {
-    const loader = document.getElementById("loader");
-    if (loader) {
-      // Add a small delay for branding effect
-      setTimeout(() => {
-        loader.classList.add("hidden");
-      }, 800);
-    }
-  };
-
-  if (document.readyState === "complete") {
-    hideLoader();
-  } else {
-    window.addEventListener("load", hideLoader);
-  }
+  // 画像の読み込み完了（load）を待つと本文の表示が大きく遅れるため、DOM構築後すぐに消す
+  const loader = document.getElementById("loader");
+  if (loader) loader.classList.add("hidden");
 
   // Schedule Filter Logic
   const filterBtns = document.querySelectorAll(".filter-btn");
@@ -100,6 +111,33 @@ document.addEventListener("DOMContentLoaded", () => {
             }
           }
         });
+      });
+    });
+  }
+
+  // Flyer Lightbox
+  const flyerLinks = document.querySelectorAll(".schedule-flyer");
+
+  if (flyerLinks.length > 0 && typeof HTMLDialogElement === "function") {
+    const lightbox = document.createElement("dialog");
+    lightbox.className = "flyer-lightbox";
+    lightbox.innerHTML =
+      '<button class="flyer-lightbox-close" aria-label="閉じる">&times;</button><img alt="">';
+    document.body.appendChild(lightbox);
+
+    const lightboxImg = lightbox.querySelector("img");
+    lightbox.querySelector(".flyer-lightbox-close").addEventListener("click", () => lightbox.close());
+    // Close when clicking the backdrop
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) lightbox.close();
+    });
+
+    flyerLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        lightboxImg.src = link.href;
+        lightboxImg.alt = link.querySelector("img")?.alt || "";
+        lightbox.showModal();
       });
     });
   }

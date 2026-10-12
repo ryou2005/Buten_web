@@ -20,8 +20,19 @@ const getHtmlInputs = () => {
   return inputs;
 };
 
+// images/ をそのまま dist/images/ にコピーする。
+// トップのスライドは data-src で遅延読み込みするため、Vite が参照を検出できない。
+// public/ ではなく直下に置くのは、Live Server でも同じパスで表示できるようにするため。
+const copyImages = () => ({
+  name: "copy-images",
+  writeBundle(options) {
+    fs.cpSync(path.resolve(__dirname, "images"), path.resolve(options.dir, "images"), { recursive: true });
+  },
+});
+
 export default defineConfig({
   base: './',
+  plugins: [copyImages()],
   build: {
     rollupOptions: {
       input: getHtmlInputs()
