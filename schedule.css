@@ -127,6 +127,13 @@
   border-bottom: 1px solid var(--shu);
 }
 
+/* 公演予定がすべて終わったときのお知らせ（main.js が入れる） */
+.schedule-empty {
+  padding: 40px 0;
+  color: var(--muted);
+  text-align: center;
+}
+
 /* ---------- Mobile ---------- */
 @media (max-width: 960px) {
   .schedule-card {

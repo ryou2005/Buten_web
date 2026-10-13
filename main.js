@@ -1,8 +1,14 @@
 import { initializeHomeSchedule } from "./home-schedule.js";
+import { hidePastScheduleCards } from "./schedule-events.js";
+import { addPastScheduleToHistory } from "./performance-archive.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const homeScheduleList = document.querySelector("#schedule .schedule-list");
   if (homeScheduleList) initializeHomeSchedule(homeScheduleList);
+
+  // 公演予定ページ：日付が過ぎた公演は一覧から外す（公演実績ページに自動で載る）
+  const scheduleList = document.querySelector(".detailed-schedule-list");
+  if (scheduleList) hidePastScheduleCards(scheduleList);
 
   // Loader（オープニング）
   // 筆文字ロゴを見せてから幕を上げる。同じ訪問の中では2回目以降は出さない（head 内のスクリプトで判定）
@@ -161,87 +167,65 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Flyer Lightbox
-  const flyerLinks = document.querySelectorAll(".schedule-flyer, .flyer-link, .photo-link");
-
-  if (flyerLinks.length > 0 && typeof HTMLDialogElement === "function") {
-    const lightbox = document.createElement("dialog");
-    lightbox.className = "flyer-lightbox";
-    lightbox.innerHTML =
-      '<button class="flyer-lightbox-close" aria-label="閉じる">&times;</button><img alt="">';
-    document.body.appendChild(lightbox);
-
-    const lightboxImg = lightbox.querySelector("img");
-    lightbox.querySelector(".flyer-lightbox-close").addEventListener("click", () => lightbox.close());
-    // Close when clicking the backdrop
-    lightbox.addEventListener("click", (e) => {
-      if (e.target === lightbox) lightbox.close();
-    });
-
-    flyerLinks.forEach((link) => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-        lightboxImg.src = link.href;
-        lightboxImg.alt = link.querySelector("img")?.alt || "";
-        lightbox.showModal();
-      });
+  // チラシ・写真の拡大表示（あとから足される公演実績のチラシにも効くよう、クリックをまとめて受ける）
+  if (typeof HTMLDialogElement === "function") {
+    let lightbox;
+    const openLightbox = (link) => {
+      if (!lightbox) {
+        lightbox = document.createElement("dialog");
+        lightbox.className = "flyer-lightbox";
+        lightbox.innerHTML =
+          '<button class="flyer-lightbox-close" aria-label="閉じる">&times;</button><img alt="">';
+        document.body.appendChild(lightbox);
+        lightbox.querySelector(".flyer-lightbox-close").addEventListener("click", () => lightbox.close());
+        // 画像の外側を押したら閉じる
+        lightbox.addEventListener("click", (e) => {
+          if (e.target === lightbox) lightbox.close();
+        });
+      }
+      const img = lightbox.querySelector("img");
+      img.src = link.href;
+      img.alt = link.querySelector("img")?.alt || "";
+      lightbox.showModal();
+    };
+    document.addEventListener("click", (e) => {
+      const link = e.target.closest(".schedule-flyer, .flyer-link, .photo-link");
+      if (!link) return;
+      e.preventDefault();
+      openLightbox(link);
     });
   }
 
-  // Performances Filter Logic
-  const yearBtns = document.querySelectorAll(".year-btn");
-  const yearSections = document.querySelectorAll(".year-section");
-
-  if (yearBtns.length > 0 && yearSections.length > 0) {
+  // 公演実績：年の切り替え（公演予定から年が足されることがあるので、毎回ページから探す）
+  const perfHistory = document.querySelector(".perf-history");
+  if (perfHistory) {
     const filterPerformances = (year) => {
-      yearSections.forEach((section) => {
+      perfHistory.querySelectorAll(".year-section").forEach((section) => {
         const sectionYear = section.dataset.year;
-        // Check if the section belongs to "older" category (2022 or earlier)
-        // sectionYear can be "older" string or a year number
+        // 2022年以前は「それ以前」にまとめる
         const yearNum = parseInt(sectionYear, 10);
         const isOlder = sectionYear === "older" || (!isNaN(yearNum) && yearNum <= 2022);
-
-        if (year === "all") {
-          // Show recent (not older)
-          if (!isOlder) {
-            section.classList.add("active");
-          } else {
-            section.classList.remove("active");
-          }
-        } else if (year === "older") {
-          // Show only older
-          if (isOlder) {
-            section.classList.add("active");
-          } else {
-            section.classList.remove("active");
-          }
-        } else {
-          // Specific year
-          if (sectionYear == year) {
-            section.classList.add("active");
-          } else {
-            section.classList.remove("active");
-          }
-        }
+        const show = year === "all" ? !isOlder : year === "older" ? isOlder : sectionYear === year;
+        section.classList.toggle("active", show);
       });
     };
+    const currentYear = () => perfHistory.querySelector(".year-btn.active")?.dataset.year || "all";
 
-    // Initial check
-    const activeBtn = document.querySelector(".year-btn.active");
-    if (activeBtn) {
-      filterPerformances(activeBtn.dataset.year);
-    }
+    filterPerformances(currentYear());
 
-    yearBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        yearBtns.forEach((b) => {
-          b.classList.toggle("active", b === btn);
-          b.setAttribute("aria-pressed", b === btn);
-        });
-
-        const year = btn.dataset.year;
-        filterPerformances(year);
+    perfHistory.querySelector(".year-filters")?.addEventListener("click", (e) => {
+      const btn = e.target.closest(".year-btn");
+      if (!btn) return;
+      perfHistory.querySelectorAll(".year-btn").forEach((b) => {
+        b.classList.toggle("active", b === btn);
+        b.setAttribute("aria-pressed", b === btn);
       });
+      filterPerformances(btn.dataset.year);
+    });
+
+    // 公演予定ページで日付が過ぎた公演を足し、表示し直す
+    addPastScheduleToHistory(perfHistory).then((added) => {
+      if (added) filterPerformances(currentYear());
     });
   }
 
