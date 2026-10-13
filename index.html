@@ -82,161 +82,209 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@700&display=swap" media="print" onload="this.media='all'"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho+B1:wght@600;700;800&family=Cormorant+Garamond:wght@500;600&display=swap" media="print" onload="this.media='all'"
       rel="stylesheet" />
-    <!-- トップの一文（.message-text）だけで使うため、その文字だけを読み込む -->
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@900&display=swap&text=%E7%A7%81%E3%81%9F%E3%81%A1%E3%81%AF%E3%80%81%E7%AC%91%E9%A1%94%E3%81%82%E3%81%B5%E3%82%8C%E3%82%8B%E4%BB%B2%E9%96%93%E3%81%A8%E5%85%B1%E3%81%AB%E4%BA%BA%E3%81%AE%E3%81%A4%E3%81%AA%E3%81%8C%E3%82%8A%E3%82%84%E8%A6%AA%E5%AD%90%E7%B5%86%E3%82%92%E6%B7%B1%E3%82%81%E4%B8%96%E4%BB%A3%E8%B6%85%E3%81%88%E5%92%8C%E5%A4%AA%E9%BC%93%E3%83%A9%E3%82%A4%E3%83%95%E6%A5%BD%E3%81%97%E3%82%93%E3%81%A7%E3%81%84%E3%81%BE%E3%81%99%EF%BC%81" rel="stylesheet" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="./style.css?ver=1.1" />
-    <link rel="stylesheet" href="./home.css?ver=1.1" />
+    <script>
+      // オープニング（ローディング）は同じ訪問の中で最初の1回だけ表示する
+      try {
+        if (sessionStorage.getItem("buten-opening")) document.documentElement.classList.add("no-loader");
+      } catch (e) {
+        document.documentElement.classList.add("no-loader");
+      }
+    </script>
+    <noscript><style>.loader { display: none; }</style></noscript>
+    <link rel="stylesheet" href="./style.css?ver=2.0" />
+    <link rel="stylesheet" href="./home.css?ver=2.0" />
   </head>
 
-  <body>
-    <!-- Loader -->
-    <div id="loader">
-      <div class="loader-content">
-        <div class="loader-core"></div>
-        <div class="loader-ring"></div>
-        <div class="loader-ring"></div>
-        <div class="loader-ring"></div>
-        <div class="loader-orbit"></div>
-      </div>
+  <body class="is-home">
+    <div class="loader" id="loader" aria-hidden="true">
+      <span class="logo-h"><img src="images/common/logo_text.webp" width="60" height="117" alt=""></span>
+      <span class="loader-line"></span>
     </div>
     <div id="app">
-      <header class="site-header">
-        <div class="logo">
-          <img src="images/common/logo_text.webp" width="60" height="117" alt="和太鼓 武天 -BUTEN-">
-        </div>
-        <button class="menu-toggle" aria-label="メニューを開く" aria-expanded="false">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="menu-text">MENU</span>
-        </button>
-        <nav class="main-nav" id="main-nav">
-          <ul>
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="class.html">クラス紹介</a></li>
-            <li><a href="instructors.html">講師紹介</a></li>
-            <li><a href="admission.html">入会案内</a></li>
-            <li><a href="schedule.html">公演予定</a></li>
-            <li><a href="performances.html">公演実績</a></li>
-            <li><a href="gallery.html">武天の日常</a></li>
-            <li><a href="workshop.html">ワークショップ</a></li>
-            <li><a href="culture-class.html">伝統文化親子教室</a></li>
-            <li><a href="access.html">アクセス</a></li>
-            <li><a href="contact.html">お問い合わせ</a></li>
-          </ul>
+      <header class="site-header is-overlay" id="site-header">
+        <a class="brand" href="index.html"><span class="logo-h"><img src="images/common/logo_text.webp" width="60" height="117" alt="和太鼓 武天 -BUTEN-"></span></a>
+        <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="main-nav">MENU</button>
+        <nav class="main-nav" id="main-nav" aria-label="メインメニュー">
+          <a class="sub-only" aria-current="page" href="index.html">Home</a>
+          <a href="performances.html">公演実績</a>
+          <a href="class.html">クラス紹介</a>
+          <a href="schedule.html">公演予定</a>
+          <a href="gallery.html">武天の日常</a>
+          <a class="sub-only" href="instructors.html">講師紹介</a>
+          <a href="admission.html">入会案内</a>
+          <a class="sub-only" href="workshop.html">ワークショップ</a>
+          <a class="sub-only" href="culture-class.html">伝統文化親子教室</a>
+          <a href="access.html">アクセス</a>
+          <a class="btn" href="contact.html">お問い合わせ</a>
         </nav>
       </header>
 
       <main>
-        <section id="hero" class="hero">
-          <div class="hero-slides">
-            <!-- 1枚目だけ先に読み込み、2枚目以降は main.js が表示直前に読み込む -->
-            <img class="slide active" src="images/slideshow/slide1-960.webp" width="960" height="679" alt="舞台で和太鼓を演奏する和太鼓 武天のメンバー" fetchpriority="high">
-            <img class="slide" data-src="images/slideshow/slide2-684.webp" width="684" height="573" alt="笑顔で鳴り物を演奏する大人と子供のメンバー">
-            <img class="slide" data-src="images/slideshow/slide3-960.webp" data-srcset="images/slideshow/slide3-960.webp 960w, images/slideshow/slide3-1600.webp 1600w" width="1600" height="1064" alt="夏祭りの夜に和太鼓を演奏する大人チーム">
-            <img class="slide" data-src="images/slideshow/slide4-960.webp" data-srcset="images/slideshow/slide4-960.webp 960w, images/slideshow/slide4-1108.webp 1108w" width="1108" height="748" alt="屋外イベントで和太鼓を演奏する若者チーム">
-            <img class="slide" data-src="images/slideshow/slide5-960.webp" data-srcset="images/slideshow/slide5-960.webp 960w, images/slideshow/slide5-1477.webp 1477w" width="1477" height="1108" alt="通りで大太鼓を打つ和太鼓 武天のメンバー">
-            <img class="slide" data-src="images/slideshow/slide6-960.webp" data-srcset="images/slideshow/slide6-960.webp 960w, images/slideshow/slide6-1280.webp 1280w" width="1280" height="964" alt="通りに並んで和太鼓を演奏するメンバー">
-            <img class="slide" data-src="images/slideshow/slide7-960.webp" data-srcset="images/slideshow/slide7-960.webp 960w, images/slideshow/slide7-1600.webp 1600w" width="1600" height="1202" alt="夜のステージでバチを振り上げる大人チーム">
-            <img class="slide" data-src="images/slideshow/slide8-960.webp" data-srcset="images/slideshow/slide8-960.webp 960w, images/slideshow/slide8-1477.webp 1477w" width="1477" height="1108" alt="屋外で和太鼓を演奏する親子チームの子供たち">
-            <img class="slide" data-src="images/slideshow/slide10-960.webp" data-srcset="images/slideshow/slide10-960.webp 960w, images/slideshow/slide10-1477.webp 1477w" width="1477" height="1108" alt="屋外イベントで和太鼓を演奏する子供たち">
-          <!-- <div class="slide" style="background-image: url('https://d329zuyuc98w3u.cloudfront.net/images/slideshow/slideshow11.jpg')"></div>
-            <div class="slide" style="background-image: url('https://d329zuyuc98w3u.cloudfront.net/images/slideshow/slideshow12.jpg')"></div> 
-            <div class="slide" style="background-image: url('https://d329zuyuc98w3u.cloudfront.net/images/slideshow/slideshow13.jpg')"></div>-->
+        <section class="hero" aria-label="メインビジュアル">
+            <img class="hero-slide active" src="images/slideshow/slide1-960.webp" width="960" height="679" alt="舞台で和太鼓を演奏する和太鼓 武天のメンバー" fetchpriority="high">
+            <img class="hero-slide" data-src="images/slideshow/slide3-960.webp" data-srcset="images/slideshow/slide3-960.webp 960w, images/slideshow/slide3-1600.webp 1600w" width="1600" height="1064" alt="夏祭りの夜に和太鼓を演奏する大人チーム">
+            <img class="hero-slide" data-src="images/slideshow/slide4-960.webp" data-srcset="images/slideshow/slide4-960.webp 960w, images/slideshow/slide4-1108.webp 1108w" width="1108" height="748" alt="屋外イベントで和太鼓を演奏する若者チーム">
+            <img class="hero-slide" data-src="images/slideshow/slide8-960.webp" data-srcset="images/slideshow/slide8-960.webp 960w, images/slideshow/slide8-1477.webp 1477w" width="1477" height="1108" alt="屋外で和太鼓を演奏する親子チームの子供たち">
+            <img class="hero-slide" data-src="images/slideshow/slide7-960.webp" data-srcset="images/slideshow/slide7-960.webp 960w, images/slideshow/slide7-1600.webp 1600w" width="1600" height="1202" alt="夜のステージでバチを振り上げる大人チーム">
+          <div class="hero-inner">
+            <div class="hero-copy">
+              <div class="eyebrow">WADAIKO BUTEN</div>
+              <p>あきる野市の和太鼓教室・和太鼓 武天<br>初心者からシニアまで、誰もが楽しめる和太鼓</p>
+              <div class="hero-actions">
+                <a class="btn" href="contact.html?subject=performance">イベントへの出演依頼</a>
+                <a class="btn line" href="admission.html">体験レッスン・入会案内</a>
+              </div>
+            </div>
+            <h1>心に響く、<br>日本の音。</h1>
           </div>
-          <div class="hero-content">
-            <h1>心に響く、<br />日本の音。</h1>
-            <p>あきる野市の和太鼓教室・和太鼓 武天<br />初心者からシニアまで、誰もが楽しめる和太鼓</p>
-          </div>
-          <div class="hero-bg-overlay"></div>
+          <div class="hero-progress" id="hero-progress"></div>
         </section>
 
-        <section class="section-message">
-          <div class="container">
-            <p class="message-text">私たちは、笑顔あふれる仲間と共に、人とのつながりや、親子の絆を深め、世代を超えた和太鼓ライフを楽しんでいます！</p>
-          </div>
-        </section>
-
-        <section id="concept" class="section-concept">
-          <div class="container">
-            <h2 class="section-title">和太鼓 武天<br>
-            <span class="subtitle">wadaiko buten</span></h2>
-            <p class="concept-text">
-              和太鼓 武天（わだいこ ぶてん）は、東京都あきる野市を拠点に、青梅市などでも活動する和太鼓グループです。<br>
-              会員約70名、小学1年生～70代で構成され、親子チーム、大人チーム、若者チームで活動。<br>
-              様々なイベントに合わせて演目、人数、構成を変え演奏します。<br>
-              持ち曲は全て独自で作曲、振り付け、曲の変化を楽しむ創作和太鼓です。<br>
-              見てくださる方々の心に響く音を目指し、地域との繋がりを大切に活動の場を広げています。
-            </p>
-            <p class="concept-text">
-              練習会場は東京都あきる野市小川638-1の小川会館。初心者の方も、親子や大人のクラスで和太鼓を楽しめます。<br>
-              <a href="admission.html">体験レッスン・入会案内</a>、<a href="class.html">クラスの対象・練習日時</a>、<a href="access.html">会場へのアクセス</a>をご確認ください。<br>
-              一回完結の<a href="workshop.html">和太鼓体験ワークショップ</a>や、<a href="contact.html">イベントへの出演依頼</a>も受け付けています。
-            </p>
+        <section id="concept" class="has-bg-word">
+          <span class="bg-word" aria-hidden="true">BUTEN</span>
+          <div class="wrap about-grid">
+            <div class="about-img reveal"><img src="images/slideshow/slide2-684.webp" width="684" height="573" alt="笑顔で鳴り物を演奏する大人と子供のメンバー" loading="lazy"></div>
+            <div class="about-text reveal">
+              <div class="label">01 — ABOUT</div>
+              <h2>和太鼓 武天<span class="subtitle">wadaiko buten</span></h2>
+              <p class="about-lead">私たちは、<wbr>笑顔あふれる仲間と共に、<wbr>人とのつながりや、<wbr>親子の絆を深め、<wbr>世代を超えた<wbr>和太鼓ライフを<wbr>楽しんでいます！</p>
+              <div class="body-text">
+                <p>和太鼓 武天（わだいこ ぶてん）は、東京都あきる野市を拠点に、青梅市などでも活動する和太鼓グループです。会員約70名、小学1年生～70代で構成され、親子チーム、大人チーム、若者チームで活動。</p>
+                <p>様々なイベントに合わせて演目、人数、構成を変え演奏します。持ち曲は全て独自で作曲、振り付け、曲の変化を楽しむ創作和太鼓です。見てくださる方々の心に響く音を目指し、地域との繋がりを大切に活動の場を広げています。</p>
+              </div>
+              <div class="stats">
+                <div class="stat"><b data-count="2007">2007</b><span>結成</span></div>
+                <div class="stat"><b><span data-count="70">70</span><small>名</small></b><span>会員 約70名</span></div>
+                <div class="stat"><b>1–70<small>代</small></b><span>小学1年生～70代</span></div>
+                <div class="stat"><b><span data-count="3">3</span><small>チーム</small></b><span>親子・大人・若者</span></div>
+              </div>
+            </div>
           </div>
         </section>
 
-        <!-- Other sections to be populated -->
-        <section id="class" class="section-class">
-          <div class="container">
-            <h2 class="section-title">クラス紹介</h2>
-            <div class="class-grid">
-              <div class="class-card">
-                <div class="card-image">
-                  <img src="https://d329zuyuc98w3u.cloudfront.net/images/home/saturday.jpg" alt="子供たちが笑顔で太鼓を叩いている様子" loading="lazy">
+        <div class="marquee" aria-label="演奏風景">
+          <div class="marquee-track">
+            <img src="images/slideshow/slide1-960.webp" width="960" height="720" alt="舞台で和太鼓を演奏するメンバー" loading="lazy">
+            <img src="images/slideshow/slide3-960.webp" width="960" height="720" alt="夏祭りの夜に演奏する大人チーム" loading="lazy">
+            <img src="images/slideshow/slide4-960.webp" width="960" height="720" alt="屋外イベントで演奏する若者チーム" loading="lazy">
+            <img src="images/slideshow/slide8-960.webp" width="960" height="720" alt="屋外で演奏する親子チームの子供たち" loading="lazy">
+            <img src="images/slideshow/slide5-960.webp" width="960" height="720" alt="通りで大太鼓を打つメンバー" loading="lazy">
+            <img src="images/slideshow/slide7-960.webp" width="960" height="720" alt="夜のステージでバチを振り上げる大人チーム" loading="lazy">
+            <img src="images/slideshow/slide6-960.webp" width="960" height="720" alt="通りに並んで演奏するメンバー" loading="lazy">
+            <img src="images/slideshow/slide10-960.webp" width="960" height="720" alt="屋外イベントで演奏する子供たち" loading="lazy">
+            <img src="images/slideshow/slide1-960.webp" width="960" height="720" alt="" aria-hidden="true" loading="lazy">
+            <img src="images/slideshow/slide3-960.webp" width="960" height="720" alt="" aria-hidden="true" loading="lazy">
+            <img src="images/slideshow/slide4-960.webp" width="960" height="720" alt="" aria-hidden="true" loading="lazy">
+            <img src="images/slideshow/slide8-960.webp" width="960" height="720" alt="" aria-hidden="true" loading="lazy">
+            <img src="images/slideshow/slide5-960.webp" width="960" height="720" alt="" aria-hidden="true" loading="lazy">
+            <img src="images/slideshow/slide7-960.webp" width="960" height="720" alt="" aria-hidden="true" loading="lazy">
+            <img src="images/slideshow/slide6-960.webp" width="960" height="720" alt="" aria-hidden="true" loading="lazy">
+            <img src="images/slideshow/slide10-960.webp" width="960" height="720" alt="" aria-hidden="true" loading="lazy">
+          </div>
+        </div>
+
+        <section id="performance" class="paper has-bg-word">
+          <span class="bg-word" aria-hidden="true">STAGE</span>
+          <div class="wrap">
+            <div class="label">02 — PERFORMANCE</div>
+            <h2 class="reveal">公演実績<span class="subtitle">Performance History</span></h2>
+            <div class="perf-grid">
+              <div class="reveal">
+                <div class="body-text"><p>和太鼓 武天は2007年の結成以来、地域のお祭りや文化イベント、企業イベントなど、多岐にわたる舞台で演奏を行ってきました。</p></div>
+                <div class="perf-list">
+                  <div class="perf-item"><time datetime="2026-09-20">2026.09.20</time><div><h3>久保熊野神社例大祭</h3><p>久保熊野神社</p></div></div>
+                  <div class="perf-item"><time datetime="2026-08-29">2026.08.29</time><div><h3>ヨルイチ</h3><p>JAあきがわ五日市支店駐車場 メインステージ</p></div></div>
+                  <div class="perf-item"><time datetime="2026-08-01">2026.08.01</time><div><h3>あきる野夏祭り</h3><p>秋川駅前通り（たましん前）</p></div></div>
+                  <div class="perf-item"><time datetime="2025-06-01">2025.06.01</time><div><h3>第一回三芳太鼓フェスティバル「つなぐ」</h3><p>コピスみよし</p></div></div>
+                  <div class="perf-item"><time datetime="2025-04-27">2025.04.27</time><div><h3>合同公演「奏音」</h3><p>キララホール</p></div></div>
                 </div>
-                <div class="card-content">
-                  <h3><a href="class.html#kids"><ruby>万九龍<rt>Bankuryu</rt></ruby></a></h3>
-                  <p>元気いっぱいかわいい子供たちが活躍する親子チーム<br>明るく活発な兄弟・親子で楽しむ太鼓で幸せになろう</p>
+                <div class="perf-more">
+                  <a class="btn line" href="performances.html">公演実績</a>
+                  <a class="btn line" href="https://www.youtube.com/channel/UCwjt1ccEZv3qjzCHLPV8tAA" target="_blank" rel="noopener noreferrer">YouTube</a>
                 </div>
               </div>
-              <div class="class-card">
-                <div class="card-image">
-                  <img src="https://d329zuyuc98w3u.cloudfront.net/images/home/maikacho2.jpg" alt="華やかな和太鼓の演奏" loading="lazy">
-                </div>
-                <div class="card-content">
-                  <h3><a href="class.html#general"><ruby>舞華蝶<rt>Maikacho</rt></ruby></a></h3>
-                  <p>優雅に華やかな演奏を目指す大人チーム<br>女性が多いのが特徴</p>
-                </div>
-              </div>
-              <div class="class-card">
-                <div class="card-image">
-                  <img src="https://d329zuyuc98w3u.cloudfront.net/images/home/to-yasya.jpg" alt="若者チーム" loading="lazy">
-                </div>
-                <div class="card-content">
-                  <h3><a href="class.html#junior"><ruby>十夜叉<rt>Toyasha</rt></ruby></a></h3>
-                  <p>武天を代表する若者10人がコンセプト<br>
-                    エネルギッシュ、アグレッシブな打ち込みで魅了<br></p>
+              <div class="booking reveal">
+                <img src="images/slideshow/slide6-960.webp" width="960" height="723" alt="通りに並んで和太鼓を演奏するメンバー" loading="lazy">
+                <div class="booking-body">
+                  <div class="label">BOOKING</div>
+                  <h3>出演のご依頼</h3>
+                  <p>様々なイベントに合わせて演目、人数、構成を変え演奏します。</p>
+                  <a class="btn" href="contact.html?subject=performance">イベントへの出演依頼</a>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-                <section id="atmosphere" class="section-atmosphere">
-          <div class="container">
-            <h2 class="section-title">武天の日常</h2>
-            <div class="atmosphere-content">
-              <div class="atmosphere-image">
-                <img src="https://d329zuyuc98w3u.cloudfront.net/images/home/nitizyou15.jpg" alt="みんなで楽しく練習中" loading="lazy">
-              </div>
-              <div class="atmosphere-text">
-                <p>
-                  武天の魅力は、舞台でのかっこいい演奏だけにとどまらず、<br>
-                  普段の練習は笑顔が絶えない、とてもアットホームな雰囲気です。<br>
-                  子供から大人まで、仲間と一緒に太鼓で笑い、喜びや感動、ワクワク、お互いの成長を感じています。
-                </p>
-                <a href="gallery.html" class="cta-button" style="margin-top: 1rem;">武天の日常をもっと見る</a>
-              </div>
+        <section id="class" class="on-dark has-bg-word">
+          <span class="bg-word" aria-hidden="true">CLASS</span>
+          <div class="wrap">
+            <div class="class-head">
+              <div><div class="label">03 — CLASS</div><h2>クラス紹介</h2></div>
+              <a class="btn line" href="admission.html">体験レッスン・入会案内</a>
+            </div>
+            <div class="panels reveal">
+              <a class="panel" href="class.html#kids">
+                <span class="panel-no">01</span>
+                <img src="https://d329zuyuc98w3u.cloudfront.net/images/home/saturday.jpg" alt="子供たちが笑顔で太鼓を叩いている様子" loading="lazy">
+                <div class="panel-body">
+                  <span class="tag">対象：小学生以上</span>
+                  <h3>万九龍<small>BANKURYU</small></h3>
+                  <p class="desc">元気いっぱいかわいい子供たちが活躍する親子チーム<br>明るく活発な兄弟・親子で楽しむ太鼓で幸せになろう</p>
+                  <span class="time">毎週 土曜日 15:00 - 18:00</span>
+                </div>
+              </a>
+              <a class="panel" href="class.html#general">
+                <span class="panel-no">02</span>
+                <img src="https://d329zuyuc98w3u.cloudfront.net/images/home/maikacho2.jpg" alt="華やかな和太鼓の演奏" loading="lazy">
+                <div class="panel-body">
+                  <span class="tag">対象：大人</span>
+                  <h3>舞華蝶<small>MAIKACHO</small></h3>
+                  <p class="desc">優雅に華やかな演奏を目指す大人チーム<br>女性が多いのが特徴</p>
+                  <span class="time">毎週 火曜日 18:00 - 20:00</span>
+                </div>
+              </a>
+              <a class="panel" href="class.html#junior">
+                <span class="panel-no">03</span>
+                <img src="https://d329zuyuc98w3u.cloudfront.net/images/home/to-yasya.jpg" alt="若者チーム" loading="lazy">
+                <div class="panel-body">
+                  <span class="tag">対象：高校生以上</span>
+                  <h3>十夜叉<small>TOYASHA</small></h3>
+                  <p class="desc">武天を代表する若者10人がコンセプト<br>エネルギッシュ、アグレッシブな打ち込みで魅了</p>
+                  <span class="time">毎週 火曜日 19:00 - 21:00</span>
+                </div>
+              </a>
             </div>
           </div>
         </section>
 
-        <section id="schedule" class="section-schedule">
-          <div class="container">
-            <h2 class="section-title">公演予定</h2>
+        <section id="atmosphere">
+          <div class="wrap">
+            <div class="daily-head">
+              <div><div class="label">04 — DAILY</div><h2 class="reveal">武天の日常</h2></div>
+              <div class="body-text reveal"><p>武天の魅力は、舞台でのかっこいい演奏だけにとどまらず、普段の練習は笑顔が絶えない、とてもアットホームな雰囲気です。子供から大人まで、仲間と一緒に太鼓で笑い、喜びや感動、ワクワク、お互いの成長を感じています。</p></div>
+            </div>
+            <div class="daily-grid">
+              <figure class="curtain"><img src="https://d329zuyuc98w3u.cloudfront.net/images/home/nitizyou15.jpg" alt="みんなで楽しく練習中" loading="lazy"></figure>
+              <figure class="curtain"><img src="https://d329zuyuc98w3u.cloudfront.net/images/gallery/nitizyou12.jpg" alt="クリスマス会の集合写真" loading="lazy"></figure>
+              <figure class="curtain"><img src="https://d329zuyuc98w3u.cloudfront.net/images/gallery/nitizyou2.jpg" alt="本番前の舞台袖" loading="lazy"></figure>
+              <figure class="curtain"><img src="https://d329zuyuc98w3u.cloudfront.net/images/gallery/nitizyou8.jpg" alt="クリスマス会での演奏" loading="lazy"></figure>
+              <figure class="curtain"><img src="images/slideshow/slide10-960.webp" width="960" height="720" alt="屋外イベントで和太鼓を演奏する子供たち" loading="lazy"></figure>
+              <figure class="curtain"><img src="images/slideshow/slide5-960.webp" width="960" height="720" alt="通りで大太鼓を打つ和太鼓 武天のメンバー" loading="lazy"></figure>
+            </div>
+            <p class="daily-more"><a class="btn line" href="gallery.html">武天の日常をもっと見る</a></p>
+          </div>
+        </section>
+
+        <section id="schedule" class="paper has-bg-word">
+          <span class="bg-word" aria-hidden="true">SCHEDULE</span>
+          <div class="wrap">
+            <div class="schedule-head">
+              <div><div class="label">05 — SCHEDULE</div><h2>公演予定</h2></div>
+              <a class="btn line" href="schedule.html">公演予定はこちら</a>
+            </div>
             <div class="schedule-list" aria-live="polite">
               <p>公演予定を読み込んでいます。</p>
             </div>
@@ -244,53 +292,54 @@
           </div>
         </section>
 
-        <!-- Furusato Nozei Section -->
-        <section id="furusato" class="section-furusato">
-          <div class="container">
-            <h2 class="section-title">ふるさと納税によるご支援のお願い</h2>
-            <div class="furusato-content">
-              <p>
-                和太鼓 武天(わだいこ ぶてん)では、あきる野市のふるさと納税を通じたご支援を受け付けております。<br>
-                皆様からの温かいご支援は、地域文化の振興や活動の充実に役立てられます。<br>
-                返礼品もご用意しておりますので、ぜひご覧ください。
-              </p>
-              <a href="https://www.satofull.jp/products/detail.php?product_id=1605269&msockid=16d3a7f2968863e21b6db3be97f2626e"
-                class="cta-button" target="_blank" rel="noopener noreferrer">
-                ふるさと納税詳細を見る（さとふる）
-              </a>
-            </div>
+        <section class="anniv" aria-label="武天20周年記念公演">
+          <img src="images/slideshow/slide5-1477.webp" width="1477" height="1108" alt="" loading="lazy">
+          <div class="anniv-inner reveal">
+            <div class="anniv-num">20</div>
+            <h2>武天20周年記念公演</h2>
+            <p>2027.4.29 ／ キララホール</p>
+            <a class="btn line" href="schedule.html">公演予定はこちら</a>
           </div>
         </section>
 
-        <section id="contact" class="section-contact">
-          <div class="container">
-            <h2 class="section-title">お問い合わせ</h2>
-            <!-- Contact info -->
-            <div class="contact-content">
-              <p>出演のご依頼、体験レッスンのお申し込み、ご質問はこちらからお気軽にどうぞ。</p>
-
-              <div class="form-placeholder">
-                <a href="contact.html" class="cta-button"
-                  style="background-color: white; color: var(--color-accent);">メールフォームへ</a>
-              </div>
-            </div>
+        <section class="split">
+          <div id="furusato">
+            <div class="label">SUPPORT</div>
+            <h2>ふるさと納税によるご支援のお願い</h2>
+            <p>和太鼓 武天(わだいこ ぶてん)では、あきる野市のふるさと納税を通じたご支援を受け付けております。皆様からの温かいご支援は、地域文化の振興や活動の充実に役立てられます。返礼品もご用意しておりますので、ぜひご覧ください。</p>
+            <a class="btn line" href="https://www.satofull.jp/products/detail.php?product_id=1605269&msockid=16d3a7f2968863e21b6db3be97f2626e" target="_blank" rel="noopener noreferrer">ふるさと納税詳細を見る（さとふる）</a>
+          </div>
+          <div id="contact" class="on-dark">
+            <div class="label">CONTACT</div>
+            <h2>お問い合わせ</h2>
+            <p>出演のご依頼、体験レッスンのお申し込み、ご質問はこちらからお気軽にどうぞ。</p>
+            <a class="btn" href="contact.html">メールフォームへ</a>
           </div>
         </section>
       </main>
 
       <footer class="site-footer">
-        <div class="social-links">
-          <a href="https://www.instagram.com/wadaiko_buten/" class="social-icon" aria-label="Instagram">
-            <img src="images/common/instagram.webp" width="30" height="30" loading="lazy" alt="Instagram">
-          </a>
-          <a href="https://www.facebook.com/share/18MnYS9fLs/?mibextid=wwXIfr" class="social-icon" aria-label="Facebook">
-            <img src="images/common/facebook.webp" width="30" height="30" loading="lazy" alt="Facebook">
-          </a>
-          <a href="https://www.youtube.com/channel/UCwjt1ccEZv3qjzCHLPV8tAA" class="social-icon" aria-label="YouTube">
-            <img src="images/common/youtube.webp" width="30" height="30" loading="lazy" alt="YouTube">
-          </a>
+        <div class="footer-inner">
+          <div>
+            <a class="brand" href="index.html"><span class="logo-h"><img src="images/common/logo_text.webp" width="60" height="117" alt="和太鼓 武天 -BUTEN-" loading="lazy"></span></a>
+            <address>小川会館<br>東京都あきる野市小川638-1</address>
+            <div class="social-links">
+              <a href="https://www.instagram.com/wadaiko_buten/" class="social-icon" aria-label="Instagram">
+                <img src="images/common/instagram.webp" width="30" height="30" loading="lazy" alt="Instagram">
+              </a>
+              <a href="https://www.facebook.com/share/18MnYS9fLs/?mibextid=wwXIfr" class="social-icon" aria-label="Facebook">
+                <img src="images/common/facebook.webp" width="30" height="30" loading="lazy" alt="Facebook">
+              </a>
+              <a href="https://www.youtube.com/channel/UCwjt1ccEZv3qjzCHLPV8tAA" class="social-icon" aria-label="YouTube">
+                <img src="images/common/youtube.webp" width="30" height="30" loading="lazy" alt="YouTube">
+              </a>
+            </div>
+          </div>
+          <div><h4>STAGE</h4><ul><li><a href="schedule.html">公演予定</a></li><li><a href="performances.html">公演実績</a></li><li><a href="gallery.html">武天の日常</a></li></ul></div>
+          <div><h4>LESSON</h4><ul><li><a href="class.html">クラス紹介</a></li><li><a href="instructors.html">講師紹介</a></li><li><a href="admission.html">入会案内</a></li><li><a href="workshop.html">ワークショップ</a></li><li><a href="culture-class.html">伝統文化親子教室</a></li></ul></div>
+          <div><h4>INFO</h4><ul><li><a href="access.html">アクセス</a></li><li><a href="contact.html">お問い合わせ</a></li><li><a href="privacy.html">プライバシーポリシー</a></li></ul></div>
         </div>
-        <p>&copy; 2025 和太鼓 武天 -BUTEN-</p>
+        <p class="copy">&copy; 2025 和太鼓 武天 -BUTEN-</p>
       </footer>
     </div>
     <script type="module" src="./main.js"></script>

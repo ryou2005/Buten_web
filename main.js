@@ -4,52 +4,55 @@ document.addEventListener("DOMContentLoaded", () => {
   const homeScheduleList = document.querySelector("#schedule .schedule-list");
   if (homeScheduleList) initializeHomeSchedule(homeScheduleList);
 
+  // Loader（オープニング）
+  // 筆文字ロゴを見せてから幕を上げる。同じ訪問の中では2回目以降は出さない（head 内のスクリプトで判定）
+  const root = document.documentElement;
+  const loader = document.getElementById("loader");
+  const finishLoading = () => {
+    loader?.classList.add("done");
+    root.classList.add("loaded");
+    try {
+      sessionStorage.setItem("buten-opening", "1");
+    } catch {
+      // 保存できない環境では毎回表示されるだけなので無視する
+    }
+  };
+  const skipLoader = !loader || root.classList.contains("no-loader") || matchMedia("(prefers-reduced-motion: reduce)").matches;
+  setTimeout(finishLoading, skipLoader ? 0 : 1700);
+
+  // Header：トップページではメイン写真を過ぎたら生成りの背景にする
+  const header = document.getElementById("site-header");
+  const bgWords = document.querySelectorAll(".bg-word");
+  const onScroll = () => {
+    header?.classList.toggle("scrolled", window.scrollY > 40);
+    // 背景の大きな英字をスクロールより少し遅れて動かす
+    bgWords.forEach((word) => {
+      const top = word.parentElement.getBoundingClientRect().top;
+      word.style.setProperty("--shift", `${Math.round(top * -0.12)}px`);
+    });
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
   // Mobile Menu Toggle
-  const menuToggle = document.querySelector(".menu-toggle");
+  const menuBtn = document.getElementById("menu-btn");
   const mainNav = document.getElementById("main-nav");
-  const bars = document.querySelectorAll(".bar");
-
-  if (menuToggle && mainNav) {
-    menuToggle.addEventListener("click", () => {
-      const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
-
-      // Accessibility Update
-      menuToggle.setAttribute("aria-expanded", !isExpanded);
-
-      if (!isExpanded) {
-        mainNav.classList.add("open");
-      } else {
-        mainNav.classList.remove("open");
-      }
+  const setMenu = (open) => {
+    mainNav.classList.toggle("open", open);
+    header?.classList.toggle("menu-open", open);
+    menuBtn.setAttribute("aria-expanded", open);
+    menuBtn.textContent = open ? "CLOSE" : "MENU";
+  };
+  if (menuBtn && mainNav) {
+    menuBtn.addEventListener("click", () => setMenu(!mainNav.classList.contains("open")));
+    mainNav.addEventListener("click", (e) => {
+      if (e.target.closest("a")) setMenu(false);
     });
   }
 
-  // Smooth Scroll for Anchors
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-      const targetId = this.getAttribute("href");
-      if (targetId === "#") return;
-
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        // Close menu if mobile
-        if (
-          window.innerWidth < 768 &&
-          menuToggle.getAttribute("aria-expanded") === "true"
-        ) {
-          menuToggle.click();
-        }
-
-        targetElement.scrollIntoView({
-          behavior: "smooth",
-        });
-      }
-    });
-  });
-  // Slideshow Logic
-  const slides = document.querySelectorAll(".slide");
-  let currentSlide = 0;
+  // Slideshow：スライドと下部の進行バーを連動させる
+  const slides = document.querySelectorAll(".hero-slide");
+  const progress = document.getElementById("hero-progress");
 
   // 2枚目以降の画像は data-src に置き、表示の1つ前に読み込む
   const loadSlide = (slide) => {
@@ -63,25 +66,66 @@ document.addEventListener("DOMContentLoaded", () => {
     delete slide.dataset.srcset;
   };
 
-  if (slides.length > 0) {
+  if (slides.length > 0 && progress) {
+    slides.forEach(() => {
+      const bar = document.createElement("span");
+      bar.append(document.createElement("i"));
+      progress.append(bar);
+    });
+    const bars = progress.children;
+    let currentSlide = 0;
+    const showSlide = (index) => {
+      slides[currentSlide].classList.remove("active");
+      [...bars].forEach((bar, n) => {
+        bar.classList.toggle("done", n < index);
+        bar.classList.remove("active");
+      });
+      currentSlide = index;
+      slides[currentSlide].classList.add("active");
+      loadSlide(slides[(currentSlide + 1) % slides.length]);
+      // 幅0の状態を一度描画してから伸ばす
+      requestAnimationFrame(() => requestAnimationFrame(() => bars[currentSlide].classList.add("active")));
+    };
+
     if (document.readyState === "complete") {
       loadSlide(slides[1]);
     } else {
       window.addEventListener("load", () => loadSlide(slides[1]));
     }
-
-    setInterval(() => {
-      slides[currentSlide].classList.remove("active");
-      currentSlide = (currentSlide + 1) % slides.length;
-      slides[currentSlide].classList.add("active");
-      loadSlide(slides[(currentSlide + 1) % slides.length]);
-    }, 5000); // Change every 5 seconds
+    showSlide(0);
+    setInterval(() => showSlide((currentSlide + 1) % slides.length), 6000);
   }
 
-  // Loader Logic
-  // 画像の読み込み完了（load）を待つと本文の表示が大きく遅れるため、DOM構築後すぐに消す
-  const loader = document.getElementById("loader");
-  if (loader) loader.classList.add("hidden");
+  // スクロールで現れる動き（.reveal / .curtain）と数字のカウントアップ
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const countUp = (el) => {
+    if (reduceMotion) return;
+    const target = Number(el.dataset.count);
+    const from = target > 1000 ? target - 30 : 0;
+    const start = performance.now();
+    const step = (now) => {
+      const p = Math.min((now - start) / 1400, 1);
+      el.textContent = Math.round(from + (target - from) * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  const revealTargets = document.querySelectorAll(".reveal, .curtain");
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("in");
+          entry.target.querySelectorAll("[data-count]").forEach(countUp);
+          observer.unobserve(entry.target);
+        }),
+      { threshold: 0.15 },
+    );
+    revealTargets.forEach((el) => observer.observe(el));
+  } else {
+    revealTargets.forEach((el) => el.classList.add("in"));
+  }
 
   // Schedule Filter Logic
   const filterBtns = document.querySelectorAll(".filter-btn");
