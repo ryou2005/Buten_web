@@ -1,191 +1,292 @@
-/* Admission Page Styles */
+/* ============================================================
+   入会案内（案F「響」）
+   背景色の並び：生成り（入会までの流れ）→ 白（体験レッスン）→ 藍（ワークショップのご案内）
+   ============================================================ */
 
-/* Workshop Guide */
-.workshop-guide {
-    max-width: 800px;
-    margin: var(--spacing-xl) auto 0;
-    padding: var(--spacing-lg);
-    background-color: var(--color-white);
-    border: 1px solid #dedfe2;
-    border-top: 4px solid var(--color-accent);
-    border-radius: 12px;
-    text-align: center;
+/* ---------- 入会までの流れ（左に見出し、右に4つの段階を縦に並べて線でつなぐ） ---------- */
+.flow-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: clamp(40px, 6vw, 96px);
+  align-items: start;
 }
 
-.workshop-guide-label {
-    margin-bottom: var(--spacing-sm);
-    color: var(--color-accent);
-    font-size: 0.95rem;
-    font-weight: 700;
-}
-
-.workshop-guide h2 {
-    margin-bottom: var(--spacing-md);
-    color: var(--color-primary);
-    font-size: 1.6rem;
-}
-
-.workshop-guide-text {
-    margin-bottom: var(--spacing-lg);
-    text-align: left;
-}
-
-.workshop-guide-button {
-    max-width: 100%;
-    padding: 1rem 1.5rem;
-    font-size: 1rem;
-}
-
-.workshop-guide-button span {
-    display: inline-block;
-}
-
-.workshop-guide-button:focus-visible {
-    outline: 3px solid var(--color-primary);
-    outline-offset: 4px;
-}
-
-@media (max-width: 600px) {
-    .workshop-guide {
-        padding: var(--spacing-lg) var(--spacing-md);
-    }
-
-    .workshop-guide h2 {
-        font-size: 1.4rem;
-    }
-
-    .workshop-guide-button {
-        width: 100%;
-        padding: 1rem;
-    }
-}
-
-/* Flow Section */
-.section-flow {
-    background-color: var(--color-bg);
+.flow-head {
+  position: sticky;
+  top: calc(var(--header-height) + 40px);
 }
 
 .flow-steps {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 800px;
-    margin: 0 auto;
+  list-style: none;
 }
 
 .step {
-    background-color: var(--color-white);
-    padding: var(--spacing-lg);
-    border-radius: 12px;
-    width: 100%;
-    display: flex;
-    align-items: flex-start;
-    gap: var(--spacing-md);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  position: relative;
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  column-gap: 24px;
+  padding-bottom: 48px;
+}
+
+.step:last-child {
+  padding-bottom: 0;
+}
+
+/* 番号の下から次の番号まで伸びる線 */
+.step::before {
+  content: "";
+  position: absolute;
+  top: 76px;
+  bottom: 12px;
+  left: 36px;
+  width: 1px;
+  background: var(--ai);
+  opacity: 0.35;
+}
+
+.step:last-child::before {
+  display: none;
+}
+
+.step:nth-child(2) {
+  transition-delay: 0.12s;
+}
+
+.step:nth-child(3) {
+  transition-delay: 0.24s;
+}
+
+.step:nth-child(4) {
+  transition-delay: 0.36s;
 }
 
 .step-number {
-    font-family: var(--font-serif);
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: var(--color-accent);
-    line-height: 1;
-    min-width: 60px;
+  grid-row: span 2;
+  font-family: var(--font-latin);
+  font-size: 4.2rem;
+  font-weight: 500;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--ai);
 }
 
-.step-content h3 {
-    color: var(--color-primary);
-    margin-bottom: var(--spacing-sm);
-    font-size: 1.3rem;
+.step h3 {
+  margin: 14px 0 10px;
+  font-size: 1.3rem;
+  letter-spacing: 0.1em;
+  color: var(--ai);
 }
 
-.step-connector {
-    width: 2px;
-    height: 40px;
-    background-color: #ddd;
-    margin: 10px 0;
+.step p {
+  font-size: 1rem;
+  line-height: 2;
+  color: #45474b;
 }
 
-/* Trial Info Section */
-.info-box {
-    background-color: var(--color-white);
-    padding: var(--spacing-xl);
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    max-width: 800px;
-    margin: 0 auto;
+.step a {
+  color: var(--shu);
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
-.trial-details dl {
-    display: grid;
-    grid-template-columns: 100px 1fr;
-    gap: var(--spacing-lg) 0;
-    align-items: start;
+/* ---------- 体験レッスンについて ---------- */
+.trial-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: clamp(40px, 6vw, 96px);
+  align-items: start;
+}
+
+.trial-photo {
+  margin-top: 36px;
+}
+
+.trial-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.trial-details {
+  border-top: 1px solid var(--sumi);
+}
+
+.trial-details > div {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 24px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
 }
 
 .trial-details dt {
-    font-weight: bold;
-    color: var(--color-primary);
-    font-size: 1.1rem;
-    padding-top: 8px; /* Align with text */
-    border-bottom: 2px solid var(--color-bg);
-    margin-bottom: var(--spacing-md); /* mobile fallback grid layout adjustment might be needed */
+  font-family: var(--font-serif);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--ai);
 }
 
 .trial-details dd {
-    border-bottom: 1px solid #eee;
-    padding-bottom: var(--spacing-md);
-    margin-bottom: var(--spacing-md);
-}
-
-.trial-details dt:last-of-type,
-.trial-details dd:last-of-type {
-    border-bottom: none;
-    margin-bottom: 0;
-}
-
-@media (max-width: 600px) {
-    .trial-details dl {
-        display: block;
-    }
-    
-    .trial-details dt {
-        border-bottom: none;
-        margin-bottom: var(--spacing-sm);
-    }
-    
-    .trial-details dd {
-        margin-left: var(--spacing-md);
-    }
+  font-size: 1rem;
 }
 
 .price {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: var(--color-text);
+  font-family: var(--font-serif);
+  font-weight: 600;
 }
 
-.tax {
-    font-size: 0.9rem;
-    font-weight: normal;
+.price b {
+  margin: 0 4px;
+  font-family: var(--font-latin);
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--shu);
 }
 
-.note {
-    font-size: 0.9rem;
-    color: var(--color-accent);
-    font-weight: bold;
+.price span {
+  margin-left: 6px;
+  color: var(--muted);
 }
 
 .time-list {
-    margin: var(--spacing-sm) 0 var(--spacing-sm) var(--spacing-md);
+  margin: 14px 0 16px;
+  list-style: none;
+}
+
+.time-list li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 4px 0;
+}
+
+.time-list strong {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  background: var(--ai);
+  color: #fff;
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
 }
 
 .link-text {
-    font-size: 0.9rem;
-    text-decoration: underline;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--sumi);
+  border-bottom: 1px solid var(--shu);
+}
+
+.link-text::after {
+  content: "→";
+  color: var(--shu);
+  transition: translate 0.3s;
+}
+
+.link-text:hover::after {
+  translate: 4px 0;
+}
+
+.item-list {
+  list-style: none;
+}
+
+.item-list li {
+  position: relative;
+  padding: 3px 0 3px 22px;
+}
+
+.item-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.05em;
+  width: 10px;
+  height: 1px;
+  background: var(--shu);
 }
 
 .cta-area {
-    margin-top: var(--spacing-xl);
-    text-align: center;
+  margin-top: 40px;
+}
+
+/* ---------- ワークショップのご案内 ---------- */
+.workshop-guide-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: clamp(40px, 6vw, 96px);
+  align-items: center;
+}
+
+.workshop-guide-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.workshop-guide-body .btn span span {
+  display: inline-block;
+}
+
+.workshop-guide-body p {
+  margin: 24px 0 32px;
+  color: var(--ai-muted);
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 960px) {
+  .flow-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .flow-head {
+    position: static;
+  }
+
+  .step {
+    grid-template-columns: 64px 1fr;
+    column-gap: 14px;
+    padding-bottom: 36px;
+  }
+
+  .step::before {
+    top: 56px;
+    left: 24px;
+  }
+
+  .step-number {
+    font-size: 3rem;
+  }
+
+  .step h3 {
+    margin: 6px 0 8px;
+  }
+
+  .trial-grid,
+  .workshop-guide-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .trial-photo {
+    margin-top: 24px;
+  }
+
+  .workshop-guide-body p br {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .trial-details > div {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
 }

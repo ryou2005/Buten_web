@@ -135,8 +135,10 @@ document.addEventListener("DOMContentLoaded", () => {
     filterBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
         // Update active button
-        filterBtns.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
+        filterBtns.forEach((b) => {
+          b.classList.toggle("active", b === btn);
+          b.setAttribute("aria-pressed", b === btn);
+        });
 
         const filterValue = btn.textContent.trim();
 
@@ -160,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Flyer Lightbox
-  const flyerLinks = document.querySelectorAll(".schedule-flyer");
+  const flyerLinks = document.querySelectorAll(".schedule-flyer, .flyer-link, .photo-link");
 
   if (flyerLinks.length > 0 && typeof HTMLDialogElement === "function") {
     const lightbox = document.createElement("dialog");
@@ -232,8 +234,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     yearBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
-        yearBtns.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
+        yearBtns.forEach((b) => {
+          b.classList.toggle("active", b === btn);
+          b.setAttribute("aria-pressed", b === btn);
+        });
 
         const year = btn.dataset.year;
         filterPerformances(year);

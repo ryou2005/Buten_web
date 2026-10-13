@@ -82,15 +82,20 @@
       </header>
 
       <main>
-        <section class="page-header" style="background-image: url('https://d329zuyuc98w3u.cloudfront.net/images/contact/contact_header.jpg');">
-          <div class="header-overlay"></div>
-          <h1>お問い合わせ</h1>
-          <p>Contact</p>
+        <section class="sub-hero">
+          <img class="sub-hero-img" src="https://d329zuyuc98w3u.cloudfront.net/images/contact/contact_header.jpg" alt="" fetchpriority="high">
+          <div class="sub-hero-inner">
+            <div class="label">CONTACT</div>
+            <h1>お問い合わせ</h1>
+          </div>
         </section>
 
-        <section class="section-contact-form">
-          <div class="container">
-            <p class="contact-intro">出演のご依頼、体験レッスン・ワークショップのお申し込み、その他ご質問など、<br class="desktop-only">お気軽にお問い合わせください。</p>
+        <section class="sec section-contact-form">
+          <div class="wrap contact-grid">
+            <div class="contact-side reveal">
+              <div class="label">MAIL FORM</div>
+              <p class="contact-intro">出演のご依頼、<wbr>体験レッスン・<wbr>ワークショップの<wbr>お申し込み、<wbr>その他ご質問など、<br class="desktop-only"><wbr>お気軽に<wbr>お問い合わせください。</p>
+            </div>
 
             <form id="contact-form" class="contact-form" data-api-endpoint="https://18vkro0bm3.execute-api.ap-northeast-1.amazonaws.com/prod">
               <div class="form-group">
@@ -134,7 +139,7 @@
               <div class="form-message" style="display: none;"></div>
 
               <div class="form-actions">
-                <button type="submit" class="cta-button">送信する</button>
+                <button type="submit" class="btn btn-submit">送信する</button>
               </div>
             </form>
           </div>

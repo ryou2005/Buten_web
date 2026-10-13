@@ -1,231 +1,155 @@
-/* Schedule Page Styles */
-
-.section-schedule-list {
-    background-color: var(--color-bg);
-}
-
-.schedule-filters {
-    display: flex;
-    justify-content: center;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-xl);
-}
-
-.filter-btn {
-    background: transparent;
-    border: 1px solid var(--color-primary);
-    color: var(--color-primary);
-    padding: 8px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: all 0.3s;
-}
-
-.filter-btn.active,
-.filter-btn:hover {
-    background-color: var(--color-primary);
-    color: var(--color-white);
-}
+/* ============================================================
+   公演予定（案F「響」）
+   背景色の並び：白（公演の一覧）→ 藍（お問い合わせ）
+   ※ トップページ（home-schedule.js）がこのページの .schedule-card を読み込むので、
+     .year / .date / .schedule-title / .schedule-location / .schedule-time の名前は変えない
+   ============================================================ */
 
 .detailed-schedule-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-lg);
-    max-width: 900px;
-    margin: 0 auto;
+  border-top: 1px solid var(--sumi);
 }
 
 .schedule-card {
-    background-color: var(--color-white);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s;
-}
-
-@media (min-width: 768px) {
-    .schedule-card {
-        flex-direction: row;
-    }
+  display: grid;
+  grid-template-columns: 200px 1fr auto;
+  gap: 32px;
+  align-items: start;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--line);
+  transition: padding 0.4s, background 0.4s;
 }
 
 .schedule-card:hover {
-    transform: translateY(-3px);
+  padding-inline: 20px;
+  background: var(--kinari);
 }
 
-.schedule-card.past {
-    opacity: 0.7;
-    background-color: #f9f9f9;
-}
-
+/* 日付：年・曜日を小さく、月.日を大きく */
 .schedule-date-box {
-    background-color: var(--color-primary);
-    color: var(--color-white);
-    padding: var(--spacing-md);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-width: 120px;
-    text-align: center;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "year day"
+    "date date";
+  column-gap: 10px;
+  align-items: baseline;
+  font-family: var(--font-latin);
+  color: var(--ai);
 }
 
 .schedule-date-box .year {
-    font-size: 0.9rem;
-    opacity: 0.8;
-}
-
-.schedule-date-box .date {
-    font-size: 1.8rem;
-    font-weight: bold;
-    font-family: var(--font-serif);
-    line-height: 1.2;
+  grid-area: year;
+  font-size: 0.95rem;
+  letter-spacing: 0.2em;
+  color: var(--muted);
 }
 
 .schedule-date-box .day {
-    font-size: 1rem;
-    text-transform: uppercase;
-    font-weight: bold;
+  grid-area: day;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--shu);
 }
 
-.schedule-info {
-    padding: var(--spacing-lg);
-    flex: 1;
+.schedule-date-box .date {
+  grid-area: date;
+  font-size: clamp(2.6rem, 4vw, 3.2rem);
+  font-weight: 600;
+  line-height: 1.1;
 }
 
 .schedule-title {
-    font-size: 1.5rem;
-    color: var(--color-primary);
-    margin-bottom: var(--spacing-md);
-    border-bottom: 2px solid #eee;
-    padding-bottom: 8px;
+  font-size: 1.35rem;
+  letter-spacing: 0.06em;
 }
 
-.schedule-location,
-.schedule-time {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
-    font-weight: 500;
+.schedule-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 28px;
+  margin-top: 10px;
+  font-size: 0.92rem;
+}
+
+.schedule-location::before,
+.schedule-time::before {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 0 8px;
+  border: 1px solid var(--line);
+  font-size: 0.75rem;
+  color: var(--muted);
+  vertical-align: 0.1em;
+}
+
+.schedule-location::before {
+  content: "場所";
+}
+
+.schedule-time::before {
+  content: "時間";
 }
 
 .schedule-desc {
-    margin: var(--spacing-md) 0;
-    line-height: 1.6;
+  margin-top: 14px;
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: #45474b;
 }
 
-/* Flyer Image */
-.flyer-image {
-    margin: 1rem 0;
-}
-
-.flyer-image img {
-    max-height: 300px;
-    width: auto;
-    max-width: 100%;
-    object-fit: contain;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-
-.flyer-image img:hover {
-    transform: scale(1.02);
-}
-
-.ticket-btn {
-    display: inline-block;
-    background-color: var(--color-text);
-    color: var(--color-white);
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    margin-top: var(--spacing-sm);
-    transition: background-color 0.3s;
-}
-
-.ticket-btn:hover {
-    background-color: var(--color-primary);
-}
-
-/* Flyer Thumbnail (right side of card on desktop) */
+/* チラシ（押すと拡大する。拡大表示の見た目は style.css） */
 .schedule-flyer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--spacing-sm);
-    padding: 0 var(--spacing-lg) var(--spacing-lg);
-    color: var(--color-primary);
-    text-decoration: none;
+  display: block;
+  width: 140px;
+  color: var(--sumi);
+  text-align: center;
 }
 
 .schedule-flyer img {
-    width: 100%;
-    max-width: 280px;
-    border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    transition: transform 0.3s, box-shadow 0.3s;
+  display: block;
+  width: 100%;
+  height: auto;
+  box-shadow: 0 6px 18px rgba(25, 47, 79, 0.12);
+  transition: transform 0.6s;
 }
 
 .schedule-flyer:hover img {
-    transform: scale(1.03);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  transform: scale(1.04);
 }
 
 .schedule-flyer-label {
-    font-size: 0.85rem;
-    font-weight: bold;
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid var(--shu);
 }
 
-@media (min-width: 768px) {
-    .schedule-flyer {
-        justify-content: center;
-        padding: var(--spacing-md) var(--spacing-lg) var(--spacing-md) 0;
-        width: 180px;
-        flex-shrink: 0;
-    }
-}
+/* ---------- Mobile ---------- */
+@media (max-width: 960px) {
+  .schedule-card {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 26px 0;
+  }
 
-/* Flyer Lightbox */
-.flyer-lightbox {
-    border: none;
-    padding: 0;
-    background: transparent;
-    max-width: 92vw;
-    max-height: 92vh;
-    overflow: visible;
-}
+  .schedule-card:hover {
+    padding-inline: 0;
+    background: none;
+  }
 
-.flyer-lightbox::backdrop {
-    background: rgba(0,0,0,0.8);
-}
+  .schedule-date-box {
+    grid-template-columns: auto auto 1fr;
+    grid-template-areas: "date year day";
+  }
 
-.flyer-lightbox img {
-    display: block;
-    max-width: 92vw;
-    max-height: 92vh;
-    width: auto;
-    height: auto;
-    border-radius: 6px;
-}
+  .schedule-date-box .date {
+    font-size: 2.2rem;
+  }
 
-.flyer-lightbox-close {
-    position: absolute;
-    top: -14px;
-    right: -14px;
-    width: 36px;
-    height: 36px;
-    border: none;
-    border-radius: 50%;
-    background: var(--color-white);
-    color: var(--color-text);
-    font-size: 1.4rem;
-    line-height: 1;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  .schedule-flyer {
+    margin-top: 8px;
+  }
 }

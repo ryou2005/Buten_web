@@ -82,22 +82,24 @@
       </header>
 
       <main>
-        <section class="page-header" style="background-image: url('https://d329zuyuc98w3u.cloudfront.net/images/schedule/schedule_header.jpg');">
-          <div class="header-overlay"></div>
-          <h1>公演予定</h1>
-          <p>Schedule</p>
+        <section class="sub-hero">
+          <img class="sub-hero-img" src="https://d329zuyuc98w3u.cloudfront.net/images/schedule/schedule_header.jpg" alt="" fetchpriority="high">
+          <div class="sub-hero-inner">
+            <div class="label">SCHEDULE</div>
+            <h1>公演予定</h1>
+          </div>
         </section>
 
-        <section class="section-schedule-list">
-          <div class="container">
-            <div class="schedule-filters">
-              <button class="filter-btn active">すべて</button>
-              <button class="filter-btn">2027年</button>
-              <button class="filter-btn">2026年</button>
+        <section class="sec paper schedule-section">
+          <div class="wrap">
+            <div class="schedule-filters" role="group" aria-label="年で絞り込む">
+              <button class="filter-btn active" aria-pressed="true">すべて</button>
+              <button class="filter-btn" aria-pressed="false">2027年</button>
+              <button class="filter-btn" aria-pressed="false">2026年</button>
             </div>
 
             <div class="detailed-schedule-list">
-              <!-- Events -->
+              <!-- 公演を足すときは schedule-card を1つコピーして書き換える（曜日は Sun / Mon … の英語3文字。node --test tests/ で日付との食い違いを確認できる） -->
               <article class="schedule-card">
                 <div class="schedule-date-box">
                   <span class="year">2026</span>
@@ -106,14 +108,10 @@
                 </div>
                 <div class="schedule-info">
                   <h2 class="schedule-title">野辺大運動会</h2>
-                  <p class="schedule-location"><span class="icon">📍</span> 東秋留小学校</p>
-                  <p class="schedule-time"><span class="icon">🕒</span> start 11:30</p>
-                  <p class="schedule-desc">
-                    東秋留小学校で行われる「野辺大運動会」に出演します
-                  </p>
+                  <p class="schedule-meta"><span class="schedule-location">東秋留小学校</span><span class="schedule-time">start 11:30</span></p>
+                  <p class="schedule-desc">東秋留小学校で行われる「野辺大運動会」に出演します</p>
                 </div>
               </article>
-
               <article class="schedule-card">
                 <div class="schedule-date-box">
                   <span class="year">2026</span>
@@ -122,11 +120,8 @@
                 </div>
                 <div class="schedule-info">
                   <h2 class="schedule-title">秋川ハロウィンマルシェ2026</h2>
-                  <p class="schedule-location"><span class="icon">📍</span> 秋川駅南口運動広場(たけうち広場)</p>
-                  <p class="schedule-time"><span class="icon">🕒</span> 14:45~</p>
-                  <p class="schedule-desc">
-                    「秋川ハロウィンマルシェ2026」に出演します
-                  </p>
+                  <p class="schedule-meta"><span class="schedule-location">秋川駅南口運動広場(たけうち広場)</span><span class="schedule-time">14:45~</span></p>
+                  <p class="schedule-desc">「秋川ハロウィンマルシェ2026」に出演します</p>
                 </div>
               </article>
               <article class="schedule-card">
@@ -137,11 +132,8 @@
                 </div>
                 <div class="schedule-info">
                   <h2 class="schedule-title">あきる野産業祭</h2>
-                  <p class="schedule-location"><span class="icon">📍</span>秋留台公園駐車場</p>
-                  <p class="schedule-time"><span class="icon">🕒</span> 12:00~</p>
-                  <p class="schedule-desc">
-                    「あきる野産業祭」に出演します
-                  </p>
+                  <p class="schedule-meta"><span class="schedule-location">秋留台公園駐車場</span><span class="schedule-time">12:00~</span></p>
+                  <p class="schedule-desc">「あきる野産業祭」に出演します</p>
                 </div>
               </article>
               <article class="schedule-card">
@@ -152,11 +144,8 @@
                 </div>
                 <div class="schedule-info">
                   <h2 class="schedule-title">青梅宿アートフェスティバル</h2>
-                  <p class="schedule-location"><span class="icon">📍</span> 未定</p>
-                  <p class="schedule-time"><span class="icon">🕒</span> 未定</p>
-                  <p class="schedule-desc">
-                    「青梅宿アートフェスティバル」に出演します
-                  </p>
+                  <p class="schedule-meta"><span class="schedule-location">未定</span><span class="schedule-time">未定</span></p>
+                  <p class="schedule-desc">「青梅宿アートフェスティバル」に出演します</p>
                 </div>
               </article>
               <article class="schedule-card">
@@ -167,29 +156,22 @@
                 </div>
                 <div class="schedule-info">
                   <h2 class="schedule-title">武天kids成果発表会</h2>
-                  <p class="schedule-location"><span class="icon">📍</span> 秋川ふれあいホール</p>
-                  <p class="schedule-time"><span class="icon">🕒</span> start 14:30</p>
-                  <p class="schedule-desc">
-                    武天kidsの成果発表会です
-                  </p>
+                  <p class="schedule-meta"><span class="schedule-location">秋川ふれあいホール</span><span class="schedule-time">start 14:30</span></p>
+                  <p class="schedule-desc">武天kidsの成果発表会です</p>
                 </div>
               </article>
               <article class="schedule-card">
                 <div class="schedule-date-box">
                   <span class="year">2027</span>
                   <span class="date">4.29</span>
-                  <span class="day">Sun</span>
+                  <span class="day">Thu</span>
                 </div>
                 <div class="schedule-info">
                   <h2 class="schedule-title">武天20周年記念公演</h2>
-                  <p class="schedule-location"><span class="icon">📍</span> キララホール</p>
-                  <p class="schedule-time"><span class="icon">🕒</span> 未定</p>
-                  <p class="schedule-desc">
-                    武天20周年を記念して行われる公演です
-                  </p>
+                  <p class="schedule-meta"><span class="schedule-location">キララホール</span><span class="schedule-time">未定</span></p>
+                  <p class="schedule-desc">武天20周年を記念して行われる公演です</p>
                 </div>
               </article>
-
               <article class="schedule-card">
                 <div class="schedule-date-box">
                   <span class="year">2027</span>
@@ -198,35 +180,33 @@
                 </div>
                 <div class="schedule-info">
                   <h2 class="schedule-title">パーフェクト代表白岩正行主催合同公演</h2>
-                  <p class="schedule-location"><span class="icon">📍</span> キララホール</p>
-                  <p class="schedule-time"><span class="icon">🕒</span> 未定</p>
-                  <p class="schedule-desc">
-
-                  </p>
+                  <p class="schedule-meta"><span class="schedule-location">キララホール</span><span class="schedule-time">未定</span></p>
                 </div>
                 <a class="schedule-flyer" href="https://d329zuyuc98w3u.cloudfront.net/images/schedule/2027_6_13.jpg" target="_blank" rel="noopener">
                   <img src="https://d329zuyuc98w3u.cloudfront.net/images/schedule/2027_6_13.jpg" alt="パーフェクト代表白岩正行主催合同公演 チラシ" loading="lazy">
-                  <span class="schedule-flyer-label">🔍 チラシを見る</span>
+                  <span class="schedule-flyer-label">チラシを見る</span>
                 </a>
               </article>
-              
             </div>
           </div>
         </section>
 
-        <section id="contact" class="section-contact">
-          <div class="container">
-            <h2 class="section-title">お問い合わせ</h2>
-            <div class="contact-content">
+        <section id="contact" class="sec page-cta on-dark has-bg-word">
+          <span class="bg-word" aria-hidden="true">CONTACT</span>
+          <div class="wrap page-cta-inner">
+            <div>
+              <div class="label">CONTACT</div>
+              <h2 class="sec-h">お問い合わせ</h2>
+            </div>
+            <div>
               <p>出演のご依頼、体験レッスンのお申し込み、ご質問はこちらからお気軽にどうぞ。</p>
-
-              <div class="form-placeholder">
-                <a href="contact.html" class="cta-button" style="background-color: white; color: var(--color-accent);">メールフォームへ</a>
+              <div class="page-cta-actions">
+                <a class="btn" href="contact.html">メールフォームへ</a>
+                <a class="btn line" href="admission.html">体験レッスン・入会案内</a>
               </div>
             </div>
           </div>
         </section>
-
       </main>
 
       <footer class="site-footer">

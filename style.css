@@ -15,14 +15,6 @@
   --shu: #b7282e; /* 朱 */
   --line: #dcd3c3;
 
-  /* 各ページの CSS が使っている名前（新しい配色に合わせる） */
-  --color-primary: var(--ai);
-  --color-accent: var(--shu);
-  --color-bg: var(--kinari);
-  --color-text: var(--sumi);
-  --color-white: #ffffff;
-  --color-overlay: rgba(25, 47, 79, 0.5);
-
   /* Typography */
   --font-serif: "Shippori Mincho B1", serif;
   --font-sans: "Noto Sans JP", sans-serif;
@@ -31,14 +23,9 @@
   --line-height: 1.8;
 
   /* Spacing */
-  --spacing-sm: 8px;
-  --spacing-md: 16px;
-  --spacing-lg: 32px;
-  --spacing-xl: 64px;
   --gutter: clamp(16px, 5vw, 64px);
 
   /* Layout */
-  --container-width: 1200px;
   --header-height: 76px;
 }
 
@@ -59,8 +46,8 @@ body {
   font-size: var(--base-font-size);
   line-height: var(--line-height);
   letter-spacing: 0.04em;
-  color: var(--color-text);
-  background-color: var(--color-bg);
+  color: var(--sumi);
+  background-color: var(--kinari);
   padding-top: var(--header-height);
   -webkit-font-smoothing: antialiased;
 }
@@ -78,7 +65,7 @@ img {
 }
 
 a {
-  color: var(--color-primary);
+  color: var(--ai);
   text-decoration: none;
   transition: opacity 0.3s;
 }
@@ -131,40 +118,6 @@ a {
   background: #fff;
   border-color: #fff;
   color: var(--ai-deep);
-}
-
-/* 各ページで使っているボタン */
-.cta-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  padding: 16px 36px;
-  border: 1px solid var(--shu);
-  background-color: var(--shu);
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  cursor: pointer;
-  transition: background-color 0.3s, border-color 0.3s;
-}
-
-.cta-button::after {
-  content: "";
-  width: 24px;
-  height: 1px;
-  background: currentColor;
-  transition: width 0.3s;
-}
-
-.cta-button:hover {
-  background-color: #9f1f25;
-  border-color: #9f1f25;
-}
-
-.cta-button:hover::after {
-  width: 36px;
 }
 
 /* ---------- ロゴ ---------- */
@@ -377,128 +330,360 @@ html.no-loader .loader {
 
 /* ---------- Sections Common ---------- */
 section {
-  padding: 80px var(--spacing-md);
+  padding: 80px 16px;
 }
 
-.container {
-  max-width: var(--container-width);
+/* ---------- 案F の共通部品（トップページと作り直した下層ページで使う） ---------- */
+.wrap {
+  max-width: 1240px;
   margin: 0 auto;
 }
 
-.section-title {
-  display: block;
-  text-align: center;
-  font-size: clamp(1.9rem, 3.6vw, 2.5rem);
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  margin-bottom: var(--spacing-xl);
-  color: var(--color-primary);
-}
-
-.section-title::after {
-  content: "";
-  display: block;
-  width: 40px;
-  height: 2px;
-  background-color: var(--color-accent);
-  margin: 16px auto 0;
-}
-
-.section-title .subtitle {
-  display: block;
-  font-family: var(--font-latin);
-  font-size: 1.05rem;
-  font-weight: 500;
-  color: var(--muted);
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  margin-top: 4px;
-}
-
-.card-content h3 {
-  font-family: var(--font-serif);
-  color: var(--color-primary);
-  margin-bottom: var(--spacing-sm);
-  font-size: 1.6rem;
-  letter-spacing: 0.05em;
-}
-
-/* Furigana Styles */
-ruby {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  vertical-align: bottom;
-  line-height: 1;
-  margin: 0 4px;
-}
-
-rt {
-  order: 2;
-  font-family: var(--font-latin);
-  color: rgba(34, 64, 106, 0.7);
-  font-size: 0.5em;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  margin-top: 2px;
-}
-
-/* Contact Section */
-.section-contact {
-  background-color: var(--color-primary);
-  color: var(--color-white);
-  text-align: center;
-}
-
-.section-contact .section-title {
-  color: var(--color-white);
-}
-
-.section-contact p {
-  margin-bottom: var(--spacing-md);
-}
-
-.form-placeholder {
-  margin-top: 35px;
-}
-
-/* Page Header (for subpages) */
-.page-header {
-  position: relative;
-  height: clamp(260px, 32vw, 360px);
+.label {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  color: var(--color-white);
-  background-size: cover;
-  background-position: center;
+  gap: 16px;
+  font-family: var(--font-latin);
+  font-size: 0.95rem;
+  letter-spacing: 0.35em;
+  color: var(--shu);
+  margin-bottom: 20px;
+}
+
+.label::before {
+  content: "";
+  width: 40px;
+  height: 1px;
+  background: currentColor;
+}
+
+.body-text {
+  color: #45474b;
+}
+
+.body-text p + p {
+  margin-top: 1.2em;
+}
+
+.paper {
+  background: var(--white);
+}
+
+.on-dark {
+  background: var(--ai);
+  color: var(--ai-text);
+}
+
+.on-dark .label {
+  color: #f0b8b3;
+}
+
+.on-dark .body-text,
+.on-dark h2 .subtitle {
+  color: var(--ai-muted);
+}
+
+/* 背景の大きな英字 */
+.has-bg-word {
+  position: relative;
   overflow: hidden;
 }
 
-.header-overlay {
+.has-bg-word > .wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.bg-word {
+  position: absolute;
+  z-index: 0;
+  top: clamp(24px, 4vw, 56px);
+  right: -0.04em;
+  font-family: var(--font-latin);
+  font-weight: 600;
+  font-size: clamp(5rem, 15vw, 14rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--line);
+  pointer-events: none;
+  user-select: none;
+  translate: 0 var(--shift, 0px);
+}
+
+.on-dark .bg-word {
+  -webkit-text-stroke-color: rgba(233, 228, 218, 0.14);
+}
+
+/* 数字の帯 */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 48px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.stat {
+  padding: 20px 0 16px;
+  text-align: center;
+}
+
+.stat + .stat {
+  border-left: 1px solid var(--line);
+}
+
+.stat b {
+  display: block;
+  font-family: var(--font-latin);
+  font-size: clamp(2rem, 3.4vw, 2.8rem);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--ai);
+}
+
+.stat b small {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  margin-left: 2px;
+}
+
+.stat > span {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+/* 流れ続ける写真の帯 */
+.marquee {
+  padding: 0 0 clamp(80px, 10vw, 140px);
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  animation: marquee 60s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-track img {
+  display: block;
+  height: clamp(180px, 22vw, 300px);
+  width: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  filter: saturate(0.9);
+  transition: filter 0.4s;
+}
+
+.marquee-track img:hover {
+  filter: none;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(calc(-50% - 6px));
+  }
+}
+
+/* チラシの拡大表示（main.js が dialog を作る） */
+.flyer-lightbox {
+  border: none;
+  padding: 0;
+  background: transparent;
+  max-width: 92vw;
+  max-height: 92vh;
+  overflow: visible;
+}
+
+.flyer-lightbox::backdrop {
+  background: rgba(25, 47, 79, 0.85);
+}
+
+.flyer-lightbox img {
+  display: block;
+  max-width: 92vw;
+  max-height: 92vh;
+  width: auto;
+  height: auto;
+}
+
+.flyer-lightbox-close {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: var(--shu);
+  color: #fff;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* 年の切り替え（公演実績 .year-btn・公演予定 .filter-btn） */
+.year-filters,
+.schedule-filters {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: clamp(40px, 5vw, 64px);
+}
+
+.year-btn,
+.filter-btn {
+  position: relative;
+  padding: 14px 24px;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.year-btn::after,
+.filter-btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--shu);
+  transform: scaleX(0);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.year-btn:hover,
+.year-btn.active,
+.filter-btn:hover,
+.filter-btn.active {
+  color: var(--sumi);
+}
+
+.year-btn.active::after,
+.filter-btn.active::after {
+  transform: scaleX(1);
+}
+
+/* 作り直した下層ページのセクションと見出し */
+.sec {
+  padding: clamp(80px, 11vw, 150px) var(--gutter);
+}
+
+.sec-h {
+  word-break: keep-all; /* <wbr> の位置で折り返す */
+  overflow-wrap: anywhere;
+  font-weight: 800;
+  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+  line-height: 1.45;
+  letter-spacing: 0.1em;
+}
+
+.sec-h .subtitle {
+  display: block;
+  font-family: var(--font-latin);
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.3em;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* 下層ページの見出し写真 */
+.sub-hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  height: clamp(300px, 40vw, 480px);
+  padding: 0 var(--gutter) clamp(36px, 5vw, 64px);
+  overflow: hidden;
+  color: #fff;
+}
+
+.sub-hero-img {
   position: absolute;
   inset: 0;
-  background: linear-gradient(0deg, rgba(25, 47, 79, 0.82), rgba(25, 47, 79, 0.55));
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: subHeroZoom 7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
-.page-header h1 {
-  position: relative;
-  z-index: 1;
-  font-size: clamp(2.2rem, 5vw, 3rem);
-  font-weight: 800;
-  letter-spacing: 0.15em;
-  margin-bottom: var(--spacing-sm);
+@keyframes subHeroZoom {
+  from {
+    transform: scale(1.08);
+  }
 }
 
-.page-header p {
+.sub-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(25, 47, 79, 0.78) 0%, rgba(25, 47, 79, 0.2) 65%, rgba(25, 47, 79, 0.35) 100%),
+    linear-gradient(0deg, rgba(25, 47, 79, 0.5) 0%, transparent 50%);
+}
+
+.sub-hero-inner {
   position: relative;
   z-index: 1;
-  font-family: var(--font-latin);
-  font-size: 1.1rem;
-  letter-spacing: 0.35em;
-  text-transform: uppercase;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  animation: subHeroIn 1s 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes subHeroIn {
+  from {
+    opacity: 0;
+    translate: 0 24px;
+  }
+}
+
+.sub-hero .label {
+  color: #fff;
   opacity: 0.85;
+  margin-bottom: 12px;
+}
+
+.sub-hero h1 {
+  font-weight: 800;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  line-height: 1.3;
+  letter-spacing: 0.15em;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* 下層ページの最後のお問い合わせ */
+.page-cta-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: clamp(32px, 5vw, 80px);
+  align-items: end;
+}
+
+.page-cta p {
+  color: var(--ai-muted);
+  margin-bottom: 32px;
+}
+
+.page-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.page-cta .btn.line {
+  color: var(--ai-text);
 }
 
 /* ---------- Footer ---------- */
@@ -645,6 +830,52 @@ rt {
 
   .main-nav .sub-only {
     display: block;
+  }
+
+  .page-cta-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .sub-hero .label {
+    font-size: 0.8rem;
+    letter-spacing: 0.22em;
+  }
+
+  .sub-hero .label::before {
+    width: 24px;
+  }
+
+  .sub-hero h1 {
+    letter-spacing: 0.08em;
+  }
+
+  /* 年のボタンは1行のまま横にスクロールさせる */
+  .year-filters,
+  .schedule-filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: var(--gutter);
+    scrollbar-width: none;
+  }
+
+  .year-btn,
+  .filter-btn {
+    flex: none;
+    padding: 12px 14px;
+    font-size: 0.88rem;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stat:nth-child(3) {
+    border-left: 0;
+  }
+
+  .stat:nth-child(n + 3) {
+    border-top: 1px solid var(--line);
   }
 
   .footer-inner {

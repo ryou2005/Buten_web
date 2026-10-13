@@ -1,52 +1,123 @@
-/* Privacy Policy Page Styles */
-.section-privacy {
-  background-color: var(--color-bg);
-  padding: var(--spacing-xl) var(--spacing-md);
+/* ============================================================
+   プライバシーポリシー（案F「響」）
+   左に項目の一覧（押すとその項目へ移動）、右に本文
+   ============================================================ */
+
+.privacy-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: clamp(40px, 6vw, 96px);
+  align-items: start;
+  max-width: 1120px;
 }
 
-.privacy-content {
-  max-width: 860px;
-  margin: 0 auto;
-  background-color: var(--color-white);
-  padding: var(--spacing-xl);
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+/* ---------- 項目の一覧 ---------- */
+.privacy-toc {
+  position: sticky;
+  top: calc(var(--header-height) + 40px);
 }
 
+.privacy-toc ol {
+  list-style: none;
+  border-top: 1px solid var(--sumi);
+}
+
+.privacy-toc li {
+  border-bottom: 1px solid var(--line);
+}
+
+.privacy-toc a {
+  display: flex;
+  gap: 12px;
+  padding: 12px 0;
+  font-size: 0.9rem;
+  color: var(--sumi);
+  transition: color 0.3s, padding 0.3s;
+}
+
+.privacy-toc a:hover {
+  padding-left: 8px;
+  color: var(--ai);
+}
+
+.privacy-toc .no,
+.privacy-block .no {
+  font-family: var(--font-latin);
+  font-weight: 600;
+  color: var(--shu);
+}
+
+/* ---------- 本文 ---------- */
 .privacy-lead {
-  margin-bottom: var(--spacing-lg);
-  font-weight: 500;
+  padding-left: 20px;
+  border-left: 2px solid var(--shu);
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.1rem;
+  line-height: 2;
+  color: var(--ai);
 }
 
-.privacy-block {
-  padding: var(--spacing-lg) 0;
-  border-top: 1px solid #d8e0e8;
+.privacy-content .privacy-block {
+  padding: 32px 0;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: calc(var(--header-height) + 24px);
+}
+
+.privacy-content .privacy-lead + .privacy-block {
+  margin-top: 40px;
+  border-top: 1px solid var(--sumi);
 }
 
 .privacy-block h2 {
-  margin-bottom: var(--spacing-sm);
-  color: var(--color-primary);
-  font-size: 1.35rem;
+  display: flex;
+  gap: 14px;
+  margin-bottom: 12px;
+  font-size: 1.3rem;
+  letter-spacing: 0.08em;
+}
+
+.privacy-block h2 .no {
+  font-size: 1.4rem;
+  line-height: 1.3;
 }
 
 .privacy-block p {
-  line-height: 1.9;
+  font-size: 1rem;
+  line-height: 2;
+  color: #45474b;
+}
+
+.privacy-block a {
+  color: var(--ai);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .privacy-date {
-  margin-top: var(--spacing-lg);
+  margin-top: 32px;
   text-align: right;
-  color: #666;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  color: var(--muted);
 }
 
-@media (max-width: 767px) {
-  .privacy-content {
-    padding: var(--spacing-lg);
-    border-radius: 8px;
+/* ---------- Mobile ---------- */
+@media (max-width: 960px) {
+  .privacy-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* スマホでは項目の一覧を出さず、本文だけにする */
+  .privacy-toc {
+    display: none;
   }
 
   .privacy-block h2 {
     font-size: 1.15rem;
+  }
+
+  /* ページ名が長いので、スマホでは少し小さくして1行に収める */
+  .sub-hero h1 {
+    font-size: clamp(1.7rem, 7.6vw, 2.4rem);
   }
 }

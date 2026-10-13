@@ -82,505 +82,373 @@
       </header>
 
       <main>
-        <section class="page-header" style="background-image: url('https://d329zuyuc98w3u.cloudfront.net/images/performance/performance_header.jpg');">
-          <div class="header-overlay"></div>
-          <h1>公演実績</h1>
-          <p>Performance History</p>
+        <section class="sub-hero">
+          <img class="sub-hero-img" src="https://d329zuyuc98w3u.cloudfront.net/images/performance/performance_header.jpg" alt="" fetchpriority="high">
+          <div class="sub-hero-inner">
+            <div class="label">PERFORMANCE HISTORY</div>
+            <h1>公演実績</h1>
+          </div>
         </section>
 
-        <section class="section-intro">
-          <div class="container">
-            <p class="intro-text">
-              和太鼓 武天は2007年の結成以来、地域のお祭りや文化イベント、企業イベントなど、<br>
-              多岐にわたる舞台で演奏を行ってきました。<br>
-              これまでの活動の一部をご紹介いたします。
+        <section class="sec perf-intro">
+          <div class="wrap perf-intro-grid">
+            <p class="perf-lead reveal">
+              和太鼓 武天は2007年の結成以来、<wbr>地域のお祭りや文化イベント、<wbr>企業イベントなど、<wbr>多岐にわたる舞台で<wbr>演奏を行ってきました。<br>
+              これまでの活動の一部を<wbr>ご紹介いたします。
             </p>
+            <div class="perf-stats reveal">
+              <h2 class="perf-stats-h">活動の歩み</h2>
+              <div class="stats">
+                <div class="stat"><b data-count="2007">2007</b><span>結成年</span></div>
+                <div class="stat"><b><span data-count="70">70</span><small>+</small></b><span>会員数</span></div>
+                <div class="stat"><b><span data-count="100">100</span><small>+</small></b><span>公演回数</span></div>
+                <div class="stat"><b data-count="19">19</b><span>年の歴史</span></div>
+              </div>
+            </div>
           </div>
         </section>
 
-        <section class="section-performances">
-          <div class="container">
-            <div class="year-filters">
-              <button class="year-btn active" data-year="all">すべて</button>
-              <button class="year-btn" data-year="2026">2026年</button>
-              <button class="year-btn" data-year="2025">2025年</button>
-              <button class="year-btn" data-year="2024">2024年</button>
-              <button class="year-btn" data-year="2023">2023年</button>
-              <button class="year-btn" data-year="older">それ以前</button>
+        <div class="marquee perf-marquee" aria-label="演奏風景">
+          <div class="marquee-track">
+            <img src="images/slideshow/slide4-960.webp" width="960" height="720" alt="屋外イベントで演奏する若者チーム" loading="lazy">
+            <img src="images/slideshow/slide7-960.webp" width="960" height="720" alt="夜のステージでバチを振り上げる大人チーム" loading="lazy">
+            <img src="images/slideshow/slide1-960.webp" width="960" height="720" alt="舞台で和太鼓を演奏するメンバー" loading="lazy">
+            <img src="images/slideshow/slide6-960.webp" width="960" height="720" alt="通りに並んで演奏するメンバー" loading="lazy">
+            <img src="images/slideshow/slide3-960.webp" width="960" height="720" alt="夏祭りの夜に演奏する大人チーム" loading="lazy">
+            <img src="images/slideshow/slide8-960.webp" width="960" height="720" alt="屋外で演奏する親子チームの子供たち" loading="lazy">
+            <img src="images/slideshow/slide5-960.webp" width="960" height="720" alt="通りで大太鼓を打つメンバー" loading="lazy">
+            <img src="images/slideshow/slide10-960.webp" width="960" height="720" alt="屋外イベントで演奏する子供たち" loading="lazy">
+            <img src="images/slideshow/slide4-960.webp" width="960" height="720" alt="" aria-hidden="true" loading="lazy">
+            <img src="images/slideshow/slide7-960.webp" width="960" height="720" alt="" aria-hidden="true" loading="lazy">
+            <img src="images/slideshow/slide1-960.webp" width="960" height="720" alt="" aria-hidden="true" loading="lazy">
+            <img src="images/slideshow/slide6-960.webp" width="960" height="720" alt="" aria-hidden="true" loading="lazy">
+            <img src="images/slideshow/slide3-960.webp" width="960" height="720" alt="" aria-hidden="true" loading="lazy">
+            <img src="images/slideshow/slide8-960.webp" width="960" height="720" alt="" aria-hidden="true" loading="lazy">
+            <img src="images/slideshow/slide5-960.webp" width="960" height="720" alt="" aria-hidden="true" loading="lazy">
+            <img src="images/slideshow/slide10-960.webp" width="960" height="720" alt="" aria-hidden="true" loading="lazy">
+          </div>
+        </div>
+
+        <section class="sec paper perf-history">
+          <div class="wrap">
+            <div class="year-filters" role="group" aria-label="年で絞り込む">
+              <button class="year-btn active" data-year="all" aria-pressed="true">すべて</button>
+              <button class="year-btn" data-year="2026" aria-pressed="false">2026年</button>
+              <button class="year-btn" data-year="2025" aria-pressed="false">2025年</button>
+              <button class="year-btn" data-year="2024" aria-pressed="false">2024年</button>
+              <button class="year-btn" data-year="2023" aria-pressed="false">2023年</button>
+              <button class="year-btn" data-year="older" aria-pressed="false">それ以前</button>
             </div>
 
-            <!-- 2026年の実績 -->
             <div class="year-section" data-year="2026">
-              <h2 class="year-title">2026年</h2>
-              <div class="performance-grid">
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">9月</span>
-                    <span class="day">20</span>
-                  </div>
-                  <div class="performance-content">
+              <h2 class="year-title">2026<small>年</small></h2>
+              <div class="perf-rows">
+                <article class="perf-row">
+                  <time datetime="2026-09-20">09.20</time>
+                  <div class="perf-row-body">
                     <h3>久保熊野神社例大祭</h3>
-                    <p class="performance-venue">📍 久保熊野神社</p>
-                    <p class="performance-desc">🕒 start 17:25</p>
-                    <p class="performance-desc">久保熊野神社で行われた「久保熊野神社例大祭」に出演しました。</p>
+                    <p class="perf-meta"><span class="venue">久保熊野神社</span><span class="start">start 17:25</span></p>
+                    <p class="perf-desc">久保熊野神社で行われた「久保熊野神社例大祭」に出演しました。</p>
                   </div>
                 </article>
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">9月</span>
-                    <span class="day">19</span>
-                  </div>
-                  <div class="performance-content">
+                <article class="perf-row">
+                  <time datetime="2026-09-19">09.19</time>
+                  <div class="perf-row-body">
                     <h3>小川熊野神社例大祭</h3>
-                    <p class="performance-venue">📍 小川熊野神社</p>
-                    <p class="performance-desc">🕒 start 20:05</p>
-                    <p class="performance-desc">小川熊野神社で行われた「小川熊野神社例大祭」に出演しました。</p>
+                    <p class="perf-meta"><span class="venue">小川熊野神社</span><span class="start">start 20:05</span></p>
+                    <p class="perf-desc">小川熊野神社で行われた「小川熊野神社例大祭」に出演しました。</p>
                   </div>
                 </article>
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">9月</span>
-                    <span class="day">12</span>
-                  </div>
-                  <div class="performance-content">
+                <article class="perf-row">
+                  <time datetime="2026-09-12">09.12</time>
+                  <div class="perf-row-body">
                     <h3>ふれあいフェスタ</h3>
-                    <p class="performance-venue">📍 ふれあいホールロビー</p>
-                    <p class="performance-desc">🕒 start 10:30</p>
-                    <p class="performance-desc">ふれあいホールロビーで行われた「ふれあいフェスタ」に出演しました。</p>
+                    <p class="perf-meta"><span class="venue">ふれあいホールロビー</span><span class="start">start 10:30</span></p>
+                    <p class="perf-desc">ふれあいホールロビーで行われた「ふれあいフェスタ」に出演しました。</p>
                   </div>
                 </article>
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">9月</span>
-                    <span class="day">6</span>
-                  </div>
-                  <div class="performance-content">
+                <article class="perf-row">
+                  <time datetime="2026-09-06">09.06</time>
+                  <div class="perf-row-body">
                     <h3>のみの市</h3>
-                    <p class="performance-venue">📍 青梅信用金庫本店</p>
-                    <p class="performance-desc">🕒 start 14:20</p>
-                    <p class="performance-desc">青梅信用金庫本店で行われた「のみの市」に出演しました。</p>
+                    <p class="perf-meta"><span class="venue">青梅信用金庫本店</span><span class="start">start 14:20</span></p>
+                    <p class="perf-desc">青梅信用金庫本店で行われた「のみの市」に出演しました。</p>
                   </div>
                 </article>
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">8月</span>
-                    <span class="day">29</span>
-                  </div>
-                  <div class="performance-content">
+                <article class="perf-row">
+                  <time datetime="2026-08-29">08.29</time>
+                  <div class="perf-row-body">
                     <h3>ヨルイチ</h3>
-                    <p class="performance-venue">📍 JAあきがわ五日市支店駐車場 メインステージ</p>
-                    <p class="performance-desc">🕒 start 17:55</p>
-                    <p class="performance-desc">JAあきがわ五日市支店駐車場 メインステージで行われた「ヨルイチ」に出演しました。</p>
+                    <p class="perf-meta"><span class="venue">JAあきがわ五日市支店駐車場 メインステージ</span><span class="start">start 17:55</span></p>
+                    <p class="perf-desc">JAあきがわ五日市支店駐車場 メインステージで行われた「ヨルイチ」に出演しました。</p>
                   </div>
                 </article>
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">8月</span>
-                    <span class="day">1</span>
-                  </div>
-                  <div class="performance-content">
+                <article class="perf-row">
+                  <time datetime="2026-08-01">08.01</time>
+                  <div class="perf-row-body">
                     <h3>あきる野夏祭り</h3>
-                    <p class="performance-venue">📍秋川駅前通り(たましん前)</p>
-                    <p class="performance-desc">武天全員で演奏してきました。</p>
+                    <p class="perf-meta"><span class="venue">秋川駅前通り(たましん前)</span></p>
+                    <p class="perf-desc">武天全員で演奏してきました。</p>
                   </div>
                 </article>
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">5月</span>
-                    <span class="day">23</span>
-                  </div>
-                  <div class="performance-content">
+                <article class="perf-row">
+                  <time datetime="2026-05-23">05.23</time>
+                  <div class="perf-row-body">
                     <h3>芽吹</h3>
-                    <p class="performance-venue">📍ふれあいホール</p>
-                    <p class="performance-desc">万九竜で演奏してきました。</p>
-                    <div class="flyer-image">
-                      <img src="https://d329zuyuc98w3u.cloudfront.net/images/schedule/mebuki.jpg" alt="発表会 チラシ">
-                    </div>
+                    <p class="perf-meta"><span class="venue">ふれあいホール</span></p>
+                    <p class="perf-desc">万九竜で演奏してきました。</p>
                   </div>
+                  <a class="flyer-link" href="https://d329zuyuc98w3u.cloudfront.net/images/schedule/mebuki.jpg" target="_blank" rel="noopener"><img src="https://d329zuyuc98w3u.cloudfront.net/images/schedule/mebuki.jpg" alt="発表会 チラシ" loading="lazy"></a>
                 </article>
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">5月</span>
-                    <span class="day">10</span>
-                  </div>
-                  <div class="performance-content">
+                <article class="perf-row">
+                  <time datetime="2026-05-10">05.10</time>
+                  <div class="perf-row-body">
                     <h3>あおぞらフェスタ</h3>
-                    <p class="performance-venue">📍秋留野広場</p>
-                    <p class="performance-desc">舞華蝶で演奏してきました。</p>
+                    <p class="perf-meta"><span class="venue">秋留野広場</span></p>
+                    <p class="perf-desc">舞華蝶で演奏してきました。</p>
                   </div>
                 </article>
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">4月</span>
-                    <span class="day">5</span>
-                  </div>
-                  <div class="performance-content">
+                <article class="perf-row">
+                  <time datetime="2026-04-05">04.05</time>
+                  <div class="perf-row-body">
                     <h3>発表会</h3>
-                    <p class="performance-venue">📍ふれあいホール</p>
-                    <p class="performance-desc">年に一度の発表会。全クラスが一堂に会し、日頃の練習成果を披露しました。</p>
-                    <div class="flyer-image">
-                      <img src="https://d329zuyuc98w3u.cloudfront.net/images/schedule/happyoukai2026.jpg" alt="発表会 チラシ">
-                    </div>
+                    <p class="perf-meta"><span class="venue">ふれあいホール</span></p>
+                    <p class="perf-desc">年に一度の発表会。全クラスが一堂に会し、日頃の練習成果を披露しました。</p>
                   </div>
+                  <a class="flyer-link" href="https://d329zuyuc98w3u.cloudfront.net/images/schedule/happyoukai2026.jpg" target="_blank" rel="noopener"><img src="https://d329zuyuc98w3u.cloudfront.net/images/schedule/happyoukai2026.jpg" alt="発表会 チラシ" loading="lazy"></a>
                 </article>
               </div>
             </div>
-
-            <!-- 2025年の実績 -->
             <div class="year-section" data-year="2025">
-              <h2 class="year-title">2025年</h2>
-              <div class="performance-grid">
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">4月</span>
-                    <span class="day">27</span>
-                  </div>
-                  <div class="performance-content">
-                    <h3>合同公演「奏音」</h3>
-                    <p class="performance-venue">📍 キララホール</p>
-                    <p class="performance-desc">野辺囃子神楽保存会との合同公演。ゲストにEriu2&6さんをお招きし、コラボ曲も披露しました。</p>
-                    <div class="flyer-image">
-                      <img src="https://d329zuyuc98w3u.cloudfront.net/images/performance/kanade.jpg" alt="合同公演 奏音 チラシ">
-                    </div>
-                  </div>
-                </article>
-
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">4月</span>
-                    <span class="day">5</span>
-                  </div>
-                  <div class="performance-content">
-                    <h3>武天 発表会</h3>
-                    <p class="performance-venue">📍 秋川ふれあいホール</p>
-                    <p class="performance-desc">年に一度の発表会。全クラスが一堂に会し、日頃の練習成果を披露しました。</p>
-                  </div>
-                </article>
-
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">6月</span>
-                    <span class="day">1</span>
-                  </div>
-                  <div class="performance-content">
+              <h2 class="year-title">2025<small>年</small></h2>
+              <div class="perf-rows">
+                <article class="perf-row">
+                  <time datetime="2025-06-01">06.01</time>
+                  <div class="perf-row-body">
                     <h3>第一回三芳太鼓フェスティバル「つなぐ」</h3>
-                    <p class="performance-venue">📍 コピスみよし</p>
-                    <p class="performance-desc">和太鼓を披露しました。</p>
+                    <p class="perf-meta"><span class="venue">コピスみよし</span></p>
+                    <p class="perf-desc">和太鼓を披露しました。</p>
+                  </div>
+                </article>
+                <article class="perf-row">
+                  <time datetime="2025-04-27">04.27</time>
+                  <div class="perf-row-body">
+                    <h3>合同公演「奏音」</h3>
+                    <p class="perf-meta"><span class="venue">キララホール</span></p>
+                    <p class="perf-desc">野辺囃子神楽保存会との合同公演。ゲストにEriu2&6さんをお招きし、コラボ曲も披露しました。</p>
+                  </div>
+                  <a class="flyer-link" href="https://d329zuyuc98w3u.cloudfront.net/images/performance/kanade.jpg" target="_blank" rel="noopener"><img src="https://d329zuyuc98w3u.cloudfront.net/images/performance/kanade.jpg" alt="合同公演 奏音 チラシ" loading="lazy"></a>
+                </article>
+                <article class="perf-row">
+                  <time datetime="2025-04-05">04.05</time>
+                  <div class="perf-row-body">
+                    <h3>武天 発表会</h3>
+                    <p class="perf-meta"><span class="venue">秋川ふれあいホール</span></p>
+                    <p class="perf-desc">年に一度の発表会。全クラスが一堂に会し、日頃の練習成果を披露しました。</p>
                   </div>
                 </article>
               </div>
             </div>
-
-            <!-- 2024年の実績 -->
             <div class="year-section" data-year="2024">
-              <h2 class="year-title">2024年</h2>
-              <div class="performance-grid">
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">12月</span>
-                    <span class="day">15</span>
-                  </div>
-                  <div class="performance-content">
+              <h2 class="year-title">2024<small>年</small></h2>
+              <div class="perf-rows">
+                <article class="perf-row">
+                  <time datetime="2024-12-15">12.15</time>
+                  <div class="perf-row-body">
                     <h3>武天 発表会</h3>
-                    <p class="performance-venue">📍 秋川ふれあいホール</p>
-                    <p class="performance-desc">全クラス参加の年次発表会。新曲も披露しました。</p>
+                    <p class="perf-meta"><span class="venue">秋川ふれあいホール</span></p>
+                    <p class="perf-desc">全クラス参加の年次発表会。新曲も披露しました。</p>
                   </div>
                 </article>
-
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">8月</span>
-                    <span class="day">15</span>
-                  </div>
-                  <div class="performance-content">
+                <article class="perf-row">
+                  <time datetime="2024-08-15">08.15</time>
+                  <div class="perf-row-body">
                     <h3>あきる野夏まつり</h3>
-                    <p class="performance-venue">📍 秋川駅前広場</p>
-                    <p class="performance-desc">夏の恒例イベントで、力強い太鼓の音を響かせました。</p>
+                    <p class="perf-meta"><span class="venue">秋川駅前広場</span></p>
+                    <p class="perf-desc">夏の恒例イベントで、力強い太鼓の音を響かせました。</p>
                   </div>
                 </article>
-
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">4月</span>
-                    <span class="day">7</span>
-                  </div>
-                  <div class="performance-content">
+                <article class="perf-row">
+                  <time datetime="2024-04-07">04.07</time>
+                  <div class="perf-row-body">
                     <h3>花まつりおと祭</h3>
-                    <p class="performance-venue">📍 深沢自然人村</p>
-                    <p class="performance-desc">和太鼓を披露しました。</p>
+                    <p class="perf-meta"><span class="venue">深沢自然人村</span></p>
+                    <p class="perf-desc">和太鼓を披露しました。</p>
                   </div>
                 </article>
-
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">3月</span>
-                    <span class="day">31</span>
-                  </div>
-                  <div class="performance-content">
+                <article class="perf-row">
+                  <time datetime="2024-03-31">03.31</time>
+                  <div class="perf-row-body">
                     <h3>HUグループ さくら祭り</h3>
-                    <p class="performance-venue">📍 HUグループ</p>
-                    <p class="performance-desc">さくら祭りで和太鼓を演奏しました。</p>
+                    <p class="perf-meta"><span class="venue">HUグループ</span></p>
+                    <p class="perf-desc">さくら祭りで和太鼓を演奏しました。</p>
                   </div>
                 </article>
               </div>
             </div>
-
-            <!-- 2023年の実績 -->
             <div class="year-section" data-year="2023">
-              <h2 class="year-title">2023年</h2>
-              <div class="performance-grid">
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">12月</span>
-                    <span class="day">17</span>
-                  </div>
-                  <div class="performance-content">
+              <h2 class="year-title">2023<small>年</small></h2>
+              <div class="perf-rows">
+                <article class="perf-row">
+                  <time datetime="2023-12-17">12.17</time>
+                  <div class="perf-row-body">
                     <h3>武天 発表会</h3>
-                    <p class="performance-venue">📍 秋川ふれあいホール</p>
-                    <p class="performance-desc">全クラス参加の年次発表会。新曲も初披露しました。</p>
+                    <p class="perf-meta"><span class="venue">秋川ふれあいホール</span></p>
+                    <p class="perf-desc">全クラス参加の年次発表会。新曲も初披露しました。</p>
                   </div>
                 </article>
-
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">10月</span>
-                    <span class="day">29</span>
-                  </div>
-                  <div class="performance-content">
+                <article class="perf-row">
+                  <time datetime="2023-10-29">10.29</time>
+                  <div class="perf-row-body">
                     <h3>東京太鼓ジュニアコンクール</h3>
-                    <p class="performance-venue">📍 大田区アプリコ大ホール</p>
-                    <p class="performance-desc"></p>
+                    <p class="perf-meta"><span class="venue">大田区アプリコ大ホール</span></p>
                   </div>
                 </article>
-
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">8月</span>
-                    <span class="day">14</span>
-                  </div>
-                  <div class="performance-content">
+                <article class="perf-row">
+                  <time datetime="2023-08-14">08.14</time>
+                  <div class="perf-row-body">
                     <h3>青梅ゆかた祭り</h3>
-                    <p class="performance-venue">📍 ネッツぐーたまセンター</p>
-                    <p class="performance-desc">青梅ゆかた祭りで和太鼓を披露しました。</p>
+                    <p class="perf-meta"><span class="venue">ネッツぐーたまセンター</span></p>
+                    <p class="perf-desc">青梅ゆかた祭りで和太鼓を披露しました。</p>
                   </div>
                 </article>
-
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">8月</span>
-                    <span class="day">5</span>
-                  </div>
-                  <div class="performance-content">
+                <article class="perf-row">
+                  <time datetime="2023-08-05">08.05</time>
+                  <div class="perf-row-body">
                     <h3>あきる野市夏祭り</h3>
-                    <p class="performance-venue">📍 秋川駅前通り</p>
-                    <p class="performance-desc">夏まつりを太鼓演奏で盛り上げました。</p>
+                    <p class="perf-meta"><span class="venue">秋川駅前通り</span></p>
+                    <p class="perf-desc">夏まつりを太鼓演奏で盛り上げました。</p>
                   </div>
                 </article>
-
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">7月</span>
-                    <span class="day">23</span>
-                  </div>
-                  <div class="performance-content">
+                <article class="perf-row">
+                  <time datetime="2023-07-23">07.23</time>
+                  <div class="perf-row-body">
                     <h3>太鼓祭り 第五回関東大会</h3>
-                    <p class="performance-venue">📍 相模原市民会館ホール</p>
-                    <p class="performance-desc">第五回関東大会に出演。多くの方々にご来場いただきました。</p>
+                    <p class="perf-meta"><span class="venue">相模原市民会館ホール</span></p>
+                    <p class="perf-desc">第五回関東大会に出演。多くの方々にご来場いただきました。</p>
                   </div>
                 </article>
-
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">4月</span>
-                    <span class="day">1</span>
-                  </div>
-                  <div class="performance-content">
+                <article class="perf-row">
+                  <time datetime="2023-04-01">04.01</time>
+                  <div class="perf-row-body">
                     <h3>秋川駅前さくら祭り</h3>
-                    <p class="performance-venue">📍 秋川駅南口</p>
-                    <p class="performance-desc">さくら祭りで和太鼓を披露しました。</p>
+                    <p class="perf-meta"><span class="venue">秋川駅南口</span></p>
+                    <p class="perf-desc">さくら祭りで和太鼓を披露しました。</p>
                   </div>
                 </article>
               </div>
             </div>
-
             <div class="year-section" data-year="2022">
-              <h2 class="year-title">2022年</h2>
-              <div class="performance-grid">
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">4月</span>
-                    <span class="day">29</span>
-                  </div>
-                  <div class="performance-content">
-                    <h3>武天15周年記念発表会</h3>
-                    <p class="performance-venue">📍 秋川キララホール</p>
-                    <p class="performance-desc">武天15周年記念発表会。/p>
-                  </div>
-                </article>
-
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">10月</span>
-                    <span class="day">30</span>
-                  </div>
-                  <div class="performance-content">
+              <h2 class="year-title">2022<small>年</small></h2>
+              <div class="perf-rows">
+                <article class="perf-row">
+                  <time datetime="2022-10-30">10.30</time>
+                  <div class="perf-row-body">
                     <h3>秋川ハロウィンイベント</h3>
-                    <p class="performance-venue">📍 秋川駅南口</p>
-                    <p class="performance-desc">ハロウィンイベントに仮装して出演しました。</p>
+                    <p class="perf-meta"><span class="venue">秋川駅南口</span></p>
+                    <p class="perf-desc">ハロウィンイベントに仮装して出演しました。</p>
+                  </div>
+                </article>
+                <article class="perf-row">
+                  <time datetime="2022-04-29">04.29</time>
+                  <div class="perf-row-body">
+                    <h3>武天15周年記念発表会</h3>
+                    <p class="perf-meta"><span class="venue">秋川キララホール</span></p>
+                    <p class="perf-desc">武天15周年記念発表会。</p>
                   </div>
                 </article>
               </div>
             </div>
-
             <div class="year-section" data-year="2019">
-              <h2 class="year-title">2019年</h2>
-              <div class="performance-grid">
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">10月</span>
-                    <span class="day">6</span>
-                  </div>
-                  <div class="performance-content">
+              <h2 class="year-title">2019<small>年</small></h2>
+              <div class="perf-rows">
+                <article class="perf-row">
+                  <time datetime="2019-10-06">10.06</time>
+                  <div class="perf-row-body">
                     <h3>秋川流域青少年育成郷土芸能大会</h3>
-                    <p class="performance-venue">📍 秋川キララホール</p>
-                    <p class="performance-desc">秋川流域青少年育成郷土芸能大会。</p>
+                    <p class="perf-meta"><span class="venue">秋川キララホール</span></p>
+                    <p class="perf-desc">秋川流域青少年育成郷土芸能大会。</p>
                   </div>
                 </article>
               </div>
             </div>
-
             <div class="year-section" data-year="2018">
-              <h2 class="year-title">2018年</h2>
-              <div class="performance-grid">
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">5月</span>
-                    <span class="day">27</span>
-                  </div>
-                  <div class="performance-content">
+              <h2 class="year-title">2018<small>年</small></h2>
+              <div class="perf-rows">
+                <article class="perf-row">
+                  <time datetime="2018-05-27">05.27</time>
+                  <div class="perf-row-body">
                     <h3>青梅太鼓フェス  OTF</h3>
-                    <p class="performance-venue">📍 ゆとろぎホール</p>
-                    <p class="performance-desc">青梅太鼓フェスに出演しました。</p>
+                    <p class="perf-meta"><span class="venue">ゆとろぎホール</span></p>
+                    <p class="perf-desc">青梅太鼓フェスに出演しました。</p>
                   </div>
                 </article>
-
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">4月</span>
-                    <span class="day">14</span>
-                  </div>
-                  <div class="performance-content">
+                <article class="perf-row">
+                  <time datetime="2018-04-14">04.14</time>
+                  <div class="perf-row-body">
                     <h3>和い和い和太鼓フェスティバル</h3>
-                    <p class="performance-venue">📍 ふれあいホール</p>
-                    <p class="performance-desc">和い和い和太鼓フェスティバルに出演しました。</p>
+                    <p class="perf-meta"><span class="venue">ふれあいホール</span></p>
+                    <p class="perf-desc">和い和い和太鼓フェスティバルに出演しました。</p>
                   </div>
                 </article>
               </div>
             </div>
-
             <div class="year-section" data-year="2017">
-              <h2 class="year-title">2017年</h2>
-              <div class="performance-grid">
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">10月</span>
-                    <span class="day">8</span>
-                  </div>
-                  <div class="performance-content">
+              <h2 class="year-title">2017<small>年</small></h2>
+              <div class="perf-rows">
+                <article class="perf-row">
+                  <time datetime="2017-10-08">10.08</time>
+                  <div class="perf-row-body">
                     <h3>東京多摩太鼓祭り</h3>
-                    <p class="performance-venue">📍 府中の森芸術劇場どりーむホール</p>
-                    <p class="performance-desc">東京多摩太鼓祭りに出演しました。</p>
+                    <p class="perf-meta"><span class="venue">府中の森芸術劇場どりーむホール</span></p>
+                    <p class="perf-desc">東京多摩太鼓祭りに出演しました。</p>
                   </div>
                 </article>
               </div>
             </div>
-
             <div class="year-section" data-year="2016">
-              <h2 class="year-title">2016年</h2>
-              <div class="performance-grid">
-                <article class="performance-card">
-                  <div class="performance-date">
-                    <span class="month">10月</span>
-                    <span class="day">6</span>
-                  </div>
-                  <div class="performance-content">
+              <h2 class="year-title">2016<small>年</small></h2>
+              <div class="perf-rows">
+                <article class="perf-row">
+                  <time datetime="2016-10-06">10.06</time>
+                  <div class="perf-row-body">
                     <h3>日本太鼓ジュニアコンクール東京大会</h3>
-                    <p class="performance-venue">📍 日本工学院 片柳アリーナ</p>
-                    <p class="performance-desc">日本太鼓ジュニアコンクール東京大会に出場しました。</p>
+                    <p class="perf-meta"><span class="venue">日本工学院 片柳アリーナ</span></p>
+                    <p class="perf-desc">日本太鼓ジュニアコンクール東京大会に出場しました。</p>
                   </div>
                 </article>
               </div>
             </div>
-
-            
-
-            <!-- それ以前の実績 -->
             <div class="year-section" data-year="older">
-              <h2 class="year-title">これまでの主な活動</h2>
-              <div class="legacy-list">
-                <div class="legacy-item">
-                  <span class="legacy-year">2007年〜</span>
-                  <p>和太鼓 武天 結成。青梅市・あきる野市を中心に活動開始。</p>
-                </div>
-                <div class="legacy-item">
-                  <span class="legacy-year">毎年</span>
-                  <p>武天 発表会（年1回開催）</p>
-                </div>
-                <div class="legacy-item">
-                  <span class="legacy-year">定期</span>
-                  <p>あきる野市・青梅市周辺の各種イベント出演</p>
-                </div>
-                <div class="legacy-item">
-                  <span class="legacy-year">随時</span>
-                  <p>企業イベント・福祉施設への出張演奏</p>
-                </div>
-                <div class="legacy-item">
-                  <span class="legacy-year">随時</span>
-                  <p>学校公演・ワークショップ開催</p>
-                </div>
+              <h2 class="year-title is-text">これまでの主な活動</h2>
+              <div class="perf-rows">
+                <div class="perf-row is-legacy"><span class="when">2007年〜</span><p>和太鼓 武天 結成。青梅市・あきる野市を中心に活動開始。</p></div>
+                <div class="perf-row is-legacy"><span class="when">毎年</span><p>武天 発表会（年1回開催）</p></div>
+                <div class="perf-row is-legacy"><span class="when">定期</span><p>あきる野市・青梅市周辺の各種イベント出演</p></div>
+                <div class="perf-row is-legacy"><span class="when">随時</span><p>企業イベント・福祉施設への出張演奏</p></div>
+                <div class="perf-row is-legacy"><span class="when">随時</span><p>学校公演・ワークショップ開催</p></div>
               </div>
             </div>
 
+            <p class="perf-more"><a class="btn line" href="https://www.youtube.com/channel/UCwjt1ccEZv3qjzCHLPV8tAA" target="_blank" rel="noopener noreferrer">YouTube</a></p>
           </div>
         </section>
 
-        <section class="section-stats">
-          <div class="container">
-            <h2 class="section-title">活動の歩み</h2>
-            <div class="stats-grid">
-              <div class="stat-card">
-                <span class="stat-number">2007</span>
-                <span class="stat-label">結成年</span>
-              </div>
-              <div class="stat-card">
-                <span class="stat-number">70+</span>
-                <span class="stat-label">会員数</span>
-              </div>
-              <div class="stat-card">
-                <span class="stat-number">100+</span>
-                <span class="stat-label">公演回数</span>
-              </div>
-              <div class="stat-card">
-                <span class="stat-number">19</span>
-                <span class="stat-label">年の歴史</span>
-              </div>
+        <section id="contact" class="sec page-cta on-dark has-bg-word">
+          <span class="bg-word" aria-hidden="true">BOOKING</span>
+          <div class="wrap page-cta-inner">
+            <div>
+              <div class="label">BOOKING</div>
+              <h2 class="sec-h">出演依頼・<wbr>お問い合わせ</h2>
             </div>
-          </div>
-        </section>
-
-        <section id="contact" class="section-contact">
-          <div class="container">
-            <h2 class="section-title">出演依頼・お問い合わせ</h2>
-            <div class="contact-content">
+            <div>
               <p>出演のご依頼、体験レッスンのお申し込みなど、<br>お気軽にお問い合わせください。</p>
-
-              <div class="form-placeholder">
-                <a href="contact.html" class="cta-button" style="background-color: white; color: var(--color-accent);">お問い合わせフォームへ</a>
+              <div class="page-cta-actions">
+                <a class="btn" href="contact.html?subject=performance">お問い合わせフォームへ</a>
               </div>
             </div>
           </div>
         </section>
-
       </main>
 
       <footer class="site-footer">
