@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "watch-deploy": "node s3-watcher.js",
-    "deploy": "node s3-watcher.js --once"
+    "deploy": "node s3-watcher.js --once",
+    "test": "node --test"
   },
   "devDependencies": {
     "@aws-sdk/client-s3": "^3.500.0",

@@ -1,0 +1,118 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: 和太鼓 武天 20周年記念公演 チケット予約 API（お問い合わせフォームとは別のスタック）
+
+Parameters:
+  NotificationEmail:
+    Type: String
+    Description: 予約の通知を受け取るメールアドレス
+  SenderEmail:
+    Type: String
+    Description: 確認メールの送信元アドレス（SES で検証済みのもの）
+  AllowedOrigins:
+    Type: String
+    Default: "https://wadaiko-buten.net,http://localhost:5173,http://127.0.0.1:5500,http://localhost:5500"
+    Description: 予約フォームを置くサイトのURL（カンマ区切り）
+
+Globals:
+  Function:
+    Runtime: nodejs20.x
+    Timeout: 15
+    MemorySize: 256
+
+Resources:
+  # 予約（1件 = 1つの予約番号）
+  ReservationsTable:
+    Type: AWS::DynamoDB::Table
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      TableName: ButenTicketReservations
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: reservationId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: reservationId
+          KeyType: HASH
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: true
+      Tags:
+        - Key: Project
+          Value: ButenWebsite
+
+  # 席種ごとの予約済み枚数（定員は config.mjs の capacity）
+  InventoryTable:
+    Type: AWS::DynamoDB::Table
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      TableName: ButenTicketInventory
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: seatType
+          AttributeType: S
+      KeySchema:
+        - AttributeName: seatType
+          KeyType: HASH
+      Tags:
+        - Key: Project
+          Value: ButenWebsite
+
+  TicketApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod
+      # 連打やボットで大量に送られないよう、1秒あたりの受付数を抑える
+      MethodSettings:
+        - ResourcePath: "/*"
+          HttpMethod: "*"
+          ThrottlingBurstLimit: 20
+          ThrottlingRateLimit: 10
+
+  TicketFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: buten-ticket-reservation
+      CodeUri: .
+      Handler: index.handler
+      Environment:
+        Variables:
+          RESERVATIONS_TABLE: !Ref ReservationsTable
+          INVENTORY_TABLE: !Ref InventoryTable
+          NOTIFICATION_EMAIL: !Ref NotificationEmail
+          SENDER_EMAIL: !Ref SenderEmail
+          ALLOWED_ORIGINS: !Ref AllowedOrigins
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ReservationsTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref InventoryTable
+        - Statement:
+            - Effect: Allow
+              Action: ses:SendEmail
+              Resource: "*"
+      Events:
+        Availability:
+          Type: Api
+          Properties:
+            RestApiId: !Ref TicketApi
+            Path: /availability
+            Method: GET
+        Reserve:
+          Type: Api
+          Properties:
+            RestApiId: !Ref TicketApi
+            Path: /reservations
+            Method: POST
+        ReserveOptions:
+          Type: Api
+          Properties:
+            RestApiId: !Ref TicketApi
+            Path: /reservations
+            Method: OPTIONS
+
+Outputs:
+  ApiEndpoint:
+    Description: ticket-config.js の apiEndpoint に貼る URL
+    Value: !Sub "https://${TicketApi}.execute-api.${AWS::Region}.amazonaws.com/prod"

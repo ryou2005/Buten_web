@@ -225,6 +225,105 @@ a {
   display: none;
 }
 
+/* 20周年記念公演（公演日を過ぎると anniversary.js が消す） */
+.main-nav .nav-anniv {
+  padding: 8px 14px;
+  border: 1px solid var(--shu);
+  color: var(--shu);
+  font-weight: 700;
+  white-space: nowrap;
+  transition: background 0.3s, color 0.3s;
+}
+
+.main-nav .nav-anniv::after {
+  display: none;
+}
+
+.main-nav .nav-anniv:hover,
+.main-nav .nav-anniv[aria-current="page"] {
+  background: var(--shu);
+  color: #fff;
+}
+
+.site-header.is-overlay:not(.scrolled):not(.menu-open) .nav-anniv {
+  border-color: #fff;
+  color: #fff;
+}
+
+/* 項目が増えたぶん、パソコンの狭い画面では間隔を詰める */
+@media (min-width: 961px) and (max-width: 1200px) {
+  .main-nav {
+    gap: 18px;
+  }
+}
+
+/* スマホ：画面下の「チケット予約」の帯（anniversary.js が足す） */
+.anniv-bar {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  .anniv-bar {
+    position: fixed;
+    inset: auto 0 0 0;
+    z-index: 900;
+    display: flex;
+    align-items: stretch;
+    background: var(--shu);
+    color: #fff;
+    box-shadow: 0 -4px 20px rgba(25, 47, 79, 0.18);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .anniv-bar-link {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 56px;
+    padding: 8px 12px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.92rem;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  .anniv-bar-date {
+    font-family: var(--font-latin);
+    font-size: 1.1rem;
+    font-weight: 600;
+    opacity: 0.9;
+  }
+
+  .anniv-bar-text::after {
+    content: " →";
+  }
+
+  .anniv-bar-close {
+    flex: none;
+    width: 48px;
+    border: 0;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    background: none;
+    color: #fff;
+    font-size: 1.3rem;
+    cursor: pointer;
+  }
+
+  body.has-anniv-bar {
+    padding-bottom: calc(56px + env(safe-area-inset-bottom));
+  }
+}
+
+/* 小さいスマホでは日付を省いて1行に収める */
+@media (max-width: 380px) {
+  .anniv-bar-date {
+    display: none;
+  }
+}
+
 .menu-btn {
   display: none;
   position: relative;

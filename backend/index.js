@@ -51,6 +51,7 @@ function getSubjectLabel(subject) {
     trial: "体験レッスンのお申し込み",
     performance: "演奏のご依頼",
     workshop: "ワークショップのお申込み",
+    ticket: "20周年記念公演のチケットについて",
     question: "ご質問・その他"
   };
   return labels[subject] || subject;

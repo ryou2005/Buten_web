@@ -1,0 +1,500 @@
+/* ============================================================
+   20周年記念公演 チケット予約フォーム（案F「響」）
+   入力欄・同意欄・送信ボタンの見た目は contact.css を使い、ここでは予約フォームだけの部品を足す
+   ※ ticket-form.js が data-step・data-seat-options などを使うので名前は変えない
+   ============================================================ */
+
+[hidden] {
+  display: none !important;
+}
+
+/* ---------- 見出し ---------- */
+.ticket-head {
+  padding: clamp(40px, 6vw, 72px) var(--gutter) 0;
+}
+
+.ticket-back {
+  margin-bottom: 24px;
+  font-size: 0.9rem;
+}
+
+.ticket-head h1 {
+  font-weight: 800;
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  letter-spacing: 0.1em;
+  color: var(--ai);
+}
+
+.ticket-steps {
+  display: flex;
+  gap: 8px;
+  margin-top: 28px;
+  list-style: none;
+}
+
+.ticket-steps li {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 10px;
+  max-width: 200px;
+  padding: 10px 14px;
+  border-bottom: 2px solid var(--line);
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.ticket-steps span {
+  font-family: var(--font-latin);
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.ticket-steps li[aria-current="step"] {
+  border-color: var(--shu);
+  color: var(--shu);
+}
+
+/* ---------- レイアウト ---------- */
+.ticket-sec {
+  padding-top: clamp(32px, 4vw, 56px);
+}
+
+.ticket-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.8fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+}
+
+.ticket-side {
+  position: sticky;
+  top: calc(var(--header-height) + 32px);
+}
+
+.ticket-event {
+  padding: 28px;
+  background: var(--ai);
+  color: var(--ai-text);
+}
+
+.ticket-event-label {
+  font-family: var(--font-latin);
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  color: #f0b8b3;
+}
+
+.ticket-event h2 {
+  margin: 6px 0 16px;
+  font-size: 1.4rem;
+  letter-spacing: 0.08em;
+}
+
+.ticket-event dl > div {
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid rgba(233, 228, 218, 0.2);
+  font-size: 0.92rem;
+}
+
+.ticket-event dt {
+  color: var(--ai-muted);
+}
+
+.ticket-side-notes {
+  margin-top: 20px;
+  padding-left: 1.2em;
+  font-size: 0.88rem;
+  color: #45474b;
+}
+
+.ticket-side-notes li + li {
+  margin-top: 6px;
+}
+
+/* 受付前・受付終了・テストモードのお知らせ */
+.ticket-notice {
+  margin-bottom: 24px;
+  padding: 20px 24px;
+  background: var(--white);
+  border-left: 3px solid var(--shu);
+  font-size: 0.95rem;
+  line-height: 1.9;
+}
+
+.ticket-notice.is-test {
+  background: #fff7e0;
+  border-color: #c98a00;
+}
+
+.ticket-notice strong {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--ai);
+}
+
+.ticket-notice a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- 入力：席種 ---------- */
+.ticket-form fieldset {
+  border: 0;
+  min-width: 0;
+}
+
+.ticket-form legend {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ai);
+}
+
+.seat-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.seat-option {
+  position: relative;
+  display: block;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  background: var(--kinari);
+  cursor: pointer;
+  transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
+}
+
+/* contact.css の .form-group label を打ち消す */
+.form-group .seat-option {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  color: var(--sumi);
+}
+
+.form-group .seat-option input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  opacity: 0;
+}
+
+.seat-option-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+  color: var(--ai);
+}
+
+/* 丸い選択印 */
+.seat-option-name::before {
+  content: "";
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--muted);
+  border-radius: 50%;
+  background: #fff;
+  transition: border 0.2s;
+}
+
+.seat-option-price {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: #45474b;
+}
+
+.seat-option-status {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 0 8px;
+  font-size: 0.75rem;
+  border: 1px solid currentColor;
+}
+
+.seat-option-status.few {
+  color: var(--shu);
+}
+
+.seat-option-status.soldout {
+  color: var(--muted);
+}
+
+.seat-option:has(input:checked) {
+  border-color: var(--ai);
+  background: #fff;
+  box-shadow: 0 0 0 2px var(--ai) inset;
+}
+
+.seat-option:has(input:checked) .seat-option-name::before {
+  border: 6px solid var(--shu);
+}
+
+.seat-option:has(input:focus-visible) {
+  outline: 2px solid var(--ai);
+  outline-offset: 2px;
+}
+
+.seat-option:has(input:disabled) {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.seat-note {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ---------- 入力：枚数 ---------- */
+.kind-options {
+  border-top: 1px solid var(--line);
+}
+
+.kind-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.kind-row-label {
+  font-weight: 500;
+}
+
+.kind-row-price {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* − 枚数 ＋ */
+.stepper {
+  display: flex;
+  align-items: center;
+}
+
+.stepper button {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  background: var(--kinari);
+  color: var(--ai);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.stepper button:disabled {
+  color: #c4bdb0;
+  cursor: not-allowed;
+}
+
+.stepper output {
+  width: 56px;
+  text-align: center;
+  font-family: var(--font-latin);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.order-total {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: baseline;
+  gap: 4px 20px;
+  margin-top: 14px;
+  font-size: 0.95rem;
+}
+
+.order-total b {
+  font-family: var(--font-latin);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--shu);
+}
+
+.field-hint {
+  margin-top: 6px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.form-group input[aria-invalid="true"] {
+  border-color: var(--shu);
+}
+
+/* ボット対策の欄は画面外に置く */
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ---------- 確認・完了 ---------- */
+.ticket-step-h {
+  font-size: clamp(1.4rem, 2.6vw, 1.8rem);
+  letter-spacing: 0.08em;
+  color: var(--ai);
+}
+
+.ticket-step-h:focus {
+  outline: none;
+}
+
+.ticket-step-lead {
+  margin-top: 8px;
+  color: #45474b;
+}
+
+.confirm-list {
+  margin-top: 28px;
+  border-top: 1px solid var(--sumi);
+}
+
+.confirm-list > div {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.confirm-list dt {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--ai);
+}
+
+.confirm-list dd {
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.confirm-list .total dd {
+  font-weight: 700;
+  color: var(--shu);
+}
+
+.confirm-actions {
+  display: grid;
+  gap: 12px;
+  margin-top: 36px;
+}
+
+.confirm-back {
+  justify-content: center;
+  padding: 16px 28px;
+  color: var(--sumi);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.confirm-back::after {
+  display: none;
+}
+
+.done-number {
+  margin: 28px 0 20px;
+  padding: 24px;
+  background: var(--kinari);
+  border: 2px solid var(--shu);
+  text-align: center;
+}
+
+.done-number p {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.done-number strong {
+  display: block;
+  font-family: var(--font-latin);
+  font-size: clamp(2.2rem, 6vw, 3rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+  color: var(--ai);
+}
+
+.done-mail {
+  margin-bottom: 16px;
+}
+
+.done-notes {
+  padding-left: 1.2em;
+  font-size: 0.95rem;
+}
+
+.done-notes li + li {
+  margin-top: 6px;
+}
+
+.done-notes a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.done-actions {
+  margin-top: 36px;
+}
+
+.done-actions .btn {
+  color: var(--sumi);
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 960px) {
+  .ticket-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ticket-side {
+    position: static;
+  }
+}
+
+@media (max-width: 600px) {
+  .seat-options {
+    grid-template-columns: 1fr;
+  }
+
+  .confirm-list > div {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .ticket-steps li {
+    padding: 8px 6px;
+    font-size: 0.82rem;
+  }
+}

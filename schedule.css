@@ -99,6 +99,11 @@
   color: #45474b;
 }
 
+/* 20周年記念公演の特設ページへ */
+.schedule-ticket {
+  margin-top: 18px;
+}
+
 /* チラシ（押すと拡大する。拡大表示の見た目は style.css） */
 .schedule-flyer {
   display: block;
