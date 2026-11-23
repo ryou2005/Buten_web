@@ -1,14 +1,9 @@
-const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
-const { DynamoDBDocumentClient, PutCommand } = require("@aws-sdk/lib-dynamodb");
 const { SESClient, SendEmailCommand } = require("@aws-sdk/client-ses");
 
 // Initialize clients
-const dynamoClient = new DynamoDBClient({});
-const docClient = DynamoDBDocumentClient.from(dynamoClient);
 const sesClient = new SESClient({});
 
 // Environment variables
-const TABLE_NAME = process.env.TABLE_NAME || "ButenContactSubmissions";
 const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL || "admin@example.com";
 const SENDER_EMAIL = process.env.SENDER_EMAIL || "noreply@example.com";
 
@@ -57,32 +52,6 @@ function getSubjectLabel(subject) {
 }
 
 /**
- * Save submission to DynamoDB
- */
-async function saveToDatabase(data) {
-  const item = {
-    id: `${Date.now()}-${Math.random().toString(36).substring(2, 11)}`,
-    createdAt: new Date().toISOString(),
-    name: data.name,
-    email: data.email,
-    tel: data.tel || "",
-    subject: data.subject,
-    subjectLabel: getSubjectLabel(data.subject),
-    message: data.message,
-    privacyConsent: true,
-    privacyConsentAt: new Date().toISOString(),
-    status: "new"
-  };
-
-  await docClient.send(new PutCommand({
-    TableName: "ContactFormTable",
-    Item: item
-  }));
-
-  return item;
-}
-
-/**
  * Send notification email via SES
  */
 async function sendNotificationEmail(data) {
@@ -119,6 +88,8 @@ ${data.message}
     Destination: {
       ToAddresses: [NOTIFICATION_EMAIL]
     },
+    // 「返信」を押すと問い合わせ者本人宛てになるようにする
+    ReplyToAddresses: [data.email.trim()],
     Message: {
       Subject: {
         Data: `【武天】${subjectLabel} - ${data.name}様`,
@@ -179,18 +150,10 @@ exports.handler = async (event) => {
       return createResponse(400, { error: "Validation failed", details: errors });
     }
 
-    // Save to database
-    const savedItem = await saveToDatabase(data);
-    console.log("Saved to DynamoDB:", savedItem.id);
-
     // Send notification email
-    try {
-      await sendNotificationEmail(data);
-      console.log("Notification email sent");
-    } catch (emailError) {
-      console.error("Failed to send email:", emailError);
-      // Continue even if email fails - data is saved
-    }
+    // 送信に失敗した場合は下の catch でエラーを返し、利用者に再送や別の連絡手段を促す
+    await sendNotificationEmail(data);
+    console.log("Notification email sent");
 
     return createResponse(200, {
       success: true,
@@ -200,7 +163,7 @@ exports.handler = async (event) => {
   } catch (error) {
     console.error("Error processing request:", error);
     return createResponse(500, {
-      error: "サーバーエラーが発生しました。しばらくしてから再度お試しください。"
+      error: "送信に失敗しました。お手数ですが、しばらくしてから再度お試しいただくか、InstagramまたはFacebookのDMよりご連絡ください。"
     });
   }
 };

@@ -1,6 +1,8 @@
 # Buten Contact Form Backend
 
-お問い合わせフォームのバックエンド（AWS Lambda + API Gateway + DynamoDB + SES）
+お問い合わせフォームのバックエンド（AWS Lambda + API Gateway + SES）
+
+お問い合わせ内容はデータベースには保存せず、SES でメール送信するだけです。メール送信に失敗した場合は、フォームにエラーを表示します。
 
 ## 前提条件
 
@@ -68,6 +70,5 @@ sam build && sam deploy
 
 | 変数名               | 説明                 |
 | -------------------- | -------------------- |
-| `TABLE_NAME`         | DynamoDB テーブル名  |
 | `NOTIFICATION_EMAIL` | 通知先メールアドレス |
-| `SENDER_EMAIL`       | 送信元メールアドレス |
+| `SENDER_EMAIL`       | 送信元メールアドレス（例: `noreply@wadaiko-buten.net`。SES でドメイン `wadaiko-buten.net` を検証済みであること） |

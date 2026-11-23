@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
-Description: Contact form backend for Wadaiko Buten website
+Description: Contact form backend for Wadaiko Buten website (Lambda + API Gateway + SES)
 
 Globals:
   Function:
@@ -25,35 +25,6 @@ Parameters:
       - production
 
 Resources:
-  # DynamoDB Table for storing submissions
-  ContactSubmissionsTable:
-    Type: AWS::DynamoDB::Table
-    Properties:
-      TableName: ButenContactSubmissions
-      BillingMode: PAY_PER_REQUEST
-      AttributeDefinitions:
-        - AttributeName: id
-          AttributeType: S
-        - AttributeName: createdAt
-          AttributeType: S
-        - AttributeName: status
-          AttributeType: S
-      KeySchema:
-        - AttributeName: id
-          KeyType: HASH
-      GlobalSecondaryIndexes:
-        - IndexName: CreatedAtIndex
-          KeySchema:
-            - AttributeName: status
-              KeyType: HASH
-            - AttributeName: createdAt
-              KeyType: RANGE
-          Projection:
-            ProjectionType: ALL
-      Tags:
-        - Key: Project
-          Value: ButenWebsite
-
   # Lambda Function
   ContactFormFunction:
     Type: AWS::Serverless::Function
@@ -63,12 +34,9 @@ Resources:
       Handler: index.handler
       Environment:
         Variables:
-          TABLE_NAME: !Ref ContactSubmissionsTable
           NOTIFICATION_EMAIL: !Ref NotificationEmail
           SENDER_EMAIL: !Ref SenderEmail
       Policies:
-        - DynamoDBCrudPolicy:
-            TableName: !Ref ContactSubmissionsTable
         - Statement:
             - Effect: Allow
               Action:
@@ -105,6 +73,3 @@ Outputs:
     Description: API Gateway endpoint URL
     Value: !Sub "https://${ContactApi}.execute-api.${AWS::Region}.amazonaws.com/${Environment}/contact"
 
-  TableName:
-    Description: DynamoDB table name
-    Value: !Ref ContactSubmissionsTable
