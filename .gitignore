@@ -28,3 +28,6 @@ dist-ssr
 .env.production
 .env.local
 .env.*.local
+
+# Lambda deployment package (backend/create_deployment_package.ps1 で生成)
+backend/function.zip
