@@ -5,7 +5,7 @@ import { calcTotal, countTickets, formatYen, isEventOver, salesState, selectionE
 const eventDate = { year: 2027, month: 4, day: 29 };
 const config = {
   status: "open",
-  maxTicketsPerReservation: 10,
+  maxPeoplePerApplication: 8,
   seatTypes: [{ id: "reserved" }, { id: "free" }],
 };
 
@@ -35,10 +35,10 @@ test("金額の表示", () => {
   assert.equal(formatYen(null), "調整中");
 });
 
-test("席種・枚数の選び方をチェックする", () => {
+test("席種・人数の選び方をチェックする", () => {
   assert.equal(countTickets({ adult: 2, student: 3 }), 5);
   assert.match(selectionError("", { adult: 1 }, config), /席種/);
-  assert.match(selectionError("free", { adult: 0, student: 0 }, config), /1枚以上/);
-  assert.match(selectionError("free", { adult: 6, student: 5 }, config), /10枚まで/);
-  assert.equal(selectionError("free", { adult: 6, student: 4 }, config), "");
+  assert.match(selectionError("free", { adult: 0, student: 0 }, config), /1人以上/);
+  assert.match(selectionError("free", { adult: 5, student: 4 }, config), /8人まで/);
+  assert.equal(selectionError("free", { adult: 5, student: 3 }, config), "");
 });

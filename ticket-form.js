@@ -1,5 +1,6 @@
-// 20周年記念公演 チケット予約フォーム（ticket.html）
-// 入力 → 確認 → 完了 の3画面。席種・券種・料金は ticket-config.js から組み立てる
+// 20周年記念公演 チケット申込フォーム（ticket.html）
+// 入力 → 確認 → 完了 の3画面。席種・券種・料金・配慮の項目は ticket-config.js から組み立てる
+// 送り先は座席割り当てツールの Web申込（backend/web-application/README.md）。1件の申し込み = 1組
 
 import { EVENT, TICKET_CONFIG } from "./ticket-config.js";
 import { calcTotal, countTickets, formatYen, salesState, selectionError } from "./ticket-utils.js";
@@ -50,15 +51,15 @@ export function initTicketForm(form) {
   const state = salesState(TICKET_CONFIG, EVENT.date);
   if (state === "before") {
     const opens = TICKET_CONFIG.opensText ? `${TICKET_CONFIG.opensText}から受付を開始します。` : "受付開始日は決まり次第お知らせします。";
-    showNotice("チケットのご予約は準備中です", `${opens}もうしばらくお待ちください。`);
+    showNotice("チケットのお申し込みは準備中です", `${opens}もうしばらくお待ちください。`);
     return;
   }
   if (state === "closed") {
-    showNotice("チケットのご予約受付は終了しました", "たくさんのご予約ありがとうございました。");
+    showNotice("チケットのお申し込み受付は終了しました", "たくさんのお申し込みありがとうございました。");
     return;
   }
   if (testMode) {
-    showNotice("テストモード", "予約 API が設定されていないため、送信しても予約はされません（画面の流れだけ確認できます）。", "is-test");
+    showNotice("テストモード", "座席割り当てツールにつながっていないため、送信しても申し込みはされません（画面の流れだけ確認できます）。", "is-test");
   }
 
   // ---------- 席種 ----------
@@ -84,7 +85,7 @@ export function initTicketForm(form) {
   const initial = seatInputs.find(({ seat }) => seat.id === requestedSeat);
   if (initial) initial.input.checked = true;
 
-  // ---------- 枚数（− 枚数 ＋） ----------
+  // ---------- 人数（− 人数 ＋） ----------
   const tickets = Object.fromEntries(TICKET_CONFIG.ticketKinds.map((kind) => [kind.id, 0]));
   const steppers = TICKET_CONFIG.ticketKinds.map((kind) => {
     const row = el("div", "kind-row");
@@ -97,12 +98,12 @@ export function initTicketForm(form) {
     const stepper = el("div", "stepper");
     const minus = el("button", "", "−");
     minus.type = "button";
-    minus.setAttribute("aria-label", `${kind.label}を1枚減らす`);
+    minus.setAttribute("aria-label", `${kind.label}を1人減らす`);
     const count = el("output", "", "0");
     count.setAttribute("aria-labelledby", name.id);
     const plus = el("button", "", "＋");
     plus.type = "button";
-    plus.setAttribute("aria-label", `${kind.label}を1枚増やす`);
+    plus.setAttribute("aria-label", `${kind.label}を1人増やす`);
     minus.addEventListener("click", () => changeCount(kind.id, -1));
     plus.addEventListener("click", () => changeCount(kind.id, 1));
     stepper.append(minus, count, plus);
@@ -115,13 +116,13 @@ export function initTicketForm(form) {
   const update = () => {
     const seatId = selectedSeat();
     const total = countTickets(tickets);
-    const max = TICKET_CONFIG.maxTicketsPerReservation;
+    const max = TICKET_CONFIG.maxPeoplePerApplication;
     steppers.forEach(({ kind, price, minus, plus, count }) => {
       count.textContent = String(tickets[kind.id]);
       minus.disabled = tickets[kind.id] === 0;
       plus.disabled = total >= max;
       const yen = seatId ? TICKET_CONFIG.prices[seatId]?.[kind.id] : undefined;
-      price.textContent = seatId ? `1枚 ${formatYen(yen)}` : "";
+      price.textContent = seatId ? `1人 ${formatYen(yen)}` : "";
     });
     seatNote.textContent = TICKET_CONFIG.seatTypes.find((seat) => seat.id === seatId)?.note || "";
 
@@ -129,17 +130,17 @@ export function initTicketForm(form) {
     if (total > 0) {
       const amount = seatId ? calcTotal(seatId, tickets, TICKET_CONFIG.prices) : null;
       const countText = el("span");
-      countText.append("合計 ", el("b", "", String(total)), " 枚");
+      countText.append("合計 ", el("b", "", String(total)), " 人");
       const amountText = el("span");
       amountText.append("当日お支払い ", amount === null ? "料金が決まり次第お知らせします" : el("b", "", formatYen(amount)));
       totalBox.append(countText, amountText);
     }
-    if (total >= max) totalBox.append(el("span", "field-hint", `1回のご予約は${max}枚までです`));
+    if (total >= max) totalBox.append(el("span", "field-hint", `1回のお申し込みは${max}人までです`));
   };
 
   function changeCount(kindId, diff) {
     const next = tickets[kindId] + diff;
-    if (next < 0 || (diff > 0 && countTickets(tickets) >= TICKET_CONFIG.maxTicketsPerReservation)) return;
+    if (next < 0 || (diff > 0 && countTickets(tickets) >= TICKET_CONFIG.maxPeoplePerApplication)) return;
     tickets[kindId] = next;
     formError.hidden = true;
     update();
@@ -150,6 +151,21 @@ export function initTicketForm(form) {
     update();
   });
   update();
+
+  // ---------- お席の配慮 ----------
+  const careBox = form.querySelector("[data-care-options]");
+  const careInputs = TICKET_CONFIG.careOptions.map((option) => {
+    const label = el("label", "checkbox-label care-option");
+    const input = el("input");
+    input.type = "checkbox";
+    input.value = option.id;
+    label.append(input, el("span", "", option.label));
+    careBox.append(label);
+    return { option, input };
+  });
+  const selectedCare = () => careInputs.filter(({ input }) => input.checked).map(({ option }) => option.id);
+  const careLabels = (ids) =>
+    TICKET_CONFIG.careOptions.filter((option) => ids.includes(option.id)).map((option) => option.label).join("\n") || "なし";
 
   // ---------- 空き状況 ----------
   const applyAvailability = (availability = {}) => {
@@ -208,14 +224,15 @@ export function initTicketForm(form) {
     const seat = TICKET_CONFIG.seatTypes.find((s) => s.id === data.seatType);
     const ticketText = TICKET_CONFIG.ticketKinds
       .filter((kind) => data.tickets[kind.id] > 0)
-      .map((kind) => `${kind.label} ${data.tickets[kind.id]}枚`)
+      .map((kind) => `${kind.label} ${data.tickets[kind.id]}人`)
       .join("\n");
     const amount = calcTotal(data.seatType, data.tickets, TICKET_CONFIG.prices);
     return [
       ["公演", `${EVENT.title}\n${EVENT.dateText}　${EVENT.venue}`],
       ["席種", seat?.label || data.seatType],
-      ["枚数", `${ticketText}\n（合計 ${countTickets(data.tickets)}枚）`],
+      ["人数", `${ticketText}\n（合計 ${countTickets(data.tickets)}人）`],
       ["当日お支払い", amount === null ? "料金が決まり次第お知らせします" : formatYen(amount), "total"],
+      ["お席の配慮", careLabels(data.care)],
       ["お名前", `${data.name}（${data.kana}）`],
       ["メールアドレス", data.email],
       ["電話番号", data.tel],
@@ -250,6 +267,7 @@ export function initTicketForm(form) {
     order = {
       seatType: selectedSeat(),
       tickets: { ...tickets },
+      care: selectedCare(),
       name: fields.name.value.trim(),
       kana: fields.kana.value.trim(),
       email: fields.email.value.trim(),
@@ -265,13 +283,13 @@ export function initTicketForm(form) {
 
   views.confirm.querySelector("[data-back]").addEventListener("click", () => showStep("input"));
 
-  // ---------- 確認 → 予約 ----------
+  // ---------- 確認 → 申し込み ----------
   const send = async (data) => {
     if (testMode) {
       await new Promise((resolve) => setTimeout(resolve, 800));
-      return { ok: true, result: { success: true, reservationId: "BT-TEST00", emailSent: false, test: true } };
+      return { ok: true, result: { success: true, receiptNo: 0, emailSent: false, test: true } };
     }
-    const response = await fetch(`${endpoint}/reservations`, {
+    const response = await fetch(`${endpoint}/applications`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -283,18 +301,18 @@ export function initTicketForm(form) {
     if (!order) return;
     const originalText = reserveBtn.textContent;
     reserveBtn.disabled = true;
-    reserveBtn.textContent = "予約しています…";
+    reserveBtn.textContent = "送信しています…";
     confirmError.hidden = true;
 
     try {
       const { ok, status, result } = await send(order);
       if (ok && result.success) {
-        views.done.querySelector("[data-reservation-id]").textContent = result.reservationId;
+        views.done.querySelector("[data-receipt-no]").textContent = result.test ? "（テスト）" : String(result.receiptNo);
         views.done.querySelector("[data-done-mail]").textContent = result.test
           ? "（テストモードのため、メールは送られていません）"
           : result.emailSent
-            ? `${order.email} に確認メールをお送りしました。`
-            : "確認メールをお送りできませんでした。予約は完了していますので、この予約番号を控えておいてください。";
+            ? `${order.email} に受付メールをお送りしました。`
+            : "受付メールをお送りできませんでした。お申し込みは受け付けていますので、この受付番号を控えておいてください。";
         renderList(views.done.querySelector("[data-done-list]"), summaryRows(order));
         form.reset();
         Object.keys(tickets).forEach((id) => {
@@ -308,10 +326,10 @@ export function initTicketForm(form) {
 
       if (status === 409 && result.availability) applyAvailability(result.availability);
       const details = Array.isArray(result.details) ? `\n${result.details.join("\n")}` : "";
-      confirmError.textContent = `${result.error || "予約できませんでした。もう一度お試しください。"}${details}`;
+      confirmError.textContent = `${result.error || "お申し込みできませんでした。もう一度お試しください。"}${details}`;
       confirmError.hidden = false;
     } catch (error) {
-      console.error("Reservation failed:", error);
+      console.error("Application failed:", error);
       confirmError.textContent =
         "通信エラーが発生しました。インターネットの接続を確かめて、もう一度お試しください。\n何度も失敗する場合は、お手数ですがお問い合わせフォームからご連絡ください。";
       confirmError.hidden = false;

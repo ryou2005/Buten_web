@@ -1,6 +1,6 @@
 // 20周年記念公演の告知
-//   ・全ページ：スマホで画面下に「チケット予約」の帯を出す。公演日を過ぎたら告知（data-anniv-promo）を消す
-//   ・特設ページ（20th.html）：料金表・開場時間・予約ボタンを ticket-config.js の内容にする
+//   ・全ページ：スマホで画面下に「チケットのお申し込み」の帯を出す。公演日を過ぎたら告知（data-anniv-promo）を消す
+//   ・特設ページ（20th.html）：料金表・開場時間・申込ボタンを ticket-config.js の内容にする
 
 import { EVENT, TICKET_CONFIG } from "./ticket-config.js";
 import { formatYen, isEventOver, salesState } from "./ticket-utils.js";
@@ -21,7 +21,7 @@ export function fillEventInfo(root = document) {
   root.querySelectorAll('[data-event="date"]').forEach((node) => (node.textContent = EVENT.dateText));
   root.querySelectorAll('[data-event="venue"]').forEach((node) => (node.textContent = EVENT.venue));
   if (time) root.querySelectorAll('[data-event="time"]').forEach((node) => (node.textContent = time));
-  root.querySelectorAll("[data-ticket-max]").forEach((node) => (node.textContent = String(TICKET_CONFIG.maxTicketsPerReservation)));
+  root.querySelectorAll("[data-ticket-max]").forEach((node) => (node.textContent = String(TICKET_CONFIG.maxPeoplePerApplication)));
 }
 
 export function initAnniversaryPromo(now = new Date()) {
@@ -43,7 +43,7 @@ export function initAnniversaryPromo(now = new Date()) {
   bar.setAttribute("aria-label", "20周年記念公演のお知らせ");
   const link = el("a", "anniv-bar-link");
   link.href = "20th.html";
-  link.append(el("span", "anniv-bar-date", "2027.4.29"), el("span", "anniv-bar-text", "20周年記念公演 チケット予約"));
+  link.append(el("span", "anniv-bar-date", "2027.4.29"), el("span", "anniv-bar-text", "20周年記念公演 チケット申込"));
   const close = el("button", "anniv-bar-close", "×");
   close.type = "button";
   close.setAttribute("aria-label", "このお知らせを閉じる");
@@ -87,14 +87,14 @@ function renderPriceTable(table) {
   table.querySelector("caption").after(head);
 }
 
-// 特設ページ：受付前・受付終了のときは予約ボタンを押せないようにする
+// 特設ページ：受付前・受付終了のときは申込ボタンを押せないようにする
 export function initAnniversaryPage(root = document) {
   const table = root.querySelector("[data-price-table]");
   if (table) renderPriceTable(table);
 
   const state = salesState(TICKET_CONFIG, EVENT.date);
   if (state === "open") return;
-  const label = state === "before" ? "予約受付 準備中" : "予約受付は終了しました";
+  const label = state === "before" ? "お申し込み 準備中" : "お申し込みの受付は終了しました";
   root.querySelectorAll("[data-ticket-cta]").forEach((link) => {
     link.textContent = label;
     link.classList.add("is-disabled");
@@ -102,6 +102,6 @@ export function initAnniversaryPage(root = document) {
     link.setAttribute("aria-disabled", "true");
   });
   const note = root.querySelector("[data-ticket-status-note]");
-  if (note && state === "before" && TICKET_CONFIG.opensText) note.textContent = `${TICKET_CONFIG.opensText}から予約受付を開始します。`;
-  if (note && state === "closed") note.textContent = "たくさんのご予約ありがとうございました。";
+  if (note && state === "before" && TICKET_CONFIG.opensText) note.textContent = `${TICKET_CONFIG.opensText}からお申し込みの受付を開始します。`;
+  if (note && state === "closed") note.textContent = "たくさんのお申し込みありがとうございました。";
 }

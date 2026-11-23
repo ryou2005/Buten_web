@@ -1,5 +1,5 @@
 /* ============================================================
-   20周年記念公演 チケット予約フォーム（案F「響」）
+   20周年記念公演 チケット申込フォーム（案F「響」）
    入力欄・同意欄・送信ボタンの見た目は contact.css を使い、ここでは予約フォームだけの部品を足す
    ※ ticket-form.js が data-step・data-seat-options などを使うので名前は変えない
    ============================================================ */
@@ -497,4 +497,16 @@
     padding: 8px 6px;
     font-size: 0.82rem;
   }
+}
+
+/* ---------- 入力：お席の配慮 ---------- */
+.care-options {
+  display: grid;
+  gap: 10px;
+}
+
+.form-group .care-option {
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  background: var(--kinari);
 }

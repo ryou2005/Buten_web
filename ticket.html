@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>チケット予約フォーム（20周年記念公演） | あきる野市の和太鼓 武天</title>
-    <meta name="description" content="和太鼓 武天 20周年記念公演（2027年4月29日・秋川キララホール）のチケット予約フォームです。お支払いは当日受付です。" />
+    <title>チケットのお申し込み（20周年記念公演） | あきる野市の和太鼓 武天</title>
+    <meta name="description" content="和太鼓 武天 20周年記念公演（2027年4月29日・秋川キララホール）のチケット申込フォームです。席は運営が割り当ててメールでお知らせし、お支払いは当日受付です。" />
     <link rel="canonical" href="https://wadaiko-buten.net/ticket.html" />
     <meta name="robots" content="noindex" />
     <!-- Google Fonts -->
@@ -58,9 +58,9 @@
         <section class="ticket-head">
           <div class="wrap">
             <p class="ticket-back"><a href="20th.html">← 20周年記念公演のページへ戻る</a></p>
-            <div class="label">TICKET RESERVATION</div>
-            <h1>チケット予約フォーム</h1>
-            <ol class="ticket-steps" aria-label="予約の手順">
+            <div class="label">TICKET APPLICATION</div>
+            <h1>チケットのお申し込み</h1>
+            <ol class="ticket-steps" aria-label="お申し込みの手順">
               <li data-step-label="input" aria-current="step"><span>1</span>入力</li>
               <li data-step-label="confirm"><span>2</span>確認</li>
               <li data-step-label="done"><span>3</span>完了</li>
@@ -81,15 +81,16 @@
                 </dl>
               </div>
               <ul class="ticket-side-notes">
-                <li>ご予約後、予約番号が書かれた確認メールが届きます。</li>
-                <li>当日は受付で予約番号とお名前をお伝えください。</li>
-                <li>1回のご予約は<span data-ticket-max>10</span>枚までです。</li>
+                <li>お申し込み後、受付番号が書かれたメールが届きます。</li>
+                <li>指定席は運営が座席を割り当て、決まりしだいメールで座席番号をお知らせします。</li>
+                <li>当日は受付で受付番号とお名前をお伝えください。</li>
+                <li>1回のお申し込みは1組<span data-ticket-max>8</span>人までです。</li>
               </ul>
             </aside>
 
             <div class="ticket-main" aria-live="polite">
               <div class="ticket-notice" data-ticket-notice hidden></div>
-              <noscript><p class="ticket-notice">予約フォームを使うには JavaScript を有効にしてください。ご不明な点は<a href="contact.html">お問い合わせフォーム</a>からご連絡ください。</p></noscript>
+              <noscript><p class="ticket-notice">申込フォームを使うには JavaScript を有効にしてください。ご不明な点は<a href="contact.html">お問い合わせフォーム</a>からご連絡ください。</p></noscript>
 
               <!-- 1. 入力 -->
               <form id="ticket-form" class="contact-form ticket-form" data-step="input" novalidate hidden>
@@ -99,9 +100,16 @@
                 </fieldset>
 
                 <fieldset class="form-group">
-                  <legend>枚数 <span class="required">必須</span></legend>
+                  <legend>人数 <span class="required">必須</span></legend>
                   <div class="kind-options" data-kind-options></div>
                   <p class="order-total" data-order-total></p>
+                  <p class="field-hint">ご一緒に来られる方をまとめてお申し込みください（並びのお席になります）。</p>
+                </fieldset>
+
+                <fieldset class="form-group">
+                  <legend>お席の配慮</legend>
+                  <div class="care-options" data-care-options></div>
+                  <p class="field-hint">当てはまるものがあればお選びください。できるかぎり配慮してお席を決めます。</p>
                 </fieldset>
 
                 <div class="form-group">
@@ -118,7 +126,7 @@
                 <div class="form-group">
                   <label for="email">メールアドレス <span class="required">必須</span></label>
                   <input type="email" id="email" name="email" required maxlength="254" autocomplete="email" inputmode="email" placeholder="例：yamada@example.com">
-                  <p class="field-hint">予約番号をお送りします。お間違えのないようご入力ください。</p>
+                  <p class="field-hint">受付番号と座席のお知らせをお送りします。お間違えのないようご入力ください。</p>
                 </div>
 
                 <div class="form-group">
@@ -146,7 +154,7 @@
                 <div class="form-group privacy-consent">
                   <label class="checkbox-label" for="privacy-consent">
                     <input type="checkbox" id="privacy-consent" name="privacyConsent" required>
-                    <span><a href="privacy.html" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>を確認し、入力した個人情報がチケットの予約・当日の受付・ご連絡のために利用されることに同意します。 <span class="required">必須</span></span>
+                    <span><a href="privacy.html" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>を確認し、入力した個人情報がチケットのお申し込み・座席の割り当て・当日の受付・ご連絡のために利用されることに同意します。 <span class="required">必須</span></span>
                   </label>
                 </div>
 
@@ -159,29 +167,30 @@
 
               <!-- 2. 確認 -->
               <div class="contact-form ticket-confirm" data-step="confirm" hidden>
-                <h2 class="ticket-step-h" tabindex="-1">ご予約内容の確認</h2>
-                <p class="ticket-step-lead">以下の内容でよろしければ「予約する」を押してください。</p>
+                <h2 class="ticket-step-h" tabindex="-1">お申し込み内容の確認</h2>
+                <p class="ticket-step-lead">以下の内容でよろしければ「申し込む」を押してください。</p>
                 <dl class="confirm-list" data-confirm-list></dl>
                 <div class="form-message error" data-confirm-error hidden></div>
                 <div class="confirm-actions">
-                  <button type="button" class="btn btn-submit" data-reserve>この内容で予約する</button>
+                  <button type="button" class="btn btn-submit" data-reserve>この内容で申し込む</button>
                   <button type="button" class="btn line confirm-back" data-back>入力画面に戻る</button>
                 </div>
               </div>
 
               <!-- 3. 完了 -->
               <div class="contact-form ticket-done" data-step="done" hidden>
-                <h2 class="ticket-step-h" tabindex="-1">ご予約ありがとうございます</h2>
+                <h2 class="ticket-step-h" tabindex="-1">お申し込みを受け付けました</h2>
                 <div class="done-number">
-                  <p>予約番号</p>
-                  <strong data-reservation-id></strong>
+                  <p>受付番号</p>
+                  <strong data-receipt-no></strong>
                 </div>
                 <p class="done-mail" data-done-mail></p>
                 <ul class="done-notes">
-                  <li>当日は会場の受付で<b>予約番号</b>と<b>お名前</b>をお伝えください。</li>
+                  <li><b>まだご予約は確定していません。</b>運営で確認のうえ、ご予約確定のメールをお送りします（指定席は座席番号をお知らせします）。</li>
+                  <li>当日は会場の受付で<b>受付番号</b>と<b>お名前</b>をお伝えください。</li>
                   <li>お支払いは当日、受付でお願いいたします。</li>
                   <li>念のため、この画面を保存（スクリーンショット）しておくと安心です。</li>
-                  <li>変更・キャンセルは<a href="contact.html?subject=ticket">お問い合わせフォーム</a>から予約番号を添えてご連絡ください。</li>
+                  <li>変更・キャンセルは<a href="contact.html?subject=ticket">お問い合わせフォーム</a>から受付番号を添えてご連絡ください。</li>
                 </ul>
                 <dl class="confirm-list" data-done-list></dl>
                 <div class="done-actions">

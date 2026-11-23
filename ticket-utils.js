@@ -1,4 +1,4 @@
-// チケット予約の計算（画面に依存しない部分。tests/ticket-utils.test.js で確かめる）
+// チケット申込フォームの計算（画面に依存しない部分。tests/ticket-utils.test.js で確かめる）
 
 import { isValidDate, tokyoToday } from "./schedule-events.js";
 
@@ -36,13 +36,13 @@ export function formatYen(value) {
   return value === 0 ? "無料" : `${value.toLocaleString("ja-JP")}円`;
 }
 
-// 席種と枚数の選び方に問題があれば、お客さんに見せる文を返す（問題なければ空文字）
+// 席種と人数の選び方に問題があれば、お客さんに見せる文を返す（問題なければ空文字）
 export function selectionError(seatType, tickets, config) {
   if (!config.seatTypes.some((seat) => seat.id === seatType)) return "席種を選んでください。";
   const total = countTickets(tickets);
-  if (total === 0) return "枚数を1枚以上選んでください。";
-  if (total > config.maxTicketsPerReservation) {
-    return `1回のご予約は${config.maxTicketsPerReservation}枚までです。それより多い場合はお問い合わせください。`;
+  if (total === 0) return "人数を1人以上選んでください。";
+  if (total > config.maxPeoplePerApplication) {
+    return `1回のお申し込みは${config.maxPeoplePerApplication}人までです。それより多い場合はお問い合わせください。`;
   }
   return "";
 }
