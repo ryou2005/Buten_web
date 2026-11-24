@@ -22,7 +22,7 @@ export const TICKET_CONFIG = {
 
   // 受付状況 "before"（受付開始前）/ "open"（受付中）/ "closed"（受付終了）
   // 公演日を過ぎると、ここに関係なく「受付終了」になる
-  status: "open",
+  status: "before",
   opensText: "", // 受付開始前に表示する開始日 例 "2027年1月30日（土）"
 
   // 1件の申し込み（1組）の上限人数。これより多い場合はお問い合わせへ

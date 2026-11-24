@@ -1,5 +1,5 @@
 // 20周年記念公演の告知
-//   ・全ページ：スマホで画面下に「チケットのお申し込み」の帯を出す。公演日を過ぎたら告知（data-anniv-promo）を消す
+//   ・全ページ：スマホで画面下に告知の帯を出す（受付中は「チケット申込」）。公演日を過ぎたら告知（data-anniv-promo）を消す
 //   ・特設ページ（20th.html）：料金表・開場時間・申込ボタンを ticket-config.js の内容にする
 
 import { EVENT, TICKET_CONFIG } from "./ticket-config.js";
@@ -43,7 +43,7 @@ export function initAnniversaryPromo(now = new Date()) {
   bar.setAttribute("aria-label", "20周年記念公演のお知らせ");
   const link = el("a", "anniv-bar-link");
   link.href = "20th.html";
-  link.append(el("span", "anniv-bar-date", "2027.4.29"), el("span", "anniv-bar-text", "20周年記念公演 チケット申込"));
+  link.append(el("span", "anniv-bar-date", "2027.4.29"), el("span", "anniv-bar-text", salesState(TICKET_CONFIG, EVENT.date, now) === "open" ? "20周年記念公演 チケット申込" : "20周年記念公演 詳しくはこちら"));
   const close = el("button", "anniv-bar-close", "×");
   close.type = "button";
   close.setAttribute("aria-label", "このお知らせを閉じる");
@@ -102,6 +102,6 @@ export function initAnniversaryPage(root = document) {
     link.setAttribute("aria-disabled", "true");
   });
   const note = root.querySelector("[data-ticket-status-note]");
-  if (note && state === "before" && TICKET_CONFIG.opensText) note.textContent = `${TICKET_CONFIG.opensText}からお申し込みの受付を開始します。`;
+  if (note && state === "before") note.textContent = TICKET_CONFIG.opensText ? `${TICKET_CONFIG.opensText}からお申し込みの受付を開始します。` : "お申し込みの受付開始日は決まり次第お知らせします。";
   if (note && state === "closed") note.textContent = "たくさんのお申し込みありがとうございました。";
 }
