@@ -1,0 +1,483 @@
+/* ============================================================
+   20周年記念公演 特設ページ（案F「響」）
+   背景色の並び：藍の写真（見出し）→ 生成り（概要）→ 白（ごあいさつ）→ 生成り（料金）
+                → 白（予約の流れ）→ 生成り（会場）→ 白（よくある質問）→ 藍（ご予約）
+   ※ anniversary.js が data-event・data-price-table・data-ticket-cta などを書き換える
+   ============================================================ */
+
+/* ---------- 見出し ---------- */
+.anniv-hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: min(calc(100svh - var(--header-height)), 760px);
+  padding: 0 var(--gutter) clamp(40px, 6vw, 80px);
+  overflow: hidden;
+  color: #fff;
+}
+
+.anniv-hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: subHeroZoom 7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.anniv-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(25, 47, 79, 0.88) 0%, rgba(25, 47, 79, 0.55) 55%, rgba(25, 47, 79, 0.35) 100%),
+    linear-gradient(0deg, rgba(25, 47, 79, 0.6) 0%, transparent 55%);
+}
+
+.anniv-hero-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(24px, 5vw, 72px);
+  align-items: end;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  animation: subHeroIn 1s 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.anniv-hero-num {
+  font-family: var(--font-latin);
+  font-weight: 600;
+  font-size: clamp(8rem, 22vw, 18rem);
+  line-height: 0.8;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.85);
+}
+
+.anniv-hero .label {
+  color: #fff;
+  opacity: 0.85;
+  margin-bottom: 12px;
+}
+
+.anniv-hero h1 {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.4vw, 4rem);
+  line-height: 1.3;
+  letter-spacing: 0.12em;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.anniv-hero-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 36px;
+  margin: 24px 0 32px;
+}
+
+.anniv-hero-facts > div {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.anniv-hero-facts dt {
+  padding: 0 10px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+}
+
+.anniv-hero-facts dd {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  letter-spacing: 0.06em;
+}
+
+.anniv-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.anniv-hero-actions .btn {
+  padding: 18px 32px;
+  font-size: 1rem;
+}
+
+.anniv-hero .btn.line:hover {
+  background: #fff;
+  border-color: #fff;
+  color: var(--ai-deep);
+}
+
+.anniv-hero-note {
+  margin-top: 18px;
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+/* 受付前・受付終了のときの予約ボタン */
+.btn.is-disabled {
+  background: #9a9590;
+  border-color: #9a9590;
+  color: #fff;
+  pointer-events: none;
+}
+
+.btn.is-disabled::after {
+  display: none;
+}
+
+/* ---------- 公演概要 ---------- */
+.outline-grid,
+.access-grid,
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: clamp(32px, 6vw, 96px);
+  align-items: start;
+}
+
+.info-list {
+  border-top: 1px solid var(--sumi);
+}
+
+.info-list > div {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.info-list dt {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--ai);
+}
+
+.info-list dd a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.dd-sub {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+/* ---------- ごあいさつ ---------- */
+.message-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: clamp(40px, 6vw, 96px);
+  align-items: center;
+}
+
+.message-img img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.anniv-message .sec-h {
+  margin-bottom: 28px;
+  color: var(--ai);
+}
+
+.body-text .note {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* ---------- 席種と料金 ---------- */
+.anniv-price .sec-h {
+  margin-bottom: clamp(32px, 4vw, 48px);
+}
+
+.seat-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.seat-card {
+  padding: clamp(24px, 3vw, 36px);
+  background: var(--white);
+  border-top: 2px solid var(--ai);
+}
+
+.seat-card h3 {
+  font-size: 1.4rem;
+  letter-spacing: 0.1em;
+  color: var(--ai);
+}
+
+.seat-card p {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: #45474b;
+}
+
+.price-table-wrap {
+  margin-top: 32px;
+  overflow-x: auto;
+}
+
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+}
+
+.price-table caption {
+  padding-bottom: 10px;
+  text-align: left;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.price-table th,
+.price-table td {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+.price-table thead th {
+  border-bottom: 1px solid var(--sumi);
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--ai);
+}
+
+.price-table tbody th {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.price-table .yen {
+  font-family: var(--font-latin);
+  font-size: 1.7rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--shu);
+}
+
+.price-table .tbd {
+  color: var(--muted);
+}
+
+.price-notes {
+  margin-top: 24px;
+  padding-left: 1.2em;
+  font-size: 0.92rem;
+  color: #45474b;
+}
+
+.price-notes li + li {
+  margin-top: 6px;
+}
+
+/* ---------- 予約の流れ ---------- */
+.anniv-how .sec-h {
+  margin-bottom: clamp(32px, 4vw, 56px);
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  list-style: none;
+}
+
+.step {
+  position: relative;
+  padding: clamp(28px, 3vw, 40px);
+  background: var(--kinari);
+}
+
+.step-num {
+  display: block;
+  font-family: var(--font-latin);
+  font-size: 2.6rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--shu);
+}
+
+.step h3 {
+  margin: 16px 0 10px;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+  color: var(--ai);
+}
+
+.step p {
+  font-size: 0.95rem;
+  color: #45474b;
+}
+
+/* 矢印で次の手順へつなぐ */
+.step + .step::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -16px;
+  width: 12px;
+  height: 12px;
+  border-top: 1px solid var(--shu);
+  border-right: 1px solid var(--shu);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.how-cta {
+  margin-top: clamp(40px, 5vw, 56px);
+  text-align: center;
+}
+
+.how-cta .btn {
+  padding: 18px 40px;
+  font-size: 1rem;
+}
+
+/* ---------- 会場 ---------- */
+.venue-name {
+  font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+  letter-spacing: 0.1em;
+  color: var(--ai);
+}
+
+.venue-address {
+  margin-top: 8px;
+}
+
+.venue-train {
+  margin: 4px 0 28px;
+  color: #45474b;
+}
+
+.anniv-access .btn.line {
+  color: var(--sumi);
+}
+
+/* ---------- よくある質問 ---------- */
+.faq-list {
+  border-top: 1px solid var(--sumi);
+}
+
+.faq-list details {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq-list summary {
+  position: relative;
+  padding: 22px 48px 22px 0;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+  color: var(--ai);
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
+/* 右端の ＋ / − */
+.faq-list summary::before,
+.faq-list summary::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  width: 16px;
+  height: 1px;
+  background: var(--shu);
+  transition: transform 0.3s;
+}
+
+.faq-list summary::after {
+  transform: rotate(90deg);
+}
+
+.faq-list details[open] summary::after {
+  transform: rotate(0);
+}
+
+.faq-list details p {
+  padding: 0 0 24px;
+  font-size: 0.95rem;
+  color: #45474b;
+}
+
+.faq-list details a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 960px) {
+  .anniv-hero-inner {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .anniv-hero-num {
+    font-size: clamp(6rem, 30vw, 9rem);
+    margin-bottom: -0.1em;
+  }
+
+  .outline-grid,
+  .access-grid,
+  .faq-grid,
+  .message-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .step + .step::before {
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%) rotate(135deg);
+  }
+}
+
+@media (max-width: 600px) {
+  .seat-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .anniv-hero-actions .btn {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .info-list > div {
+    grid-template-columns: 84px 1fr;
+    gap: 12px;
+  }
+
+  .price-table th,
+  .price-table td {
+    padding: 14px 12px;
+  }
+}

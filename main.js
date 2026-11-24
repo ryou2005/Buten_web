@@ -1,6 +1,7 @@
 import { initializeHomeSchedule } from "./home-schedule.js";
 import { hidePastScheduleCards } from "./schedule-events.js";
 import { addPastScheduleToHistory } from "./performance-archive.js";
+import { fillEventInfo, initAnniversaryPage, initAnniversaryPromo } from "./anniversary.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const homeScheduleList = document.querySelector("#schedule .schedule-list");
@@ -9,6 +10,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // 公演予定ページ：日付が過ぎた公演は一覧から外す（公演実績ページに自動で載る）
   const scheduleList = document.querySelector(".detailed-schedule-list");
   if (scheduleList) hidePastScheduleCards(scheduleList);
+
+  // 20周年記念公演：告知（公演日を過ぎたら消す）・特設ページ・予約フォーム
+  initAnniversaryPromo();
+  fillEventInfo();
+  if (document.querySelector("[data-price-table]")) initAnniversaryPage();
+  const ticketForm = document.getElementById("ticket-form");
+  if (ticketForm) import("./ticket-form.js").then(({ initTicketForm }) => initTicketForm(ticketForm));
 
   // Loader（オープニング）
   // 筆文字ロゴを見せてから幕を上げる。同じ訪問の中では2回目以降は出さない（head 内のスクリプトで判定）

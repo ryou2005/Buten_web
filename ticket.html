@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>チケットのお申し込み（20周年記念公演） | あきる野市の和太鼓 武天</title>
+    <meta name="description" content="和太鼓 武天 20周年記念公演（2027年4月29日・秋川キララホール）のチケット申込フォームです。席は運営が割り当ててメールでお知らせし、お支払いは当日受付です。" />
+    <link rel="canonical" href="https://wadaiko-buten.net/ticket.html" />
+    <meta name="robots" content="noindex" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho+B1:wght@600;700;800&family=Cormorant+Garamond:wght@500;600&display=swap" media="print" onload="this.media='all'"
+      rel="stylesheet" />
+    <script>
+      // オープニング（ローディング）は同じ訪問の中で最初の1回だけ表示する
+      try {
+        if (sessionStorage.getItem("buten-opening")) document.documentElement.classList.add("no-loader");
+      } catch (e) {
+        document.documentElement.classList.add("no-loader");
+      }
+    </script>
+    <noscript><style>.loader { display: none; }</style></noscript>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./contact.css" />
+    <link rel="stylesheet" href="./ticket.css" />
+  </head>
+
+  <body>
+    <div class="loader" id="loader" aria-hidden="true">
+      <span class="logo-h"><img src="images/common/logo_text.webp" width="60" height="117" alt=""></span>
+      <span class="loader-line"></span>
+    </div>
+    <div id="app">
+      <header class="site-header" id="site-header">
+        <a class="brand" href="index.html"><span class="logo-h"><img src="images/common/logo_text.webp" width="60" height="117" alt="和太鼓 武天 -BUTEN-"></span></a>
+        <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="main-nav">MENU</button>
+        <nav class="main-nav" id="main-nav" aria-label="メインメニュー">
+          <a class="sub-only" href="index.html">Home</a>
+          <a href="performances.html">公演実績</a>
+          <a href="class.html">クラス紹介</a>
+          <a href="schedule.html">公演予定</a>
+          <a href="gallery.html">武天の日常</a>
+          <a class="sub-only" href="instructors.html">講師紹介</a>
+          <a href="admission.html">入会案内</a>
+          <a class="sub-only" href="workshop.html">ワークショップ</a>
+          <a class="sub-only" href="culture-class.html">伝統文化親子教室</a>
+          <a href="access.html">アクセス</a>
+          <a class="nav-anniv" data-anniv-promo aria-current="page" href="20th.html">20周年公演</a>
+          <a class="btn" href="contact.html">お問い合わせ</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="ticket-head">
+          <div class="wrap">
+            <p class="ticket-back"><a href="20th.html">← 20周年記念公演のページへ戻る</a></p>
+            <div class="label">TICKET APPLICATION</div>
+            <h1>チケットのお申し込み</h1>
+            <ol class="ticket-steps" aria-label="お申し込みの手順">
+              <li data-step-label="input" aria-current="step"><span>1</span>入力</li>
+              <li data-step-label="confirm"><span>2</span>確認</li>
+              <li data-step-label="done"><span>3</span>完了</li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="sec ticket-sec">
+          <div class="wrap ticket-grid">
+            <aside class="ticket-side">
+              <div class="ticket-event">
+                <p class="ticket-event-label">20th ANNIVERSARY CONCERT</p>
+                <h2>武天20周年記念公演</h2>
+                <dl>
+                  <div><dt>日時</dt><dd><span data-event="date">2027年4月29日（木・祝）</span><br><span data-event="time">開場・開演時間は決まり次第お知らせします</span></dd></div>
+                  <div><dt>会場</dt><dd data-event="venue">秋川キララホール</dd></div>
+                  <div><dt>お支払い</dt><dd>当日、会場の受付にて</dd></div>
+                </dl>
+              </div>
+              <ul class="ticket-side-notes">
+                <li>お申し込み後、受付番号が書かれたメールが届きます。</li>
+                <li>指定席は運営が座席を割り当て、決まりしだいメールで座席番号をお知らせします。</li>
+                <li>当日は受付で受付番号とお名前をお伝えください。</li>
+                <li>1回のお申し込みは1組<span data-ticket-max>8</span>人までです。</li>
+              </ul>
+            </aside>
+
+            <div class="ticket-main" aria-live="polite">
+              <div class="ticket-notice" data-ticket-notice hidden></div>
+              <noscript><p class="ticket-notice">申込フォームを使うには JavaScript を有効にしてください。ご不明な点は<a href="contact.html">お問い合わせフォーム</a>からご連絡ください。</p></noscript>
+
+              <!-- 1. 入力 -->
+              <form id="ticket-form" class="contact-form ticket-form" data-step="input" novalidate hidden>
+                <fieldset class="form-group">
+                  <legend>席種 <span class="required">必須</span></legend>
+                  <div class="seat-options" data-seat-options></div>
+                </fieldset>
+
+                <fieldset class="form-group">
+                  <legend>人数 <span class="required">必須</span></legend>
+                  <div class="kind-options" data-kind-options></div>
+                  <p class="order-total" data-order-total></p>
+                  <p class="field-hint">ご一緒に来られる方をまとめてお申し込みください（並びのお席になります）。</p>
+                </fieldset>
+
+                <fieldset class="form-group">
+                  <legend>お席の配慮</legend>
+                  <div class="care-options" data-care-options></div>
+                  <p class="field-hint">当てはまるものがあればお選びください。できるかぎり配慮してお席を決めます。</p>
+                </fieldset>
+
+                <div class="form-group">
+                  <label for="name">お名前 <span class="required">必須</span></label>
+                  <input type="text" id="name" name="name" required maxlength="50" autocomplete="name" placeholder="例：山田 太郎">
+                </div>
+
+                <div class="form-group">
+                  <label for="kana">フリガナ <span class="required">必須</span></label>
+                  <input type="text" id="kana" name="kana" required maxlength="50" placeholder="例：ヤマダ タロウ">
+                  <p class="field-hint">当日の受付でお名前を探すときに使います。</p>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">メールアドレス <span class="required">必須</span></label>
+                  <input type="email" id="email" name="email" required maxlength="254" autocomplete="email" inputmode="email" placeholder="例：yamada@example.com">
+                  <p class="field-hint">受付番号と座席のお知らせをお送りします。お間違えのないようご入力ください。</p>
+                </div>
+
+                <div class="form-group">
+                  <label for="email-confirm">メールアドレス（確認用） <span class="required">必須</span></label>
+                  <input type="email" id="email-confirm" name="emailConfirm" required maxlength="254" autocomplete="email" inputmode="email" placeholder="もう一度ご入力ください">
+                </div>
+
+                <div class="form-group">
+                  <label for="tel">電話番号 <span class="required">必須</span></label>
+                  <input type="tel" id="tel" name="tel" required maxlength="20" autocomplete="tel" inputmode="tel" placeholder="例：090-1234-5678">
+                  <p class="field-hint">メールが届かないときなどにご連絡します。</p>
+                </div>
+
+                <div class="form-group">
+                  <label for="message">ご連絡事項</label>
+                  <textarea id="message" name="message" rows="4" maxlength="500" placeholder="車いすでのご来場など、事前にお伝えいただきたいことがあればご記入ください"></textarea>
+                </div>
+
+                <!-- ボット対策（人には見えない欄。入力されていたら送らない） -->
+                <div class="hp-field" aria-hidden="true">
+                  <label for="website">ウェブサイト</label>
+                  <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <div class="form-group privacy-consent">
+                  <label class="checkbox-label" for="privacy-consent">
+                    <input type="checkbox" id="privacy-consent" name="privacyConsent" required>
+                    <span><a href="privacy.html" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>を確認し、入力した個人情報がチケットのお申し込み・座席の割り当て・当日の受付・ご連絡のために利用されることに同意します。 <span class="required">必須</span></span>
+                  </label>
+                </div>
+
+                <div class="form-message error" data-form-error hidden></div>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-submit">入力内容を確認する</button>
+                </div>
+              </form>
+
+              <!-- 2. 確認 -->
+              <div class="contact-form ticket-confirm" data-step="confirm" hidden>
+                <h2 class="ticket-step-h" tabindex="-1">お申し込み内容の確認</h2>
+                <p class="ticket-step-lead">以下の内容でよろしければ「申し込む」を押してください。</p>
+                <dl class="confirm-list" data-confirm-list></dl>
+                <div class="form-message error" data-confirm-error hidden></div>
+                <div class="confirm-actions">
+                  <button type="button" class="btn btn-submit" data-reserve>この内容で申し込む</button>
+                  <button type="button" class="btn line confirm-back" data-back>入力画面に戻る</button>
+                </div>
+              </div>
+
+              <!-- 3. 完了 -->
+              <div class="contact-form ticket-done" data-step="done" hidden>
+                <h2 class="ticket-step-h" tabindex="-1">お申し込みを受け付けました</h2>
+                <div class="done-number">
+                  <p>受付番号</p>
+                  <strong data-receipt-no></strong>
+                </div>
+                <p class="done-mail" data-done-mail></p>
+                <ul class="done-notes">
+                  <li><b>まだご予約は確定していません。</b>運営で確認のうえ、ご予約確定のメールをお送りします（指定席は座席番号をお知らせします）。</li>
+                  <li>当日は会場の受付で<b>受付番号</b>と<b>お名前</b>をお伝えください。</li>
+                  <li>お支払いは当日、受付でお願いいたします。</li>
+                  <li>念のため、この画面を保存（スクリーンショット）しておくと安心です。</li>
+                  <li>変更・キャンセルは<a href="contact.html?subject=ticket">お問い合わせフォーム</a>から受付番号を添えてご連絡ください。</li>
+                </ul>
+                <dl class="confirm-list" data-done-list></dl>
+                <div class="done-actions">
+                  <a class="btn line" href="20th.html">公演のページへ戻る</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <div>
+            <a class="brand" href="index.html"><span class="logo-h"><img src="images/common/logo_text.webp" width="60" height="117" alt="和太鼓 武天 -BUTEN-" loading="lazy"></span></a>
+            <address>小川会館<br>東京都あきる野市小川638-1</address>
+            <div class="social-links">
+              <a href="https://www.instagram.com/wadaiko_buten/" class="social-icon" aria-label="Instagram">
+                <img src="images/common/instagram.webp" width="30" height="30" loading="lazy" alt="Instagram">
+              </a>
+              <a href="https://www.facebook.com/share/18MnYS9fLs/?mibextid=wwXIfr" class="social-icon" aria-label="Facebook">
+                <img src="images/common/facebook.webp" width="30" height="30" loading="lazy" alt="Facebook">
+              </a>
+              <a href="https://www.youtube.com/channel/UCwjt1ccEZv3qjzCHLPV8tAA" class="social-icon" aria-label="YouTube">
+                <img src="images/common/youtube.webp" width="30" height="30" loading="lazy" alt="YouTube">
+              </a>
+            </div>
+          </div>
+          <div><h4>STAGE</h4><ul><li><a href="20th.html">20周年記念公演</a></li><li><a href="schedule.html">公演予定</a></li><li><a href="performances.html">公演実績</a></li><li><a href="gallery.html">武天の日常</a></li></ul></div>
+          <div><h4>LESSON</h4><ul><li><a href="class.html">クラス紹介</a></li><li><a href="instructors.html">講師紹介</a></li><li><a href="admission.html">入会案内</a></li><li><a href="workshop.html">ワークショップ</a></li><li><a href="culture-class.html">伝統文化親子教室</a></li></ul></div>
+          <div><h4>INFO</h4><ul><li><a href="access.html">アクセス</a></li><li><a href="contact.html">お問い合わせ</a></li><li><a href="privacy.html">プライバシーポリシー</a></li></ul></div>
+        </div>
+        <p class="copy">&copy; 2025 和太鼓 武天 -BUTEN-</p>
+      </footer>
+    </div>
+    <script type="module" src="./main.js"></script>
+  </body>
+
+</html>

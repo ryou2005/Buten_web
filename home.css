@@ -112,6 +112,59 @@ html.loaded .hero-inner {
   color: var(--ai-deep);
 }
 
+/* 20周年記念公演の告知（公演日を過ぎると anniversary.js が消す） */
+.hero-anniv {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 100%;
+  margin-bottom: 28px;
+  padding: 12px 22px 12px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: rgba(25, 47, 79, 0.55);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.hero-anniv:hover {
+  background: var(--shu);
+  border-color: var(--shu);
+}
+
+.hero-anniv-num {
+  font-family: var(--font-latin);
+  font-weight: 600;
+  font-size: 2.6rem;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px #fff;
+}
+
+.hero-anniv-body {
+  display: grid;
+  gap: 2px;
+}
+
+.hero-anniv-date {
+  font-family: var(--font-latin);
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  opacity: 0.85;
+}
+
+.hero-anniv-title {
+  word-break: keep-all; /* <wbr> の位置で折り返す */
+  overflow-wrap: anywhere;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+}
+
+.hero-anniv-title::after {
+  content: " →";
+}
+
 .hero h1 {
   writing-mode: vertical-rl;
   align-self: center;
