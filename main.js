@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 20周年記念公演：告知（公演日を過ぎたら消す）・特設ページ・予約フォーム
   initAnniversaryPromo();
   fillEventInfo();
-  if (document.querySelector("[data-price-table]")) initAnniversaryPage();
+  if (document.querySelector("[data-ticket-cta]")) initAnniversaryPage();
   const ticketForm = document.getElementById("ticket-form");
   if (ticketForm) import("./ticket-form.js").then(({ initTicketForm }) => initTicketForm(ticketForm));
 
